@@ -1,0 +1,109 @@
+[
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-02",
+    "params": {
+      "type": "BUG",
+      "title": "Login button not working",
+      "businessPriority": "HIGH",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "description": "Button click event not firing",
+      "expectedBehavior": "Login should redirect to dashboard",
+      "actualBehavior": "Button click does nothing",
+      "frequency": "OCCASIONAL",
+      "severity": "MODERATE",
+      "environment": "Windows"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-05",
+    "params": {
+      "type": "BUG",
+      "title": "Profile save crash",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "BACKEND",
+      "description": "App crashes instantly when saving profile",
+      "expectedBehavior": "Profile changes should be saved",
+      "actualBehavior": "Crash occurs immediately",
+      "frequency": "ALWAYS",
+      "severity": "SEVERE",
+      "environment": "Linux"
+    }
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "name": "Hot Fixes",
+    "dueDate": "2025-11-19",
+    "blockingFor": [],
+    "tickets": [
+      0
+    ],
+    "assignedDevs": [
+      "marcus_fullstack"
+    ]
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "name": "Fixes",
+    "dueDate": "2025-11-20",
+    "blockingFor": ["Hot Fixes"],
+    "tickets": [
+      1
+    ],
+    "assignedDevs": [
+      "alexandra_main_fullstack"
+    ]
+  },
+  {
+    "command": "viewNotifications",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "viewNotifications",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-11-19"
+  },
+  {
+    "command": "viewNotifications",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-11-21"
+  },
+  {
+    "command": "assignTicket",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-11-22",
+    "ticketID": 1
+  },
+  {
+    "command": "changeStatus",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-11-22",
+    "ticketID": 1
+  },
+  {
+    "command": "changeStatus",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-11-22",
+    "ticketID": 1
+  },
+  {
+    "command": "viewNotifications",
+    "username": "marcus_fullstack",
+    "timestamp": "2025-11-22"
+  },
+  {
+    "command": "lostInvestors",
+    "username": "gabriel_manager",
+    "timestamp": "2025-11-23"
+  }
+]

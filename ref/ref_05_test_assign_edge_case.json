@@ -1,0 +1,109 @@
+[ {
+  "command" : "assignTicket",
+  "username" : "mateo_frontend",
+  "timestamp" : "2025-10-20",
+  "error" : "Developer mateo_frontend cannot assign ticket 3 due to expertise area. Required: BACKEND, DB, FULLSTACK; Current: FRONTEND."
+}, {
+  "command" : "assignTicket",
+  "username" : "mateo_frontend",
+  "timestamp" : "2025-10-20",
+  "error" : "Developer mateo_frontend cannot assign ticket 4 due to seniority level. Required: MID, SENIOR; Current: JUNIOR."
+}, {
+  "command" : "assignTicket",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-20",
+  "error" : "Developer alexandra_main_fullstack is not assigned to milestone Fixes."
+}, {
+  "command" : "assignTicket",
+  "username" : "marcus_fullstack",
+  "timestamp" : "2025-10-20",
+  "error" : "Only OPEN tickets can be assigned."
+}, {
+  "command" : "viewTickets",
+  "username" : "marcus_fullstack",
+  "timestamp" : "2025-10-20",
+  "tickets" : [ {
+    "id" : 3,
+    "type" : "BUG",
+    "title" : "Database connection timeout",
+    "businessPriority" : "LOW",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-07",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "",
+    "comments" : [ ]
+  }, {
+    "id" : 5,
+    "type" : "UI_FEEDBACK",
+    "title" : "Misaligned search bar",
+    "businessPriority" : "LOW",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-11",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "theodora_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "assignTicket",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-20",
+  "error" : "Cannot assign ticket 0 from blocked milestone Hot Fixes."
+}, {
+  "command" : "viewTickets",
+  "username" : "marcus_fullstack",
+  "timestamp" : "2025-10-20",
+  "tickets" : [ ]
+}, {
+  "command" : "viewMilestones",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-20",
+  "milestones" : [ {
+    "name" : "Fixes",
+    "blockingFor" : [ "Hot Fixes" ],
+    "dueDate" : "2025-10-28",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 3, 4, 5 ],
+    "assignedDevs" : [ "mateo_frontend", "isabella_fullstack", "marcus_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 9,
+    "overdueBy" : 0,
+    "openTickets" : [ 3, 4, 5 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "mateo_frontend",
+      "assignedTickets" : [ ]
+    }, {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ 4 ]
+    }, {
+      "developer" : "marcus_fullstack",
+      "assignedTickets" : [ 3, 5 ]
+    } ]
+  }, {
+    "name" : "Hot Fixes",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-11-15",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 0, 1, 2 ],
+    "assignedDevs" : [ "alexandra_main_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : true,
+    "daysUntilDue" : 27,
+    "overdueBy" : 0,
+    "openTickets" : [ 0, 1, 2 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "alexandra_main_fullstack",
+      "assignedTickets" : [ ]
+    } ]
+  } ]
+} ]

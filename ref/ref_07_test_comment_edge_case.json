@@ -1,0 +1,158 @@
+[ {
+  "command" : "addComment",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-10-21",
+  "error" : "Comment must be at least 10 characters long."
+}, {
+  "command" : "addComment",
+  "username" : "lilith_reporter",
+  "timestamp" : "2025-10-21",
+  "error" : "Comments are not allowed on anonymous tickets."
+}, {
+  "command" : "undoAddComment",
+  "username" : "lilith_reporter",
+  "timestamp" : "2025-10-21",
+  "error" : "Comments are not allowed on anonymous tickets."
+}, {
+  "command" : "viewAssignedTickets",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 3,
+    "type" : "UI_FEEDBACK",
+    "title" : "Poor contrast on login form",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-11",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 4,
+    "type" : "BUG",
+    "title" : "Slow loading dashboard",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-13",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ {
+      "author" : "isabella_fullstack",
+      "content" : "Performance issue acknowledged, looking into possible API bottleneck.",
+      "createdAt" : "2025-10-21"
+    } ]
+  } ]
+}, {
+  "command" : "viewAssignedTickets",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Slow loading dashboard",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-07",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "Crash authentication",
+    "businessPriority" : "LOW",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-08",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "addComment",
+  "username" : "marcus_fullstack",
+  "timestamp" : "2025-10-21",
+  "error" : "Ticket 0 is not assigned to the developer marcus_fullstack."
+}, {
+  "command" : "addComment",
+  "username" : "lilith_reporter",
+  "timestamp" : "2025-10-21",
+  "error" : "Comment must be at least 10 characters long."
+}, {
+  "command" : "addComment",
+  "username" : "lilith_reporter",
+  "timestamp" : "2025-10-21",
+  "error" : "Reporter lilith_reporter cannot comment on ticket 2."
+}, {
+  "command" : "viewAssignedTickets",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 3,
+    "type" : "UI_FEEDBACK",
+    "title" : "Poor contrast on login form",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-11",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ {
+      "author" : "lilith_reporter",
+      "content" : "Please look into this task until tomorrow.",
+      "createdAt" : "2025-10-21"
+    } ]
+  }, {
+    "id" : 4,
+    "type" : "BUG",
+    "title" : "Slow loading dashboard",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-13",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "viewAssignedTickets",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Slow loading dashboard",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-07",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ {
+      "author" : "lilith_reporter",
+      "content" : "Issue occurs consistently across different browsers and devices.",
+      "createdAt" : "2025-10-21"
+    } ]
+  }, {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "Crash authentication",
+    "businessPriority" : "LOW",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-08",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "viewAssignedTickets",
+  "username" : "marcus_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 2,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Customizable dashboard widgets",
+    "businessPriority" : "LOW",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-09",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "theodora_reporter",
+    "comments" : [ ]
+  } ]
+} ]

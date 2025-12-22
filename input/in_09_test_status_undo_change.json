@@ -1,0 +1,173 @@
+[
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-01",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Cluttered interface.",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "FRONTEND",
+      "uiElementId": "Main dashboard",
+      "businessValue": "XL",
+      "usabilityScore": 3
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-01",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Two-factor authentication",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DEVOPS",
+      "businessValue": "XL",
+      "customerDemand": "HIGH"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-02",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Dark mode",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "customerDemand": "HIGH"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-02",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Improve navigation menu",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DESIGN",
+      "uiElementId": "Side navigation",
+      "businessValue": "L",
+      "usabilityScore": 5
+    }
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "name": "UI-Overhaul",
+    "dueDate": "2025-11-30",
+    "blockingFor": [],
+    "tickets": [0,2,3],
+    "assignedDevs": ["isabella_fullstack", "alexandra_main_fullstack"]
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "name": "Release 1.0",
+    "dueDate": "2025-10-28",
+    "blockingFor": [],
+    "tickets": [1],
+    "assignedDevs": ["alexandra_main_fullstack"]
+  },
+  {
+    "command": "assignTicket",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-10-21",
+    "ticketID": 0
+  },
+  {
+    "command":"assignTicket",
+    "username":"alexandra_main_fullstack",
+    "timestamp":"2025-10-21",
+    "ticketID":1
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-10-21",
+    "ticketID": 2
+
+  },
+  {
+    "command": "assignTicket",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-10-21",
+    "ticketID": 3
+  },
+  {
+    "command": "changeStatus",
+    "username": "alexandra_main_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-10-24"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 2,
+    "timestamp": "2025-10-25"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 3,
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "changeStatus",
+    "username": "alexandra_main_fullstack",
+    "ticketID": 1,
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "changeStatus",
+    "username": "alexandra_main_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-10-30"
+  },
+  {
+    "command": "changeStatus",
+    "username": "alexandra_main_fullstack",
+    "ticketID": 1,
+    "timestamp": "2025-10-31"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "gabriel_manager",
+    "timestamp": "2025-11-01"
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-11-01"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 3,
+    "timestamp": "2025-11-05"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 2,
+    "timestamp": "2025-11-05"
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-11-05"
+  },
+  {
+    "command": "lostInvestors",
+    "username": "gabriel_manager",
+    "timestamp": "2025-12-01"
+  }
+]

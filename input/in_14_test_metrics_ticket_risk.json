@@ -1,0 +1,134 @@
+[
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-09-10",
+    "params": {
+      "type": "BUG",
+      "title": "Crash on login",
+      "description": "App crashes when user tries to login",
+      "businessPriority": "HIGH",
+      "frequency": "FREQUENT",
+      "expertiseArea": "BACKEND",
+      "reportedBy": "theodora_reporter",
+      "expectedBehavior": "Login should work without crashing",
+      "actualBehavior": "App crashes immediately",
+      "severity": "SEVERE",
+      "environment": "Windows"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-09-11",
+    "params": {
+      "type": "BUG",
+      "title": "Settings sync issue",
+      "description": "Settings do not sync correctly between devices",
+      "businessPriority": "CRITICAL",
+      "frequency": "ALWAYS",
+      "expertiseArea": "BACKEND",
+      "reportedBy": "lilith_reporter",
+      "expectedBehavior": "Settings should sync automatically",
+      "actualBehavior": "Settings are inconsistent across devices",
+      "severity": "MODERATE",
+      "environment": "Linux"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-09-12",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Dark Mode",
+      "description": "Users request dark mode for better usability",
+      "businessPriority": "MEDIUM",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "L",
+      "customerDemand": "HIGH",
+      "reportedBy": "theodora_reporter"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-09-13",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Offline Mode",
+      "description": "Users want to use the app offline",
+      "businessPriority": "HIGH",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "customerDemand": "MEDIUM",
+      "reportedBy": "theodora_reporter"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-09-14",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Cluttered dashboard",
+      "description": "Dashboard has too many elements making it confusing",
+      "businessPriority": "LOW",
+      "expertiseArea": "DESIGN",
+      "businessValue": "XL",
+      "usabilityScore": 5,
+      "reportedBy": "lilith_reporter"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-09-14",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Button misaligned",
+      "description": "Submit button is slightly off position",
+      "businessPriority": "MEDIUM",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "usabilityScore": 7,
+      "reportedBy": "theodora_reporter"
+    }
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-17",
+    "name": "Fixes",
+    "dueDate": "2025-12-31",
+    "blockingFor": [],
+    "tickets": [
+      1
+    ],
+    "assignedDevs": [
+      "alexandra_main_fullstack"
+    ]
+  },
+  {
+    "command": "assignTicket",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-10-17",
+    "ticketID": 1
+  },
+  {
+    "command": "changeStatus",
+    "username": "alexandra_main_fullstack",
+    "ticketID": 1,
+    "timestamp": "2025-10-17"
+  },
+  {
+    "command": "generateTicketRiskReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-17"
+  },
+  {
+    "command": "lostInvestors",
+    "username": "gabriel_manager",
+    "timestamp": "2025-12-01"
+  }
+]

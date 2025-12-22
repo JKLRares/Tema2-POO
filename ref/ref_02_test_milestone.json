@@ -1,0 +1,79 @@
+[ {
+  "command" : "viewMilestones",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-21",
+  "milestones" : [ {
+    "name" : "Release 1.0",
+    "blockingFor" : [ "UI-Overhaul" ],
+    "dueDate" : "2025-10-28",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 1, 2, 4, 5 ],
+    "assignedDevs" : [ "isabella_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 8,
+    "overdueBy" : 0,
+    "openTickets" : [ 1, 2, 4, 5 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ ]
+    } ]
+  }, {
+    "name" : "UI-Overhaul",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-10-31",
+    "createdAt" : "2025-10-19",
+    "tickets" : [ 0, 6 ],
+    "assignedDevs" : [ "isabella_fullstack", "marcus_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : true,
+    "daysUntilDue" : 11,
+    "overdueBy" : 0,
+    "openTickets" : [ 0, 6 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ ]
+    }, {
+      "developer" : "marcus_fullstack",
+      "assignedTickets" : [ ]
+    } ]
+  } ]
+}, {
+  "command" : "viewMilestones",
+  "username" : "cleopatra_manager",
+  "timestamp" : "2025-10-21",
+  "milestones" : [ ]
+}, {
+  "command" : "viewMilestones",
+  "username" : "marcus_fullstack",
+  "timestamp" : "2025-10-21",
+  "milestones" : [ {
+    "name" : "UI-Overhaul",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-10-31",
+    "createdAt" : "2025-10-19",
+    "tickets" : [ 0, 6 ],
+    "assignedDevs" : [ "isabella_fullstack", "marcus_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : true,
+    "daysUntilDue" : 11,
+    "overdueBy" : 0,
+    "openTickets" : [ 0, 6 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ ]
+    }, {
+      "developer" : "marcus_fullstack",
+      "assignedTickets" : [ ]
+    } ]
+  } ]
+} ]

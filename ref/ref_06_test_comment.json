@@ -1,0 +1,87 @@
+[ {
+  "command" : "viewAssignedTickets",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "App crash on profile save",
+    "businessPriority" : "CRITICAL",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-05",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Login button not working",
+    "businessPriority" : "HIGH",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ {
+      "author" : "alexandra_main_fullstack",
+      "content" : "I am looking into this issue.",
+      "createdAt" : "2025-10-20"
+    } ]
+  }, {
+    "id" : 2,
+    "type" : "BUG",
+    "title" : "Slow loading dashboard",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-07",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ {
+      "author" : "alexandra_main_fullstack",
+      "content" : "Might be caused by heavy payload on initial load.",
+      "createdAt" : "2025-10-21"
+    } ]
+  } ]
+}, {
+  "command" : "viewAssignedTickets",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "App crash on profile save",
+    "businessPriority" : "CRITICAL",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-05",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ {
+      "author" : "lilith_reporter",
+      "content" : "Please prioritize this task.",
+      "createdAt" : "2025-10-21"
+    } ]
+  }, {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Login button not working",
+    "businessPriority" : "HIGH",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 2,
+    "type" : "BUG",
+    "title" : "Slow loading dashboard",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-07",
+    "assignedAt" : "2025-10-20",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ {
+      "author" : "alexandra_main_fullstack",
+      "content" : "Might be caused by heavy payload on initial load.",
+      "createdAt" : "2025-10-21"
+    } ]
+  } ]
+} ]

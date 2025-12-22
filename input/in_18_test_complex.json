@@ -1,0 +1,730 @@
+[
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-02",
+    "params": {
+      "type": "BUG",
+      "title": "Login button not working",
+      "businessPriority": "HIGH",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "description": "This is fishy. Button click event not firing",
+      "expectedBehavior": "Login should redirect to dashboard",
+      "actualBehavior": "Button click does nothing",
+      "frequency": "OCCASIONAL",
+      "severity": "MODERATE",
+      "environment": "Windows",
+      "errorCode": 101
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-05",
+    "params": {
+      "type": "BUG",
+      "title": "App crash on profile save",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "BACKEND",
+      "description": "Profile save endpoint failing",
+      "expectedBehavior": "Profile changes should be saved",
+      "actualBehavior": "Application crashes instantly",
+      "frequency": "ALWAYS",
+      "severity": "SEVERE",
+      "environment": "Linux"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-07",
+    "params": {
+      "type": "BUG",
+      "title": "Slow loading dashboard",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DEVOPS",
+      "expectedBehavior": "Dashboard should load under 2s",
+      "actualBehavior": "Takes 8–10s to load",
+      "frequency": "FREQUENT",
+      "severity": "MODERATE",
+      "errorCode": 302
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-07",
+    "params": {
+      "type": "BUG",
+      "title": "UI misaligned on settings page",
+      "businessPriority": "LOW",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DESIGN",
+      "description": "CSS issue on responsive layout",
+      "expectedBehavior": "Elements should be aligned properly",
+      "actualBehavior": "Misaligned inputs and labels",
+      "frequency": "OCCASIONAL",
+      "severity": "MINOR"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-07",
+    "params": {
+      "type": "BUG",
+      "title": "Database connection timeout",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DB",
+      "expectedBehavior": "Queries should execute in under 200ms",
+      "actualBehavior": "Connection timeout after 30s",
+      "frequency": "FREQUENT",
+      "severity": "SEVERE"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-08",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Dark mode support",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "customerDemand": "HIGH"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-08",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Export reports to Excel",
+      "businessPriority": "HIGH",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "BACKEND",
+      "businessValue": "L",
+      "customerDemand": "VERY_HIGH"
+    }
+  },
+  {
+    "command": "search",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "DEVELOPER",
+      "expertiseArea": "BACKEND",
+      "performanceScoreAbove": 0.00
+    }
+  },
+  {
+    "command": "search",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "DEVELOPER",
+      "seniority": "SENIOR"
+    }
+  },
+  {
+    "command": "search",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "TICKET",
+      "businessPriority": "MEDIUM",
+      "type": "BUG",
+      "createdAfter": "2025-10-06"
+    }
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "name": "Solve Backend and Frontend",
+    "dueDate": "2025-11-15",
+    "blockingFor": [],
+    "tickets": [0, 1, 5, 6],
+    "assignedDevs": [
+      "giulio_main_backend",
+      "isabella_fullstack"
+    ]
+  },
+  {
+    "command": "createMilestone",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-20",
+    "name": "Solve DevOps, Design and DB",
+    "dueDate": "2025-11-01",
+    "blockingFor": ["Solve Backend and Frontend"],
+    "tickets": [2, 3, 4],
+    "assignedDevs": [
+      "amelia_db",
+      "jenny_devops",
+      "sofia_uiux"
+    ]
+  },
+  {
+    "command": "assignTicket",
+    "username": "jenny_devops",
+    "timestamp": "2025-10-20",
+    "ticketID": 2
+  },
+  {
+    "command": "assignTicket",
+    "username": "sofia_uiux",
+    "timestamp": "2025-10-20",
+    "ticketID": 3
+  },
+  {
+    "command": "assignTicket",
+    "username": "amelia_db",
+    "timestamp": "2025-10-20",
+    "ticketID": 4
+  },
+  {
+    "command": "viewMilestones",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "changeStatus",
+    "username": "jenny_devops",
+    "ticketID": 2,
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "addComment",
+    "username": "jenny_devops",
+    "ticketID": 2,
+    "comment": "Slow query on /api/dashboard/widgets. Will optimize and add caching.",
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "addComment",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "comment": "Connection pool exhausted; increasing pool size and checking long-running queries.",
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "changeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 4,
+    "comment": "Still seeing timeouts after the latest patch. Some queries complete faster, but others still hit the 30s limit. Logs attached for reference.",
+    "timestamp": "2025-10-22"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-22"
+  },
+  {
+    "command": "changeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-23"
+  },
+  {
+    "command": "addComment",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "comment": "Verified after the latest deployment — all queries now execute under 150ms. Issue confirmed resolved.",
+    "timestamp": "2025-10-23"
+  },
+  {
+    "command": "changeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-23"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 3,
+    "timestamp": "2025-10-23"
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-24"
+  },
+  {
+    "command": "generateResolutionEfficiencyReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-24"
+  },
+  {
+    "command": "generateCustomerImpactReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-24"
+  },
+  {
+    "command": "addComment",
+    "username": "jenny_devops",
+    "ticketID": 2,
+    "comment": "Optimized the /api/dashboard/widgets query and added caching for static data. Dashboard now loads in ~1.5s. Fix deployed and verified.",
+    "timestamp": "2025-10-25"
+  },
+  {
+    "command": "changeStatus",
+    "username": "jenny_devops",
+    "ticketID": 2,
+    "timestamp": "2025-10-25"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "jenny_devops",
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "addComment",
+    "username": "sofia_uiux",
+    "ticketID": 3,
+    "comment": "Adjusted CSS flex layout and margins on the settings page. Elements now align correctly across all screen sizes. Fix verified.",
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 3,
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "viewNotifications",
+    "username": "sofia_uiux",
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-10-27",
+    "ticketID": 0
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-10-27",
+    "ticketID": 5
+  },
+  {
+    "command": "search",
+    "username": "giulio_main_backend",
+    "timestamp": "2025-10-27",
+    "filters": {
+      "searchType": "TICKET",
+      "availableForAssignment": true
+    }
+  },
+  {
+    "command": "assignTicket",
+    "username": "giulio_main_backend",
+    "timestamp": "2025-10-27",
+    "ticketID": 1
+  },
+  {
+    "command": "assignTicket",
+    "username": "giulio_main_backend",
+    "timestamp": "2025-10-27",
+    "ticketID": 6
+  },
+  {
+    "command": "viewMilestones",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-27"
+  },
+  {
+    "command": "generateTicketRiskReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-27"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-10-27"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 0,
+    "comment": "The login button isn’t responding on click. No redirect, no console errors. Happens occasionally on Windows builds.",
+    "timestamp": "2025-10-28"
+  },
+  {
+    "command": "changeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 6,
+    "timestamp": "2025-10-28"
+  },
+  {
+    "command": "addComment",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "comment": "Can’t reproduce on my end. Could you confirm if this occurs after a page refresh or only on the first load?",
+    "timestamp": "2025-10-30"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 0,
+    "comment": "It happens right after loading the login page — refresh seems to fix it. Might be related to lazy-loaded scripts.",
+    "timestamp": "2025-10-31"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 6,
+    "comment": "Users are asking to export reports directly to Excel. Currently, only PDF export is available.",
+    "timestamp": "2025-10-31"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 6,
+    "timestamp": "2025-10-31"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-10-31"
+  },
+  {
+    "command": "generatePerformanceReport",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-11-01"
+  },
+  {
+    "command": "addComment",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "comment": "Found the issue: event listener wasn’t attached until the script finished loading. Moved the binding to DOMContentLoaded.",
+    "timestamp": "2025-11-02"
+  },
+  {
+    "command": "addComment",
+    "username": "giulio_main_backend",
+    "ticketID": 6,
+    "comment": "Added basic Excel export option, but file downloads as empty — investigating serialization.",
+    "timestamp": "2025-11-02"
+  },
+  {
+    "command": "changeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 6,
+    "timestamp": "2025-11-02"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-11-02"
+  },
+  {
+    "command": "addComment",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "comment": "Deployed fix. Tested on Windows and Mac — login now redirects properly every time.",
+    "timestamp": "2025-11-03"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 6,
+    "comment": "Tested again — the file downloads now, but the data columns are all shifted and headers are missing.",
+    "timestamp": "2025-11-03"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 6,
+    "timestamp": "2025-11-03"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-11-03"
+  },
+  {
+    "command": "viewAssignedTickets",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-11-03"
+  },
+  {
+    "command": "addComment",
+    "username": "giulio_main_backend",
+    "ticketID": 6,
+    "comment": "Fixed column mapping and added proper headers. Also tested large datasets — exports correctly now.",
+    "timestamp": "2025-11-05"
+  },
+  {
+    "command": "changeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 6,
+    "timestamp": "2025-11-05"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 6,
+    "comment": "Confirmed! Excel export works perfectly and matches the PDF layout. Feature delivered.",
+    "timestamp": "2025-11-06"
+  },
+  {
+    "command": "changeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 6,
+    "timestamp": "2025-11-06"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 5,
+    "timestamp": "2025-11-07"
+  },
+  {
+    "command": "changeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 1,
+    "timestamp": "2025-11-10"
+  },
+  {
+    "command": "changeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 1,
+    "timestamp": "2025-11-14"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 5,
+    "timestamp": "2025-11-16"
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "gabriel_manager",
+    "timestamp": "2025-11-17"
+  },
+  {
+    "command": "viewNotifications",
+    "username": "giulio_main_backend",
+    "timestamp": "2025-11-17"
+  },
+  {
+    "command": "startTestingPhase",
+    "username": "gabriel_manager",
+    "timestamp": "2025-11-17"
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-11-20",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Misaligned search bar",
+      "businessPriority": "LOW",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "DESIGN",
+      "uiElementId": "#search-bar",
+      "businessValue": "S",
+      "usabilityScore": 6,
+      "screenshotUrl": "https://www.youtube.com/watch?v=tv-_1er1mWI"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-11-25",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Unclear icons in navigation",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "DESIGN",
+      "uiElementId": "#nav-bar",
+      "businessValue": "M",
+      "usabilityScore": 5
+    }
+  },
+  {
+    "command": "search",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-12-02",
+    "filters": {
+      "searchType": "DEVELOPER",
+      "expertiseArea": "DESIGN",
+      "performanceScoreBelow": 15.00
+    }
+  },
+  {
+    "command": "createMilestone",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-12-02",
+    "name": "Solve UI feedback",
+    "dueDate": "2025-12-07",
+    "blockingFor": [],
+    "tickets": [7, 8],
+    "assignedDevs": [
+      "nathan_uiux",
+      "sofia_uiux"
+    ]
+  },
+  {
+    "command": "assignTicket",
+    "username": "nathan_uiux",
+    "timestamp": "2025-12-02",
+    "ticketID": 7
+  },
+  {
+    "command": "assignTicket",
+    "username": "nathan_uiux",
+    "timestamp": "2025-12-02",
+    "ticketID": 8
+  },
+  {
+    "command": "changeStatus",
+    "username": "nathan_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-03"
+  },
+  {
+    "command": "addComment",
+    "username": "theodora_reporter",
+    "ticketID": 7,
+    "comment": "The search bar is still misaligned on mobile. It overlaps the logo now.",
+    "timestamp": "2025-12-03"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "nathan_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-03"
+  },
+  {
+    "command": "changeStatus",
+    "username": "nathan_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-04"
+  },
+  {
+    "command": "addComment",
+    "username": "theodora_reporter",
+    "ticketID": 7,
+    "comment": "Just checked again after the new patch — no improvement. The spacing looks even worse.",
+    "timestamp": "2025-12-04"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "nathan_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-04"
+  },
+  {
+    "command": "undoAssignTicket",
+    "username": "nathan_uiux",
+    "ticketID": 8,
+    "timestamp": "2025-12-04"
+  },
+  {
+    "command": "viewTickets",
+    "username": "sofia_uiux",
+    "timestamp": "2025-12-05"
+  },
+  {
+    "command": "assignTicket",
+    "username": "sofia_uiux",
+    "timestamp": "2025-12-05",
+    "ticketID": 8
+  },
+  {
+    "command": "changeStatus",
+    "username": "nathan_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-05"
+  },
+  {
+    "command": "addComment",
+    "username": "theodora_reporter",
+    "ticketID": 7,
+    "comment": "Still broken. Alignment is inconsistent across all screen sizes. Please reopen this issue.",
+    "timestamp": "2025-12-05"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "nathan_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-05"
+  },
+  {
+    "command": "undoAssignTicket",
+    "username": "nathan_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-05"
+  },
+  {
+    "command": "assignTicket",
+    "username": "sofia_uiux",
+    "timestamp": "2025-12-06",
+    "ticketID": 7
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-06"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 7,
+    "timestamp": "2025-12-07"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 8,
+    "timestamp": "2025-12-08"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-12-08"
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "nathan_uiux",
+    "timestamp": "2025-12-09"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 8,
+    "timestamp": "2025-12-09"
+  },
+  {
+    "command": "appStabilityReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-12-10"
+  }
+]

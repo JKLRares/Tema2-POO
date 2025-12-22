@@ -1,0 +1,127 @@
+[ {
+  "command" : "changeStatus",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-10-26",
+  "error" : "Ticket 3 is not assigned to developer isabella_fullstack."
+}, {
+  "command" : "viewMilestones",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-11-01",
+  "milestones" : [ {
+    "name" : "Release 1.0",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-10-28",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 1 ],
+    "assignedDevs" : [ "alexandra_main_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "COMPLETED",
+    "isBlocked" : false,
+    "daysUntilDue" : 0,
+    "overdueBy" : 4,
+    "openTickets" : [ ],
+    "closedTickets" : [ 1 ],
+    "completionPercentage" : 1.0,
+    "repartition" : [ {
+      "developer" : "alexandra_main_fullstack",
+      "assignedTickets" : [ 1 ]
+    } ]
+  }, {
+    "name" : "UI-Overhaul",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-11-30",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 0, 2, 3 ],
+    "assignedDevs" : [ "isabella_fullstack", "alexandra_main_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 30,
+    "overdueBy" : 0,
+    "openTickets" : [ 2, 3 ],
+    "closedTickets" : [ 0 ],
+    "completionPercentage" : 0.33,
+    "repartition" : [ {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ 2 ]
+    }, {
+      "developer" : "alexandra_main_fullstack",
+      "assignedTickets" : [ 0, 3 ]
+    } ]
+  } ]
+}, {
+  "command" : "viewTicketHistory",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-11-01",
+  "ticketHistory" : [ {
+    "id" : 2,
+    "title" : "Dark mode",
+    "status" : "RESOLVED",
+    "actions" : [ {
+      "milestone" : "UI-Overhaul",
+      "by" : "gabriel_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-21",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-21",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-25",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "undoChangeStatus",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-11-05",
+  "error" : "Ticket 3 is not assigned to developer isabella_fullstack."
+}, {
+  "command" : "viewTicketHistory",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-11-05",
+  "ticketHistory" : [ {
+    "id" : 2,
+    "title" : "Dark mode",
+    "status" : "IN_PROGRESS",
+    "actions" : [ {
+      "milestone" : "UI-Overhaul",
+      "by" : "gabriel_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-21",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-21",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-25",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-11-05",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ ]
+  } ]
+} ]

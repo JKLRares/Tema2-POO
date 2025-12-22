@@ -1,0 +1,1002 @@
+[
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-02",
+    "params": {
+      "type": "BUG",
+      "title": "Login button not working",
+      "businessPriority": "HIGH",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "description": "This is fishy. Button click event not firing",
+      "expectedBehavior": "Login should redirect to dashboard",
+      "actualBehavior": "Button click does nothing",
+      "frequency": "OCCASIONAL",
+      "severity": "MODERATE",
+      "environment": "Windows",
+      "errorCode": 101
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-05",
+    "params": {
+      "type": "BUG",
+      "title": "App crash on profile save",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "",
+      "expertiseArea": "BACKEND",
+      "description": "Profile save endpoint failing",
+      "expectedBehavior": "Profile changes should be saved",
+      "actualBehavior": "Application crashes instantly",
+      "frequency": "ALWAYS",
+      "severity": "SEVERE",
+      "environment": "Linux"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-07",
+    "params": {
+      "type": "BUG",
+      "title": "Slow loading dashboard",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DEVOPS",
+      "expectedBehavior": "Dashboard should load under 2s",
+      "actualBehavior": "Takes 8–10s to load",
+      "frequency": "FREQUENT",
+      "severity": "MODERATE",
+      "errorCode": 302
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-07",
+    "params": {
+      "type": "BUG",
+      "title": "UI misaligned on settings page",
+      "businessPriority": "LOW",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DESIGN",
+      "description": "CSS issue on responsive layout",
+      "expectedBehavior": "Elements should be aligned properly",
+      "actualBehavior": "Misaligned inputs and labels",
+      "frequency": "OCCASIONAL",
+      "severity": "MINOR"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-07",
+    "params": {
+      "type": "BUG",
+      "title": "Database connection timeout",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "",
+      "expertiseArea": "DB",
+      "expectedBehavior": "Queries should execute in under 200ms",
+      "actualBehavior": "Connection timeout after 30s",
+      "frequency": "FREQUENT",
+      "severity": "SEVERE"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-08",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Dark mode support",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "customerDemand": "HIGH"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-08",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Export reports to Excel",
+      "businessPriority": "HIGH",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "BACKEND",
+      "businessValue": "L",
+      "customerDemand": "VERY_HIGH"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-09",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Two-factor authentication",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DEVOPS",
+      "businessValue": "XL",
+      "customerDemand": "HIGH"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-10-09",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Customizable dashboard widgets",
+      "businessPriority": "LOW",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "DESIGN",
+      "businessValue": "S",
+      "customerDemand": "MEDIUM"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-09",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Dark mode support",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "customerDemand": "HIGH"
+    }
+  },
+  {
+    "command": "search",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "DEVELOPER",
+      "expertiseArea": "BACKEND",
+      "performanceScoreAbove": 0.00
+    }
+  },
+  {
+    "command": "search",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "DEVELOPER",
+      "seniority": "SENIOR",
+      "performanceScoreBelow": 90.00
+    }
+  },
+  {
+    "command": "search",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "TICKET",
+      "businessPriority": "MEDIUM",
+      "type": "BUG",
+      "createdAfter": "2025-10-06"
+    }
+  },
+  {
+    "command": "search",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "TICKET",
+      "keywords": ["mode", "bug"],
+      "type": "FEATURE_REQUEST",
+      "createdAfter": "2025-10-01",
+      "createdBefore": "2025-10-07"
+    }
+  },
+  {
+    "command": "search",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "TICKET",
+      "keywords": ["page", "auth", "dash"],
+      "type": "FEATURE_REQUEST",
+      "createdAfter": "2025-10-01",
+      "createdBefore": "2025-10-12"
+    }
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20",
+    "name": "Solve Backend and Frontend",
+    "dueDate": "2025-11-05",
+    "blockingFor": [],
+    "tickets": [0, 1, 5, 6],
+    "assignedDevs": [
+      "giulio_main_backend",
+      "isabella_fullstack",
+      "quintilian_main_backend",
+      "sofia_frontend"
+    ]
+  },
+  {
+    "command": "createMilestone",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-20",
+    "name": "Solve DevOps, Design and DB",
+    "dueDate": "2025-10-27",
+    "blockingFor": ["Solve Backend and Frontend"],
+    "tickets": [2, 3, 4, 7, 8],
+    "assignedDevs": [
+      "amelia_db",
+      "clara_devops",
+      "leon_uiux",
+      "sofia_uiux"
+    ]
+  },
+  {
+    "command": "appStabilityReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "search",
+    "username": "clara_devops",
+    "timestamp": "2025-10-20",
+    "filters": {
+      "searchType": "TICKET",
+      "createdAfter": "2025-10-08",
+      "availableForAssignment": true
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-10-20",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Misaligned search bar",
+      "businessPriority": "LOW",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "DESIGN",
+      "uiElementId": "#search-bar",
+      "businessValue": "S",
+      "usabilityScore": 6,
+      "screenshotUrl": "https://www.youtube.com/watch?v=tv-_1er1mWI"
+    }
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "viewTickets",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "assignTicket",
+    "username": "clara_devops",
+    "ticketID": 2,
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "assignTicket",
+    "username": "clara_devops",
+    "ticketID": 7,
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "viewTickets",
+    "username": "leon_uiux",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "assignTicket",
+    "username": "leon_uiux",
+    "ticketID": 3,
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "assignTicket",
+    "username": "leon_uiux",
+    "ticketID": 4,
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "assignTicket",
+    "username": "leon_uiux",
+    "ticketID": 8,
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "assignTicket",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "assignTicket",
+    "username": "giulio_main_backend",
+    "ticketID": 1,
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-20"
+  },
+  {
+    "command": "changeStatus",
+    "username": "clara_devops",
+    "ticketID": 2,
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "addComment",
+    "username": "clara_devops",
+    "ticketID": 2,
+    "comment": "Slow query on /api/dashboard/widgets. Will optimize and add caching.",
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "addComment",
+    "username": "clara_devops",
+    "ticketID": 10,
+    "comment": "Slow",
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "addComment",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "comment": "Connection pool exhausted; increasing pool size and checking long-running queries.",
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "changeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-21"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 4,
+    "comment": "Still seeing timeouts after the latest patch. Some queries complete faster, but others still hit the 30s limit. Logs attached for reference.",
+    "timestamp": "2025-10-22"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-22"
+  },
+  {
+    "command": "changeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-23"
+  },
+  {
+    "command": "changeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-23"
+  },
+  {
+    "command": "changeStatus",
+    "username": "amelia_db",
+    "ticketID": 4,
+    "timestamp": "2025-10-23"
+  },
+  {
+    "command": "changeStatus",
+    "username": "leon_uiux",
+    "ticketID": 3,
+    "timestamp": "2025-10-23"
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-10-24"
+  },
+  {
+    "command": "generateTicketRiskReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-25"
+  },
+  {
+    "command": "viewAssignedTickets",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "changeStatus",
+    "username": "leon_uiux",
+    "ticketID": 3,
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "viewAssignedTickets",
+    "username": "leon_uiux",
+    "timestamp": "2025-10-26"
+  },
+  {
+    "command": "assignTicket",
+    "username": "sofia_uiux",
+    "ticketID": 3,
+    "timestamp": "2025-10-27"
+  },
+  {
+    "command": "assignTicket",
+    "username": "sofia_uiux",
+    "ticketID": 8,
+    "timestamp": "2025-10-28"
+  },
+  {
+    "command": "undoAssignTicket",
+    "username": "clara_devops",
+    "ticketID": 2,
+    "timestamp": "2025-10-29"
+  },
+  {
+    "command": "undoAssignTicket",
+    "username": "sofia_uiux",
+    "ticketID": 4,
+    "timestamp": "2025-10-29"
+  },
+  {
+    "command": "changeStatus",
+    "username": "clara_devops",
+    "ticketID": 2,
+    "timestamp": "2025-10-29"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 3,
+    "timestamp": "2025-10-30"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 3,
+    "timestamp": "2025-10-31"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 8,
+    "timestamp": "2025-10-31"
+  },
+  {
+    "command": "changeStatus",
+    "username": "clara_devops",
+    "ticketID": 7,
+    "timestamp": "2025-11-01"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 8,
+    "timestamp": "2025-11-01"
+  },
+  {
+    "command": "changeStatus",
+    "username": "clara_devops",
+    "ticketID": 7,
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "startTestingPhase",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "assignTicket",
+    "username": "giulio_main_backend",
+    "ticketID": 1,
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "ticketID": 3,
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "assignTicket",
+    "username": "quintilian_main_backend",
+    "ticketID": 6,
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "assignTicket",
+    "username": "sofia_frontend",
+    "ticketID": 5,
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "ticketID": 6,
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "ticketID": 5,
+    "timestamp": "2025-11-04"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 5,
+    "timestamp": "2025-11-05"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 6,
+    "timestamp": "2025-11-06"
+  },
+  {
+    "command": "viewTickets",
+    "username": "gabriel_manager",
+    "timestamp": "2025-11-06"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 5,
+    "timestamp": "2025-11-07"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 6,
+    "timestamp": "2025-11-07"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "gabriel_manager",
+    "timestamp": "2025-11-07"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-11-08"
+  },
+  {
+    "command": "changeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 1,
+    "timestamp": "2025-11-08"
+  },
+  {
+    "command": "changeStatus",
+    "username": "giulio_main_backend",
+    "ticketID": 1,
+    "timestamp": "2025-11-09"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 0,
+    "timestamp": "2025-11-09"
+  },
+  {
+    "command": "viewNotifications",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-11-09"
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "gabriel_manager",
+    "timestamp": "2025-11-10"
+  },
+  {
+    "command": "startTestingPhase",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-11-10"
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-11-13",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Misaligned search bar",
+      "businessPriority": "LOW",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "DESIGN",
+      "uiElementId": "#search-bar",
+      "businessValue": "S",
+      "usabilityScore": 6,
+      "screenshotUrl": "https://www.youtube.com/watch?v=tv-_1er1mWI"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-11-15",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Poor contrast on login form",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "uiElementId": "#login-form",
+      "businessValue": "M",
+      "usabilityScore": 4,
+      "suggestedFix": "Increase text contrast and background brightness"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-11-16",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Unclear icons in navigation",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "DESIGN",
+      "uiElementId": "#nav-bar",
+      "businessValue": "M",
+      "usabilityScore": 5
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-11-16",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Settings page too cluttered",
+      "businessPriority": "HIGH",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "uiElementId": "#settings-container",
+      "businessValue": "L",
+      "usabilityScore": 3,
+      "screenshotUrl": "https://www.youtube.com/watch?v=kF7rQmSRlq0",
+      "suggestedFix": "Group options into categories"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-11-20",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Responsive issue with profile picture",
+      "businessPriority": "LOW",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "FRONTEND",
+      "uiElementId": "#profile-picture",
+      "businessValue": "S",
+      "usabilityScore": 7
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-11-21",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Responsive issue with profile picture",
+      "businessPriority": "LOW",
+      "reportedBy": "",
+      "expertiseArea": "FRONTEND",
+      "uiElementId": "#profile-picture",
+      "businessValue": "S",
+      "usabilityScore": 7
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theo_reporter",
+    "timestamp": "2025-11-23",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Responsive issue with profile picture",
+      "businessPriority": "LOW",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "MOBILE",
+      "uiElementId": "#profile-picture",
+      "businessValue": "S",
+      "usabilityScore": 7
+    }
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-11-26",
+    "name": "Solve UI FEEDBACK at Frontend level",
+    "dueDate": "2025-12-04",
+    "blockingFor": [],
+    "tickets": [12, 13],
+    "assignedDevs": [
+      "isabella_fullstack"
+    ]
+  },
+  {
+    "command": "createMilestone",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-11-26",
+    "name": "Solve UI FEEDBACK at Design level",
+    "dueDate": "2025-12-02",
+    "blockingFor": [
+      "Solve UI FEEDBACK at Frontend level"
+    ],
+    "tickets": [
+      9,
+      12,
+      11
+    ],
+    "assignedDevs": [
+      "mia_fullstack",
+      "sofia_uiux"
+    ]
+  },
+  {
+    "command": "createMilestone",
+    "username": "cleopatra_manager",
+    "timestamp": "2025-11-26",
+    "name": "Solve UI FEEDBACK at Design level",
+    "dueDate": "2025-12-02",
+    "blockingFor": [
+      "Solve UI FEEDBACK at Frontend level"
+    ],
+    "tickets": [
+      9,
+      10,
+      11
+    ],
+    "assignedDevs": [
+      "mia_fullstack",
+      "sofia_uiux"
+    ]
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "ticketID": 9,
+    "timestamp": "2025-11-26"
+  },
+  {
+    "command": "assignTicket",
+    "username": "mia_fullstack",
+    "ticketID": 9,
+    "timestamp": "2025-11-26"
+  },
+  {
+    "command": "assignTicket",
+    "username": "mia_fullstack",
+    "ticketID": 10,
+    "timestamp": "2025-11-26"
+  },
+  {
+    "command": "assignTicket",
+    "username": "mia_fullstack",
+    "ticketID": 11,
+    "timestamp": "2025-11-26"
+  },
+  {
+    "command": "changeStatus",
+    "username": "mia_fullstack",
+    "ticketID": 11,
+    "timestamp": "2025-11-26"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 11,
+    "comment": "The navigation icons are still unclear — it’s hard to tell what each one does without hovering.",
+    "timestamp": "2025-11-27"
+  },
+  {
+    "command": "addComment",
+    "username": "theodora_reporter",
+    "ticketID": 11,
+    "comment": "The navigation icons are still unclear — it’s hard to tell what each one does without hovering.",
+    "timestamp": "2025-11-27"
+  },
+  {
+    "command": "undoChangeStatus",
+    "username": "mia_fullstack",
+    "ticketID": 11,
+    "timestamp": "2025-11-27"
+  },
+  {
+    "command": "changeStatus",
+    "username": "mia_fullstack",
+    "ticketID": 11,
+    "timestamp": "2025-11-28"
+  },
+  {
+    "command": "addComment",
+    "username": "theodora_reporter",
+    "ticketID": 11,
+    "comment": "Oh",
+    "timestamp": "2025-11-28"
+  },
+  {
+    "command": "addComment",
+    "username": "theodora_reporter",
+    "ticketID": 11,
+    "comment": "You can close this ticket. Everything is alright.",
+    "timestamp": "2025-11-28"
+  },
+  {
+    "command": "changeStatus",
+    "username": "mia_fullstack",
+    "ticketID": 11,
+    "timestamp": "2025-11-28"
+  },
+  {
+    "command": "changeStatus",
+    "username": "mia_fullstack",
+    "ticketID": 10,
+    "timestamp": "2025-11-29"
+  },
+  {
+    "command": "viewTicketHistory",
+    "username": "mia_fullstack",
+    "timestamp": "2025-11-30"
+  },
+  {
+    "command": "viewTickets",
+    "username": "sofia_uiux",
+    "timestamp": "2025-12-01"
+  },
+  {
+    "command": "assignTicket",
+    "username": "sofia_uiux",
+    "ticketID": 9,
+    "timestamp": "2025-12-01"
+  },
+  {
+    "command": "assignTicket",
+    "username": "sofia_uiux",
+    "ticketID": 10,
+    "timestamp": "2025-12-01"
+  },
+  {
+    "command": "viewNotifications",
+    "username": "sofia_uiux",
+    "timestamp": "2025-12-01"
+  },
+  {
+    "command": "addComment",
+    "username": "sofia_uiux",
+    "ticketID": 10,
+    "comment": "I expect this ticket to take me 5 days to complete",
+    "timestamp": "2025-11-21"
+  },
+  {
+    "command": "undoAddComment",
+    "username": "sofia_uiux",
+    "ticketID": 10,
+    "timestamp": "2025-11-21"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 10,
+    "timestamp": "2025-12-03"
+  },
+  {
+    "command": "addComment",
+    "username": "lilith_reporter",
+    "ticketID": 10,
+    "comment": "The behavior works as expected",
+    "timestamp": "2025-12-04"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 10,
+    "timestamp": "2025-12-04"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 9,
+    "timestamp": "2025-12-05"
+  },
+  {
+    "command": "changeStatus",
+    "username": "sofia_uiux",
+    "ticketID": 9,
+    "timestamp": "2025-12-07"
+  },
+  {
+    "command": "viewMilestones",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-12-07"
+  },
+  {
+    "command": "viewNotifications",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-12-07"
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "ticketID": 12,
+    "timestamp": "2025-12-07"
+  },
+  {
+    "command": "assignTicket",
+    "username": "isabella_fullstack",
+    "ticketID": 13,
+    "timestamp": "2025-12-07"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 12,
+    "timestamp": "2025-12-08"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 13,
+    "timestamp": "2025-12-08"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 12,
+    "timestamp": "2025-12-09"
+  },
+  {
+    "command": "changeStatus",
+    "username": "isabella_fullstack",
+    "ticketID": 13,
+    "timestamp": "2025-12-10"
+  },
+  {
+    "command": "generateResolutionEfficiencyReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-12-10"
+  },
+  {
+    "command": "generatePerformanceReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-12-10"
+  },
+  {
+    "command": "appStabilityReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-12-10"
+  }
+]

@@ -1,0 +1,944 @@
+[ {
+  "command" : "search",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-20",
+  "searchType" : "DEVELOPER",
+  "results" : [ {
+    "username" : "emilia_backend",
+    "expertiseArea" : "BACKEND",
+    "seniority" : "JUNIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2021-12-02"
+  }, {
+    "username" : "giulio_main_backend",
+    "expertiseArea" : "BACKEND",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2020-03-19"
+  }, {
+    "username" : "quintilian_main_backend",
+    "expertiseArea" : "BACKEND",
+    "seniority" : "MID",
+    "performanceScore" : 0.0,
+    "hireDate" : "2018-07-17"
+  } ]
+}, {
+  "command" : "search",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-20",
+  "searchType" : "DEVELOPER",
+  "results" : [ {
+    "username" : "alexandra_main_fullstack",
+    "expertiseArea" : "FULLSTACK",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2019-09-25"
+  }, {
+    "username" : "giulio_main_backend",
+    "expertiseArea" : "BACKEND",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2020-03-19"
+  }, {
+    "username" : "isabella_fullstack",
+    "expertiseArea" : "FULLSTACK",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2020-10-04"
+  }, {
+    "username" : "marcus_fullstack",
+    "expertiseArea" : "FULLSTACK",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2022-02-11"
+  } ]
+}, {
+  "command" : "search",
+  "username" : "cleopatra_manager",
+  "timestamp" : "2025-10-20",
+  "searchType" : "TICKET",
+  "results" : [ {
+    "id" : 2,
+    "type" : "BUG",
+    "title" : "Slow loading dashboard",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-07",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter",
+    "matchingWords" : [ ]
+  } ]
+}, {
+  "command" : "viewMilestones",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-20",
+  "milestones" : [ {
+    "name" : "Solve Backend and Frontend",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-11-15",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 0, 1, 5, 6 ],
+    "assignedDevs" : [ "giulio_main_backend", "isabella_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : true,
+    "daysUntilDue" : 27,
+    "overdueBy" : 0,
+    "openTickets" : [ 0, 1, 5, 6 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "giulio_main_backend",
+      "assignedTickets" : [ ]
+    }, {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ ]
+    } ]
+  } ]
+}, {
+  "command" : "viewMilestones",
+  "username" : "cleopatra_manager",
+  "timestamp" : "2025-10-20",
+  "milestones" : [ {
+    "name" : "Solve DevOps, Design and DB",
+    "blockingFor" : [ "Solve Backend and Frontend" ],
+    "dueDate" : "2025-11-01",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 2, 3, 4 ],
+    "assignedDevs" : [ "amelia_db", "jenny_devops", "sofia_uiux" ],
+    "createdBy" : "cleopatra_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 13,
+    "overdueBy" : 0,
+    "openTickets" : [ 2, 3, 4 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "amelia_db",
+      "assignedTickets" : [ 4 ]
+    }, {
+      "developer" : "jenny_devops",
+      "assignedTickets" : [ 2 ]
+    }, {
+      "developer" : "sofia_uiux",
+      "assignedTickets" : [ 3 ]
+    } ]
+  } ]
+}, {
+  "command" : "viewTicketHistory",
+  "username" : "cleopatra_manager",
+  "timestamp" : "2025-10-24",
+  "ticketHistory" : [ {
+    "id" : 2,
+    "title" : "Slow loading dashboard",
+    "status" : "RESOLVED",
+    "actions" : [ {
+      "milestone" : "Solve DevOps, Design and DB",
+      "by" : "cleopatra_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "jenny_devops",
+      "timestamp" : "2025-10-20",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "jenny_devops",
+      "timestamp" : "2025-10-20",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "jenny_devops",
+      "timestamp" : "2025-10-21",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ {
+      "author" : "jenny_devops",
+      "content" : "Slow query on /api/dashboard/widgets. Will optimize and add caching.",
+      "createdAt" : "2025-10-21"
+    } ]
+  }, {
+    "id" : 3,
+    "title" : "UI misaligned on settings page",
+    "status" : "RESOLVED",
+    "actions" : [ {
+      "milestone" : "Solve DevOps, Design and DB",
+      "by" : "cleopatra_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "sofia_uiux",
+      "timestamp" : "2025-10-20",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "sofia_uiux",
+      "timestamp" : "2025-10-20",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "sofia_uiux",
+      "timestamp" : "2025-10-23",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ ]
+  }, {
+    "id" : 4,
+    "title" : "Database connection timeout",
+    "status" : "CLOSED",
+    "actions" : [ {
+      "milestone" : "Solve DevOps, Design and DB",
+      "by" : "cleopatra_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "amelia_db",
+      "timestamp" : "2025-10-20",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "amelia_db",
+      "timestamp" : "2025-10-20",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "amelia_db",
+      "timestamp" : "2025-10-21",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "amelia_db",
+      "timestamp" : "2025-10-22",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "amelia_db",
+      "timestamp" : "2025-10-23",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "CLOSED",
+      "by" : "amelia_db",
+      "timestamp" : "2025-10-23",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ {
+      "author" : "amelia_db",
+      "content" : "Connection pool exhausted; increasing pool size and checking long-running queries.",
+      "createdAt" : "2025-10-21"
+    }, {
+      "author" : "lilith_reporter",
+      "content" : "Still seeing timeouts after the latest patch. Some queries complete faster, but others still hit the 30s limit. Logs attached for reference.",
+      "createdAt" : "2025-10-22"
+    }, {
+      "author" : "amelia_db",
+      "content" : "Verified after the latest deployment — all queries now execute under 150ms. Issue confirmed resolved.",
+      "createdAt" : "2025-10-23"
+    } ]
+  } ]
+}, {
+  "command" : "generateResolutionEfficiencyReport",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-24",
+  "report" : {
+    "totalTickets" : 3,
+    "ticketsByType" : {
+      "BUG" : 3,
+      "FEATURE_REQUEST" : 0,
+      "UI_FEEDBACK" : 0
+    },
+    "ticketsByPriority" : {
+      "LOW" : 0,
+      "MEDIUM" : 1,
+      "HIGH" : 1,
+      "CRITICAL" : 1
+    },
+    "efficiencyByType" : {
+      "BUG" : 22.62,
+      "FEATURE_REQUEST" : 0.0,
+      "UI_FEEDBACK" : 0.0
+    }
+  }
+}, {
+  "command" : "generateCustomerImpactReport",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-24",
+  "report" : {
+    "totalTickets" : 4,
+    "ticketsByType" : {
+      "BUG" : 2,
+      "FEATURE_REQUEST" : 2,
+      "UI_FEEDBACK" : 0
+    },
+    "ticketsByPriority" : {
+      "LOW" : 0,
+      "MEDIUM" : 1,
+      "HIGH" : 2,
+      "CRITICAL" : 1
+    },
+    "customerImpactByType" : {
+      "BUG" : 62.5,
+      "FEATURE_REQUEST" : 39.0,
+      "UI_FEEDBACK" : 0.0
+    }
+  }
+}, {
+  "command" : "viewMilestones",
+  "username" : "jenny_devops",
+  "timestamp" : "2025-10-26",
+  "milestones" : [ {
+    "name" : "Solve DevOps, Design and DB",
+    "blockingFor" : [ "Solve Backend and Frontend" ],
+    "dueDate" : "2025-11-01",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 2, 3, 4 ],
+    "assignedDevs" : [ "amelia_db", "jenny_devops", "sofia_uiux" ],
+    "createdBy" : "cleopatra_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 7,
+    "overdueBy" : 0,
+    "openTickets" : [ 3 ],
+    "closedTickets" : [ 2, 4 ],
+    "completionPercentage" : 0.67,
+    "repartition" : [ {
+      "developer" : "amelia_db",
+      "assignedTickets" : [ 4 ]
+    }, {
+      "developer" : "jenny_devops",
+      "assignedTickets" : [ 2 ]
+    }, {
+      "developer" : "sofia_uiux",
+      "assignedTickets" : [ 3 ]
+    } ]
+  } ]
+}, {
+  "command" : "viewNotifications",
+  "username" : "sofia_uiux",
+  "timestamp" : "2025-10-26",
+  "notifications" : [ "New milestone Solve DevOps, Design and DB has been created with due date 2025-11-01." ]
+}, {
+  "command" : "search",
+  "username" : "giulio_main_backend",
+  "timestamp" : "2025-10-27",
+  "searchType" : "TICKET",
+  "results" : [ {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "App crash on profile save",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-05",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter"
+  }, {
+    "id" : 6,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Export reports to Excel",
+    "businessPriority" : "HIGH",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-08",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter"
+  } ]
+}, {
+  "command" : "viewMilestones",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-27",
+  "milestones" : [ {
+    "name" : "Solve Backend and Frontend",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-11-15",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 0, 1, 5, 6 ],
+    "assignedDevs" : [ "giulio_main_backend", "isabella_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 20,
+    "overdueBy" : 0,
+    "openTickets" : [ 0, 1, 5, 6 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "giulio_main_backend",
+      "assignedTickets" : [ 1, 6 ]
+    }, {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ 0, 5 ]
+    } ]
+  } ]
+}, {
+  "command" : "generateTicketRiskReport",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-27",
+  "report" : {
+    "totalTickets" : 4,
+    "ticketsByType" : {
+      "BUG" : 2,
+      "FEATURE_REQUEST" : 2,
+      "UI_FEEDBACK" : 0
+    },
+    "ticketsByPriority" : {
+      "LOW" : 0,
+      "MEDIUM" : 1,
+      "HIGH" : 2,
+      "CRITICAL" : 1
+    },
+    "riskByType" : {
+      "BUG" : "SIGNIFICANT",
+      "FEATURE_REQUEST" : "SIGNIFICANT",
+      "UI_FEEDBACK" : "NEGLIGIBLE"
+    }
+  }
+}, {
+  "command" : "generatePerformanceReport",
+  "username" : "cleopatra_manager",
+  "timestamp" : "2025-11-01",
+  "report" : [ {
+    "username" : "alex_devops",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "JUNIOR"
+  }, {
+    "username" : "amelia_db",
+    "closedTickets" : 1,
+    "averageResolutionTime" : 4.0,
+    "performanceScore" : 30.0,
+    "seniority" : "SENIOR"
+  }, {
+    "username" : "clara_devops",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "SENIOR"
+  }, {
+    "username" : "david_db",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "JUNIOR"
+  }, {
+    "username" : "jenny_devops",
+    "closedTickets" : 1,
+    "averageResolutionTime" : 2.0,
+    "performanceScore" : 30.5,
+    "seniority" : "SENIOR"
+  }, {
+    "username" : "leon_uiux",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "MID"
+  }, {
+    "username" : "mia_db",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "MID"
+  }, {
+    "username" : "nathan_uiux",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "SENIOR"
+  }, {
+    "username" : "sofia_uiux",
+    "closedTickets" : 1,
+    "averageResolutionTime" : 4.0,
+    "performanceScore" : 30.0,
+    "seniority" : "SENIOR"
+  } ]
+}, {
+  "command" : "viewAssignedTickets",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-11-03",
+  "assignedTickets" : [ {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Login button not working",
+    "businessPriority" : "CRITICAL",
+    "status" : "CLOSED",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "2025-10-27",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ {
+      "author" : "lilith_reporter",
+      "content" : "The login button isn’t responding on click. No redirect, no console errors. Happens occasionally on Windows builds.",
+      "createdAt" : "2025-10-28"
+    }, {
+      "author" : "isabella_fullstack",
+      "content" : "Can’t reproduce on my end. Could you confirm if this occurs after a page refresh or only on the first load?",
+      "createdAt" : "2025-10-30"
+    }, {
+      "author" : "lilith_reporter",
+      "content" : "It happens right after loading the login page — refresh seems to fix it. Might be related to lazy-loaded scripts.",
+      "createdAt" : "2025-10-31"
+    }, {
+      "author" : "isabella_fullstack",
+      "content" : "Found the issue: event listener wasn’t attached until the script finished loading. Moved the binding to DOMContentLoaded.",
+      "createdAt" : "2025-11-02"
+    }, {
+      "author" : "isabella_fullstack",
+      "content" : "Deployed fix. Tested on Windows and Mac — login now redirects properly every time.",
+      "createdAt" : "2025-11-03"
+    } ]
+  }, {
+    "id" : 5,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Dark mode support",
+    "businessPriority" : "CRITICAL",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-08",
+    "assignedAt" : "2025-10-27",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "viewTicketHistory",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-11-17",
+  "ticketHistory" : [ {
+    "id" : 0,
+    "title" : "Login button not working",
+    "status" : "CLOSED",
+    "actions" : [ {
+      "milestone" : "Solve Backend and Frontend",
+      "by" : "gabriel_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-27",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-27",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-27",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-31",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-11-02",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "CLOSED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-11-03",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ {
+      "author" : "lilith_reporter",
+      "content" : "The login button isn’t responding on click. No redirect, no console errors. Happens occasionally on Windows builds.",
+      "createdAt" : "2025-10-28"
+    }, {
+      "author" : "isabella_fullstack",
+      "content" : "Can’t reproduce on my end. Could you confirm if this occurs after a page refresh or only on the first load?",
+      "createdAt" : "2025-10-30"
+    }, {
+      "author" : "lilith_reporter",
+      "content" : "It happens right after loading the login page — refresh seems to fix it. Might be related to lazy-loaded scripts.",
+      "createdAt" : "2025-10-31"
+    }, {
+      "author" : "isabella_fullstack",
+      "content" : "Found the issue: event listener wasn’t attached until the script finished loading. Moved the binding to DOMContentLoaded.",
+      "createdAt" : "2025-11-02"
+    }, {
+      "author" : "isabella_fullstack",
+      "content" : "Deployed fix. Tested on Windows and Mac — login now redirects properly every time.",
+      "createdAt" : "2025-11-03"
+    } ]
+  }, {
+    "id" : 1,
+    "title" : "App crash on profile save",
+    "status" : "CLOSED",
+    "actions" : [ {
+      "milestone" : "Solve Backend and Frontend",
+      "by" : "gabriel_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-10-27",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-10-27",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-11-10",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "CLOSED",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-11-14",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ ]
+  }, {
+    "id" : 5,
+    "title" : "Dark mode support",
+    "status" : "CLOSED",
+    "actions" : [ {
+      "milestone" : "Solve Backend and Frontend",
+      "by" : "gabriel_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-27",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-27",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-11-07",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "CLOSED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-11-16",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ ]
+  }, {
+    "id" : 6,
+    "title" : "Export reports to Excel",
+    "status" : "CLOSED",
+    "actions" : [ {
+      "milestone" : "Solve Backend and Frontend",
+      "by" : "gabriel_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-10-27",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-10-27",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-10-28",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-10-31",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-11-02",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-11-03",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-11-05",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "CLOSED",
+      "by" : "giulio_main_backend",
+      "timestamp" : "2025-11-06",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ {
+      "author" : "lilith_reporter",
+      "content" : "Users are asking to export reports directly to Excel. Currently, only PDF export is available.",
+      "createdAt" : "2025-10-31"
+    }, {
+      "author" : "giulio_main_backend",
+      "content" : "Added basic Excel export option, but file downloads as empty — investigating serialization.",
+      "createdAt" : "2025-11-02"
+    }, {
+      "author" : "lilith_reporter",
+      "content" : "Tested again — the file downloads now, but the data columns are all shifted and headers are missing.",
+      "createdAt" : "2025-11-03"
+    }, {
+      "author" : "giulio_main_backend",
+      "content" : "Fixed column mapping and added proper headers. Also tested large datasets — exports correctly now.",
+      "createdAt" : "2025-11-05"
+    }, {
+      "author" : "lilith_reporter",
+      "content" : "Confirmed! Excel export works perfectly and matches the PDF layout. Feature delivered.",
+      "createdAt" : "2025-11-06"
+    } ]
+  } ]
+}, {
+  "command" : "viewNotifications",
+  "username" : "giulio_main_backend",
+  "timestamp" : "2025-11-17",
+  "notifications" : [ "New milestone Solve Backend and Frontend has been created with due date 2025-11-15.", "Milestone Solve Backend and Frontend is now unblocked as ticket 3 has been CLOSED.", "Milestone Solve Backend and Frontend is due tomorrow. All unresolved tickets are now CRITICAL." ]
+}, {
+  "command" : "search",
+  "username" : "cleopatra_manager",
+  "timestamp" : "2025-12-02",
+  "searchType" : "DEVELOPER",
+  "results" : [ {
+    "username" : "leon_uiux",
+    "expertiseArea" : "DESIGN",
+    "seniority" : "MID",
+    "performanceScore" : 0.0,
+    "hireDate" : "2021-07-09"
+  }, {
+    "username" : "nathan_uiux",
+    "expertiseArea" : "DESIGN",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2022-11-06"
+  } ]
+}, {
+  "command" : "viewTickets",
+  "username" : "sofia_uiux",
+  "timestamp" : "2025-12-05",
+  "tickets" : [ {
+    "id" : 8,
+    "type" : "UI_FEEDBACK",
+    "title" : "Unclear icons in navigation",
+    "businessPriority" : "HIGH",
+    "status" : "OPEN",
+    "createdAt" : "2025-11-25",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "theodora_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "viewMilestones",
+  "username" : "cleopatra_manager",
+  "timestamp" : "2025-12-08",
+  "milestones" : [ {
+    "name" : "Solve DevOps, Design and DB",
+    "blockingFor" : [ "Solve Backend and Frontend" ],
+    "dueDate" : "2025-11-01",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 2, 3, 4 ],
+    "assignedDevs" : [ "amelia_db", "jenny_devops", "sofia_uiux" ],
+    "createdBy" : "cleopatra_manager",
+    "status" : "COMPLETED",
+    "isBlocked" : false,
+    "daysUntilDue" : 7,
+    "overdueBy" : 0,
+    "openTickets" : [ ],
+    "closedTickets" : [ 2, 3, 4 ],
+    "completionPercentage" : 1.0,
+    "repartition" : [ {
+      "developer" : "amelia_db",
+      "assignedTickets" : [ 4 ]
+    }, {
+      "developer" : "jenny_devops",
+      "assignedTickets" : [ 2 ]
+    }, {
+      "developer" : "sofia_uiux",
+      "assignedTickets" : [ 3 ]
+    } ]
+  }, {
+    "name" : "Solve UI feedback",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-12-07",
+    "createdAt" : "2025-12-02",
+    "tickets" : [ 7, 8 ],
+    "assignedDevs" : [ "nathan_uiux", "sofia_uiux" ],
+    "createdBy" : "cleopatra_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 0,
+    "overdueBy" : 2,
+    "openTickets" : [ 8 ],
+    "closedTickets" : [ 7 ],
+    "completionPercentage" : 0.5,
+    "repartition" : [ {
+      "developer" : "nathan_uiux",
+      "assignedTickets" : [ ]
+    }, {
+      "developer" : "sofia_uiux",
+      "assignedTickets" : [ 7, 8 ]
+    } ]
+  } ]
+}, {
+  "command" : "viewTicketHistory",
+  "username" : "nathan_uiux",
+  "timestamp" : "2025-12-09",
+  "ticketHistory" : [ {
+    "id" : 7,
+    "title" : "Misaligned search bar",
+    "status" : "CLOSED",
+    "actions" : [ {
+      "milestone" : "Solve UI feedback",
+      "by" : "cleopatra_manager",
+      "timestamp" : "2025-12-02",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-02",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-02",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-03",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-03",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-04",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-04",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-05",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-05",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-05",
+      "action" : "DE-ASSIGNED"
+    } ],
+    "comments" : [ {
+      "author" : "theodora_reporter",
+      "content" : "The search bar is still misaligned on mobile. It overlaps the logo now.",
+      "createdAt" : "2025-12-03"
+    }, {
+      "author" : "theodora_reporter",
+      "content" : "Just checked again after the new patch — no improvement. The spacing looks even worse.",
+      "createdAt" : "2025-12-04"
+    }, {
+      "author" : "theodora_reporter",
+      "content" : "Still broken. Alignment is inconsistent across all screen sizes. Please reopen this issue.",
+      "createdAt" : "2025-12-05"
+    } ]
+  }, {
+    "id" : 8,
+    "title" : "Unclear icons in navigation",
+    "status" : "RESOLVED",
+    "actions" : [ {
+      "milestone" : "Solve UI feedback",
+      "by" : "cleopatra_manager",
+      "timestamp" : "2025-12-02",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-02",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-02",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "by" : "nathan_uiux",
+      "timestamp" : "2025-12-04",
+      "action" : "DE-ASSIGNED"
+    } ],
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "appStabilityReport",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-12-10",
+  "report" : {
+    "totalOpenTickets" : 0,
+    "openTicketsByType" : {
+      "BUG" : 0,
+      "FEATURE_REQUEST" : 0,
+      "UI_FEEDBACK" : 0
+    },
+    "openTicketsByPriority" : {
+      "LOW" : 0,
+      "MEDIUM" : 0,
+      "HIGH" : 0,
+      "CRITICAL" : 0
+    },
+    "riskByType" : {
+      "BUG" : "NEGLIGIBLE",
+      "FEATURE_REQUEST" : "NEGLIGIBLE",
+      "UI_FEEDBACK" : "NEGLIGIBLE"
+    },
+    "impactByType" : {
+      "BUG" : 0.0,
+      "FEATURE_REQUEST" : 0.0,
+      "UI_FEEDBACK" : 0.0
+    },
+    "appStability" : "STABLE"
+  }
+} ]

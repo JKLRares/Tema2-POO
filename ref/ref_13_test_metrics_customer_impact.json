@@ -1,0 +1,24 @@
+[ {
+  "command" : "generateCustomerImpactReport",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-17",
+  "report" : {
+    "totalTickets" : 5,
+    "ticketsByType" : {
+      "BUG" : 2,
+      "FEATURE_REQUEST" : 2,
+      "UI_FEEDBACK" : 1
+    },
+    "ticketsByPriority" : {
+      "LOW" : 0,
+      "MEDIUM" : 2,
+      "HIGH" : 2,
+      "CRITICAL" : 1
+    },
+    "customerImpactByType" : {
+      "BUG" : 61.46,
+      "FEATURE_REQUEST" : 22.5,
+      "UI_FEEDBACK" : 21.0
+    }
+  }
+} ]

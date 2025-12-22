@@ -1,0 +1,103 @@
+[ {
+  "command" : "viewTickets",
+  "username" : "cleopatra_manager",
+  "timestamp" : "2025-10-02",
+  "tickets" : [ {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Crashes",
+    "businessPriority" : "HIGH",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "Stack overflow",
+    "businessPriority" : "LOW",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "",
+    "comments" : [ ]
+  }, {
+    "id" : 2,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Add dark mode",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "reportTicket",
+  "username" : "theodora_reporter",
+  "timestamp" : "2025-10-02",
+  "error" : "Anonymous reports are only allowed for tickets of type BUG."
+}, {
+  "command" : "viewTickets",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-03",
+  "tickets" : [ {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Crashes",
+    "businessPriority" : "HIGH",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "Stack overflow",
+    "businessPriority" : "LOW",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "",
+    "comments" : [ ]
+  }, {
+    "id" : 2,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Add dark mode",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "reportTicket",
+  "username" : "X_reporter",
+  "timestamp" : "2025-10-10",
+  "error" : "The user X_reporter does not exist."
+}, {
+  "command" : "reportTicket",
+  "username" : "theodora_reporter",
+  "timestamp" : "2025-10-18",
+  "error" : "Tickets can only be reported during testing phases."
+}, {
+  "command" : "viewTickets",
+  "username" : "theodora_reporter",
+  "timestamp" : "2025-10-19",
+  "tickets" : [ ]
+} ]

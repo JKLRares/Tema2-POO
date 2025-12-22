@@ -1,0 +1,133 @@
+[
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-02",
+        "params": {
+            "type": "BUG",
+            "title": "Login button not working sometimes",
+            "businessPriority": "MEDIUM",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "FRONTEND",
+            "expectedBehavior": "Login should redirect to dashboard",
+            "actualBehavior": "Button click does nothing",
+            "frequency": "OCCASIONAL",
+            "severity": "MODERATE"
+        }
+    },
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-03",
+        "params": {
+            "type": "BUG",
+            "title": "App crash on profile save",
+            "businessPriority": "HIGH",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "BACKEND",
+            "expectedBehavior": "Profile changes should be saved",
+            "actualBehavior": "Application crashes instantly",
+            "frequency": "ALWAYS",
+            "severity": "SEVERE"
+        }
+    },
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-07",
+        "params": {
+            "type": "FEATURE_REQUEST",
+            "title": "Dark mode support",
+            "businessPriority": "MEDIUM",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "FRONTEND",
+            "businessValue": "M",
+            "customerDemand": "HIGH"
+        }
+    },
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-10",
+        "params": {
+            "type": "FEATURE_REQUEST",
+            "title": "Two-factor authentication",
+            "businessPriority": "CRITICAL",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "DEVOPS",
+            "businessValue": "XL",
+            "customerDemand": "HIGH"
+        }
+    },
+    {
+        "command": "createMilestone",
+        "username": "alexandra_main_fullstack",
+        "timestamp": "2025-10-17",
+        "name": "UI-Experience-Enhancements",
+        "dueDate": "2025-12-31",
+        "blockingFor": [],
+        "tickets": [2],
+        "assignedDevs": ["alexandra_main_fullstack"]
+    },
+    {
+        "command": "createMilestone",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-17",
+        "name": "UI-Experience-Enhancements",
+        "dueDate": "2025-12-31",
+        "blockingFor": [],
+        "tickets": [2],
+        "assignedDevs": ["alexandra_main_fullstack"]
+    },
+    {
+        "command": "createMilestone",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-17",
+        "name": "Security-Upgrade",
+        "dueDate": "2025-11-23",
+        "blockingFor": ["UI-Experience-Enhancements"],
+        "tickets": [2,3],
+        "assignedDevs": ["isabella_fullstack"]
+    },
+    {
+        "command": "createMilestone",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-17",
+        "name": "Security-Upgrade",
+        "dueDate": "2025-11-23",
+        "blockingFor": ["UI-Experience-Enhancements"],
+        "tickets": [3],
+        "assignedDevs": ["isabella_fullstack"]
+    },
+    
+    {
+        "command": "createMilestone",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-17",
+        "name": "Stability-Fixes",
+        "dueDate": "2025-10-22",
+        "blockingFor": ["Security-Upgrade", "UI-Experience-Enhancements"],
+        "tickets": [0,1],
+        "assignedDevs": ["isabella_fullstack"]
+    },
+    { 
+        "command": "viewTickets",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-20"
+    },
+    { 
+        "command": "viewTickets",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-21"
+    },
+    {
+        "command":"viewMilestones",
+        "username":"gabriel_manager",
+        "timestamp":"2025-11-24"
+    },
+    {
+        "command": "lostInvestors",
+        "username": "gabriel_manager",
+        "timestamp": "2025-11-25"
+    }
+]

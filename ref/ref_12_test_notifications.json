@@ -1,0 +1,21 @@
+[ {
+  "command" : "viewNotifications",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-20",
+  "notifications" : [ "New milestone Fixes has been created with due date 2025-11-20." ]
+}, {
+  "command" : "viewNotifications",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-11-19",
+  "notifications" : [ ]
+}, {
+  "command" : "viewNotifications",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-11-21",
+  "notifications" : [ "Milestone Fixes is due tomorrow. All unresolved tickets are now CRITICAL." ]
+}, {
+  "command" : "viewNotifications",
+  "username" : "marcus_fullstack",
+  "timestamp" : "2025-11-22",
+  "notifications" : [ "New milestone Hot Fixes has been created with due date 2025-11-19.", "Milestone Hot Fixes was unblocked after due date. All active tickets are now CRITICAL." ]
+} ]

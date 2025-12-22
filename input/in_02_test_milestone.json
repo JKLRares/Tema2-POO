@@ -1,0 +1,145 @@
+[
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-02",
+        "params": {
+            "type": "UI_FEEDBACK",
+            "title": "Cluttered interface.",
+            "businessPriority": "HIGH",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "FRONTEND",
+            "uiElementId": "Main dashboard",
+            "businessValue": "XL",
+            "usabilityScore": 3
+        }
+    },
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-05",
+        "params": {
+            "type": "BUG",
+            "title": "App crash on profile save",
+            "businessPriority": "CRITICAL",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "BACKEND",
+            "description": "Profile save endpoint failing",
+            "expectedBehavior": "Profile changes should be saved",
+            "actualBehavior": "Application crashes instantly",
+            "frequency": "ALWAYS",
+            "severity": "SEVERE",
+            "environment": "Linux"
+        }
+    },
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-07",
+        "params": {
+            "type": "BUG",
+            "title": "Slow loading dashboard",
+            "businessPriority": "MEDIUM",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "DEVOPS",
+            "expectedBehavior": "Dashboard should load under 2s",
+            "actualBehavior": "Takes 8–10s to load",
+            "frequency": "FREQUENT",
+            "severity": "MODERATE",
+            "errorCode": 302
+        }
+    },
+        {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-08",
+        "params": {
+            "type": "FEATURE_REQUEST",
+            "title": "Dark mode support",
+            "businessPriority": "MEDIUM",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "FRONTEND",
+            "businessValue": "M",
+            "customerDemand": "HIGH"
+        }
+    },
+    {
+        "command": "reportTicket",    
+        "username": "theodora_reporter",
+        "timestamp": "2025-10-08",
+        "params": {
+            "type": "FEATURE_REQUEST",
+            "title": "Export reports to Excel",
+            "businessPriority": "HIGH",
+            "reportedBy": "theodora_reporter",
+            "expertiseArea": "BACKEND",
+            "businessValue": "L",
+            "customerDemand": "VERY_HIGH"
+        }
+    },
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-08",
+        "params": {
+            "type": "FEATURE_REQUEST",
+            "title": "Two-factor authentication",
+            "businessPriority": "CRITICAL",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "DEVOPS",
+            "businessValue": "XL",
+            "customerDemand": "HIGH"
+        }
+    },
+    {
+        "command": "reportTicket",
+        "username": "theodora_reporter",
+        "timestamp": "2025-10-09",
+        "params": {
+            "type": "UI_FEEDBACK",
+            "title": "Outdated color scheme.",
+            "businessPriority": "LOW",
+            "reportedBy": "theodora_reporter",
+            "expertiseArea": "FRONTEND",
+            "uiElementId": "Color scheme",
+            "businessValue": "M",
+            "usabilityScore": 5,
+            "suggestedFix": "Update to modern color palette."
+        }
+    },
+    {
+        "command": "createMilestone",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-19",
+        "name": "UI-Overhaul",
+        "dueDate": "2025-10-31",
+        "blockingFor": [],
+        "tickets": [0,6],
+        "assignedDevs": ["isabella_fullstack", "marcus_fullstack"]
+    },
+    {
+        "command": "createMilestone",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-20",
+        "name": "Release 1.0",
+        "dueDate": "2025-10-28",
+        "blockingFor": ["UI-Overhaul"],
+        "tickets": [1,2,4,5],
+        "assignedDevs": ["isabella_fullstack"]
+    },
+    {
+        "command": "viewMilestones",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-21"
+    },
+    {
+        "command": "viewMilestones",
+        "username": "cleopatra_manager",
+        "timestamp": "2025-10-21"
+    },
+    {
+        "command":"viewMilestones",
+        "username": "marcus_fullstack",
+        "timestamp":"2025-10-21"
+    }
+]

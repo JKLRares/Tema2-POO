@@ -1,0 +1,202 @@
+[
+    {
+        "username": "theodora_reporter",
+        "role": "REPORTER",
+        "email": "theodora@bugtracker.com"
+    },
+    {
+        "username": "lilith_reporter",
+        "role": "REPORTER",
+        "email": "lilith@bugtracker.com"
+    },
+    {
+        "username": "andrew_main_frontend",
+        "role": "DEVELOPER",
+        "email": "andrew_main@bugtracker.com",
+        "hireDate": "2021-05-14",
+        "seniority": "MID",
+        "expertiseArea": "FRONTEND"
+    },
+    {
+        "username": "sofia_frontend",
+        "role": "DEVELOPER",
+        "email": "sofia@bugtracker.com",
+        "hireDate": "2022-08-01",
+        "seniority": "JUNIOR",
+        "expertiseArea": "FRONTEND"
+    },
+    {
+        "username": "mateo_frontend",
+        "role": "DEVELOPER",
+        "email": "mateo@bugtracker.com",
+        "hireDate": "2019-11-23",
+        "seniority": "JUNIOR",
+        "expertiseArea": "FRONTEND"
+    },
+
+    {
+        "username": "giulio_main_backend",
+        "role": "DEVELOPER",
+        "email": "giulio_main@bugtracker.com",
+        "hireDate": "2020-03-19",
+        "seniority": "SENIOR",
+        "expertiseArea": "BACKEND"
+    },
+    {
+        "username": "emilia_backend",
+        "role": "DEVELOPER",
+        "email": "emilia@bugtracker.com",
+        "hireDate": "2021-12-02",
+        "seniority": "JUNIOR",
+        "expertiseArea": "BACKEND"
+    },
+    {
+        "username": "quintilian_main_backend",
+        "role": "DEVELOPER",
+        "email": "quintilian_main@bugtracker.com",
+        "hireDate": "2018-07-17",
+        "seniority": "MID",
+        "expertiseArea": "BACKEND"
+    },
+
+    {
+        "username": "alexandra_main_fullstack",
+        "role": "DEVELOPER",
+        "email": "alexandra_main@bugtracker.com",
+        "hireDate": "2019-09-25",
+        "seniority": "SENIOR",
+        "expertiseArea": "FULLSTACK"
+    },
+    {
+        "username": "marcus_fullstack",
+        "role": "DEVELOPER",
+        "email": "marcus@bugtracker.com",
+        "hireDate": "2022-02-11",
+        "seniority": "SENIOR",
+        "expertiseArea": "FULLSTACK"
+    },
+    {
+        "username": "isabella_fullstack",
+        "role": "DEVELOPER",
+        "email": "isabella@bugtracker.com",
+        "hireDate": "2020-10-04",
+        "seniority": "SENIOR",
+        "expertiseArea": "FULLSTACK"
+    },
+    {
+        "username": "jenny_devops",
+        "role": "DEVELOPER",
+        "email": "lilith@bugtracker.com",
+        "hireDate": "2021-01-29",
+        "seniority": "SENIOR",
+        "expertiseArea": "DEVOPS"
+    },
+    {
+        "username": "alex_devops",
+        "role": "DEVELOPER",
+        "email": "alex@bugtracker.com",
+        "hireDate": "2022-06-15",
+        "seniority": "JUNIOR",
+        "expertiseArea": "DEVOPS"
+    },
+    {
+        "username": "clara_devops",
+        "role": "DEVELOPER",
+        "email": "clara@bugtracker.com",
+        "hireDate": "2019-08-21",
+        "seniority": "SENIOR",
+        "expertiseArea": "DEVOPS"
+    },
+
+    {
+        "username": "nathan_uiux",
+        "role": "DEVELOPER",
+        "email": "nathan@bugtracker.com",
+        "hireDate": "2022-11-06",
+        "seniority": "SENIOR",
+        "expertiseArea": "DESIGN"
+    },
+    {
+        "username": "sofia_uiux",
+        "role": "DEVELOPER",
+        "email": "sofia.uiux@bugtracker.com",
+        "hireDate": "2020-12-13",
+        "seniority": "SENIOR",
+        "expertiseArea": "DESIGN"
+    },
+    {
+        "username": "leon_uiux",
+        "role": "DEVELOPER",
+        "email": "leon@bugtracker.com",
+        "hireDate": "2021-07-09",
+        "seniority": "MID",
+        "expertiseArea": "DESIGN"
+    },
+
+    {
+        "username": "amelia_db",
+        "role": "DEVELOPER",
+        "email": "amelia@bugtracker.com",
+        "hireDate": "2020-02-01",
+        "seniority": "SENIOR",
+        "expertiseArea": "DB"
+    },
+    {
+        "username": "david_db",
+        "role": "DEVELOPER",
+        "email": "david@bugtracker.com",
+        "hireDate": "2022-09-12",
+        "seniority": "JUNIOR",
+        "expertiseArea": "DB"
+    },
+    {
+        "username": "mia_fullstack",
+        "role": "DEVELOPER",
+        "email": "mia@bugtracker.com",
+        "hireDate": "2019-04-18",
+        "seniority": "JUNIOR",
+        "expertiseArea": "FULLSTACK"
+    },
+    {
+        "username": "mia_db",
+        "role": "DEVELOPER",
+        "email": "mia_db@bugtracker.com",
+        "hireDate": "2018-05-13",
+        "seniority": "MID",
+        "expertiseArea": "DB"
+    },
+    {
+        "username": "gabriel_manager",
+        "role": "MANAGER",
+        "email": "gabriel@bugtracker.pro",
+        "hireDate": "2022-10-01",
+        "subordinates": [
+        "andrew_main_frontend",
+        "sofia_frontend",
+        "mateo_frontend",
+        "giulio_main_backend",
+        "emilia_backend",
+        "quintilian_main_backend",
+        "alexandra_main_fullstack",
+        "marcus_fullstack",
+        "isabella_fullstack"
+        ]
+    },
+    {
+        "username": "cleopatra_manager",
+        "role": "MANAGER",
+        "email": "cleopatra@bugtracker.pro",
+        "hireDate": "2023-05-15",
+        "subordinates": [
+        "jenny_devops",
+        "alex_devops",
+        "clara_devops",
+        "nathan_uiux",
+        "sofia_uiux",
+        "leon_uiux",
+        "amelia_db",
+        "david_db",
+        "mia_db"
+        ]
+    }
+]

@@ -1,0 +1,152 @@
+[ {
+  "command" : "search",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-02",
+  "searchType" : "DEVELOPER",
+  "results" : [ ]
+}, {
+  "command" : "search",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-02",
+  "searchType" : "DEVELOPER",
+  "results" : [ {
+    "username" : "alexandra_main_fullstack",
+    "expertiseArea" : "FULLSTACK",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2019-09-25"
+  }, {
+    "username" : "isabella_fullstack",
+    "expertiseArea" : "FULLSTACK",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2020-10-04"
+  }, {
+    "username" : "marcus_fullstack",
+    "expertiseArea" : "FULLSTACK",
+    "seniority" : "SENIOR",
+    "performanceScore" : 0.0,
+    "hireDate" : "2022-02-11"
+  } ]
+}, {
+  "command" : "search",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-02",
+  "searchType" : "TICKET",
+  "results" : [ {
+    "id" : 3,
+    "type" : "UI_FEEDBACK",
+    "title" : "Improve navigation menu",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter",
+    "matchingWords" : [ "menu" ]
+  } ]
+}, {
+  "command" : "search",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-18",
+  "searchType" : "TICKET",
+  "results" : [ {
+    "id" : 0,
+    "type" : "UI_FEEDBACK",
+    "title" : "Cluttered interface.",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "solvedAt" : "",
+    "reportedBy" : "theodora_reporter"
+  }, {
+    "id" : 1,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Two-factor authentication",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter"
+  }, {
+    "id" : 2,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Dark mode",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter"
+  }, {
+    "id" : 3,
+    "type" : "UI_FEEDBACK",
+    "title" : "Improve navigation menu",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter"
+  }, {
+    "id" : 4,
+    "type" : "UI_FEEDBACK",
+    "title" : "Unclear icons in navigation",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "solvedAt" : "",
+    "reportedBy" : "theodora_reporter"
+  }, {
+    "id" : 5,
+    "type" : "UI_FEEDBACK",
+    "title" : "Settings page too cluttered",
+    "businessPriority" : "HIGH",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter"
+  } ]
+}, {
+  "command" : "search",
+  "username" : "andrew_main_frontend",
+  "timestamp" : "2025-10-18",
+  "searchType" : "TICKET",
+  "results" : [ {
+    "id" : 5,
+    "type" : "UI_FEEDBACK",
+    "title" : "Settings page too cluttered",
+    "businessPriority" : "HIGH",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter"
+  } ]
+}, {
+  "command" : "search",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-10-18",
+  "searchType" : "TICKET",
+  "results" : [ {
+    "id" : 4,
+    "type" : "UI_FEEDBACK",
+    "title" : "Unclear icons in navigation",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "solvedAt" : "",
+    "reportedBy" : "theodora_reporter"
+  } ]
+}, {
+  "command" : "search",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-18",
+  "searchType" : "TICKET",
+  "results" : [ {
+    "id" : 1,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Two-factor authentication",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "solvedAt" : "",
+    "reportedBy" : "lilith_reporter"
+  } ]
+} ]

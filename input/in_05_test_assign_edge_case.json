@@ -1,0 +1,196 @@
+[
+    {
+        "command": "reportTicket",
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-02",
+        "params": {
+            "type": "BUG",
+            "title": "Login button not working",
+            "businessPriority": "HIGH",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "FRONTEND",
+            "description": "This is fishy. Button click event not firing",
+            "expectedBehavior": "Login should redirect to dashboard",
+            "actualBehavior": "Button click does nothing",
+            "frequency": "OCCASIONAL",
+            "severity": "MODERATE",
+            "environment": "Windows",
+            "errorCode": 101
+        }
+    },
+    {
+        "command": "reportTicket",
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-05",
+        "params": {
+            "type": "BUG",
+            "title": "App crash on profile save",
+            "businessPriority": "CRITICAL",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "BACKEND",
+            "description": "Profile save endpoint failing",
+            "expectedBehavior": "Profile changes should be saved",
+            "actualBehavior": "Application crashes instantly",
+            "frequency": "ALWAYS",
+            "severity": "SEVERE",
+            "environment": "Linux"
+        }
+    },
+    {
+        "command": "reportTicket",
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-07",
+        "params": {
+            "type": "BUG",
+            "title": "UI misaligned on settings page",
+            "businessPriority": "LOW",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "DESIGN",
+            "description": "CSS issue on responsive layout",
+            "expectedBehavior": "Elements should be aligned properly",
+            "actualBehavior": "Misaligned inputs and labels",
+            "frequency": "OCCASIONAL",
+            "severity": "MINOR"
+        }
+    },
+    {
+        "command": "reportTicket",
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-07",
+        "params": {
+            "type": "BUG",
+            "title": "Database connection timeout",
+            "businessPriority": "CRITICAL",
+            "reportedBy": "",
+            "expertiseArea": "DB",
+            "expectedBehavior": "Queries should execute in under 200ms",
+            "actualBehavior": "Connection timeout after 30s",
+            "frequency": "FREQUENT",
+            "severity": "SEVERE"
+        }
+    },
+    {
+        "command": "reportTicket",
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-08",
+        "params": {
+            "type": "FEATURE_REQUEST",
+            "title": "Dark mode support",
+            "businessPriority": "HIGH",
+            "reportedBy": "lilith_reporter",
+            "expertiseArea": "FRONTEND",
+            "businessValue": "M",
+            "customerDemand": "HIGH"
+        }
+    },
+    {
+        "command": "reportTicket",
+        "username": "theodora_reporter",
+        "timestamp": "2025-10-11",
+        "params": {
+            "type": "UI_FEEDBACK",
+            "title": "Misaligned search bar",
+            "businessPriority": "LOW",
+            "reportedBy": "theodora_reporter",
+            "expertiseArea": "DESIGN",
+            "uiElementId": "#search-bar",
+            "businessValue": "S",
+            "usabilityScore": 6,
+            "screenshotUrl": "https://www.youtube.com/watch?v=tv-_1er1mWI"
+        }
+    },
+    {
+        "command": "createMilestone",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-20",
+        "name": "Hot Fixes",
+        "dueDate": "2025-11-15",
+        "blockingFor": [],
+        "tickets": [0,1,2],
+        "assignedDevs": [
+                "alexandra_main_fullstack"
+        ]
+    },
+    {
+        "command": "createMilestone",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-20",
+        "name": "Fixes",
+        "dueDate": "2025-10-28",
+        "blockingFor": ["Hot Fixes"],
+        "tickets": [3, 4, 5],
+        "assignedDevs": [
+                "mateo_frontend",
+                "isabella_fullstack",
+                "marcus_fullstack"
+        ]
+    },
+    {
+        "command": "assignTicket",
+        "username": "mateo_frontend",
+        "timestamp": "2025-10-20",
+        "ticketID": 3
+    },
+    {
+        "command": "assignTicket",
+        "username": "mateo_frontend",
+        "timestamp": "2025-10-20",
+        "ticketID": 4
+    },
+    {
+        "command": "assignTicket",
+        "username": "isabella_fullstack",
+        "timestamp": "2025-10-20",
+        "ticketID": 4
+    },
+    {
+        "command": "assignTicket",
+        "username": "alexandra_main_fullstack",
+        "timestamp": "2025-10-20",
+        "ticketID": 5
+    },
+    {
+        "command": "assignTicket",
+        "username": "marcus_fullstack",
+        "timestamp": "2025-10-20",
+        "ticketID": 4
+    },
+    {
+        "command": "viewTickets",
+        "username": "marcus_fullstack",
+        "timestamp": "2025-10-20"
+    },
+    {
+        "command": "assignTicket",
+        "username": "alexandra_main_fullstack",
+        "timestamp": "2025-10-20",
+        "ticketID": 0
+    },
+    {
+        "command": "assignTicket",
+        "username": "marcus_fullstack",
+        "timestamp": "2025-10-20",
+        "ticketID": 3
+    },
+    {
+        "command": "assignTicket",
+        "username": "marcus_fullstack",
+        "timestamp": "2025-10-20",
+        "ticketID": 5
+    },
+    {
+        "command": "viewTickets",
+        "username": "marcus_fullstack",
+        "timestamp": "2025-10-20"
+    },
+    {
+        "command": "viewMilestones",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-20"
+    },
+    {
+        "command": "lostInvestors",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-20"
+    }
+]

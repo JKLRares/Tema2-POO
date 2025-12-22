@@ -1,0 +1,30 @@
+[ {
+  "command" : "appStabilityReport",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-09-30",
+  "report" : {
+    "totalOpenTickets" : 6,
+    "openTicketsByType" : {
+      "BUG" : 2,
+      "FEATURE_REQUEST" : 2,
+      "UI_FEEDBACK" : 2
+    },
+    "openTicketsByPriority" : {
+      "LOW" : 1,
+      "MEDIUM" : 2,
+      "HIGH" : 2,
+      "CRITICAL" : 1
+    },
+    "riskByType" : {
+      "BUG" : "SIGNIFICANT",
+      "FEATURE_REQUEST" : "MODERATE",
+      "UI_FEEDBACK" : "MODERATE"
+    },
+    "impactByType" : {
+      "BUG" : 61.46,
+      "FEATURE_REQUEST" : 22.5,
+      "UI_FEEDBACK" : 35.5
+    },
+    "appStability" : "UNSTABLE"
+  }
+} ]

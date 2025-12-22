@@ -1,0 +1,125 @@
+[   
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-01",
+        "params": {
+			"type": "BUG",
+			"title": "Crashes",
+			"businessPriority": "HIGH",
+			"reportedBy": "lilith_reporter",
+			"expertiseArea": "BACKEND",
+			"description": "App crashes when clicking on 'Save' button",
+			"expectedBehavior": "App should save data without crashing",
+			"actualBehavior": "App crashes and shows error code 500",
+			"frequency": "OCCASIONAL",
+			"severity": "SEVERE",
+			"environment": "Linux",
+			"errorCode": 500
+		}
+    },
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-01",
+        "params": {
+			"type": "BUG",
+			"title": "Stack overflow",
+			"businessPriority": "CRITICAL",
+			"reportedBy": "",
+			"expertiseArea": "BACKEND",
+			"expectedBehavior": "App should save data without crashing.",
+			"actualBehavior": "App crashes.Stack overflow error.",
+			"frequency": "RARE",
+			"severity": "SEVERE"
+		}
+	},
+    {
+        "command": "reportTicket",    
+        "username": "lilith_reporter",
+        "timestamp": "2025-10-02",
+        "params": {
+			"type": "FEATURE_REQUEST",
+			"title": "Add dark mode",
+			"businessPriority": "MEDIUM",
+			"reportedBy": "lilith_reporter",
+			"expertiseArea": "FRONTEND",
+			"businessValue": "XL",
+			"customerDemand": "HIGH"
+		}
+	},
+	{
+		"command": "viewTickets",
+		"username": "cleopatra_manager",
+		"timestamp": "2025-10-02"
+	},
+	{
+		"command":"reportTicket",
+		"username":"theodora_reporter",
+		"timestamp":"2025-10-02",
+		"params": {
+			"type": "UI_FEEDBACK",
+			"title": "Home page clutter.",
+			"businessPriority": "HIGH",
+			"reportedBy": "",
+			"expertiseArea": "FRONTEND",
+			"uiElementId": "home-page",
+			"businessValue": "L",
+			"usabilityScore": 2,
+			"suggestedFix": "Simplify layout and reduce number of elements on the home page."
+		}
+	},
+	{
+		"command": "viewTickets",
+		"username": "gabriel_manager",
+		"timestamp": "2025-10-03"
+	},
+	{
+		"command":"reportTicket",
+		"username":"X_reporter",
+		"timestamp":"2025-10-10",
+		"params": {
+			"type": "BUG",
+			"title": "Crashes",
+			"businessPriority": "HIGH",
+			"reportedBy": "lilith_reporter",
+			"expertiseArea": "BACKEND",
+			"description": "App crashes when clicking on 'Save' button",
+			"expectedBehavior": "App should save data without crashing",
+			"actualBehavior": "App crashes and shows error code 500",
+			"frequency": "OCCASIONAL",
+			"severity": "SEVERE",
+			"environment": "Linux",
+			"errorCode": 500
+		}
+	},
+	{
+		"command":"reportTicket",
+		"username":"theodora_reporter",
+		"timestamp":"2025-10-18",
+		"params": {
+			"type": "BUG",
+			"title": "Crashes",
+			"businessPriority": "HIGH",
+			"reportedBy": "theodora_reporter",
+			"expertiseArea": "BACKEND",
+			"description": "App crashes when clicking on 'Save' button",
+			"expectedBehavior": "App should save data without crashing",
+			"actualBehavior": "App crashes and shows error code 500",
+			"frequency": "OCCASIONAL",
+			"severity": "SEVERE",
+			"environment": "Linux",
+			"errorCode": 500
+		}
+	},
+	{
+		"command": "viewTickets",
+		"username": "theodora_reporter",
+		"timestamp": "2025-10-19"
+	},
+    {
+        "command": "lostInvestors",
+        "username": "gabriel_manager",
+        "timestamp": "2025-10-20"
+    }
+]

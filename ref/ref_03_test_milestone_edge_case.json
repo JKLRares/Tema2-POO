@@ -1,0 +1,179 @@
+[ {
+  "command" : "createMilestone",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-17",
+  "error" : "The user does not have permission to execute this command: required role MANAGER; user role DEVELOPER."
+}, {
+  "command" : "createMilestone",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-17",
+  "error" : "Tickets 2 already assigned to milestone UI-Experience-Enhancements."
+}, {
+  "command" : "viewTickets",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-20",
+  "tickets" : [ {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Login button not working sometimes",
+    "businessPriority" : "HIGH",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "App crash on profile save",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-03",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 2,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Dark mode support",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-07",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 3,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Two-factor authentication",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-10",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "viewTickets",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-21",
+  "tickets" : [ {
+    "id" : 0,
+    "type" : "BUG",
+    "title" : "Login button not working sometimes",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 1,
+    "type" : "BUG",
+    "title" : "App crash on profile save",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-03",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 2,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Dark mode support",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-07",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 3,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Two-factor authentication",
+    "businessPriority" : "CRITICAL",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-10",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "viewMilestones",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-11-24",
+  "milestones" : [ {
+    "name" : "Stability-Fixes",
+    "blockingFor" : [ "Security-Upgrade", "UI-Experience-Enhancements" ],
+    "dueDate" : "2025-10-22",
+    "createdAt" : "2025-10-17",
+    "tickets" : [ 0, 1 ],
+    "assignedDevs" : [ "isabella_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 0,
+    "overdueBy" : 34,
+    "openTickets" : [ 0, 1 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ ]
+    } ]
+  }, {
+    "name" : "Security-Upgrade",
+    "blockingFor" : [ "UI-Experience-Enhancements" ],
+    "dueDate" : "2025-11-23",
+    "createdAt" : "2025-10-17",
+    "tickets" : [ 3 ],
+    "assignedDevs" : [ "isabella_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : true,
+    "daysUntilDue" : 0,
+    "overdueBy" : 2,
+    "openTickets" : [ 3 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "isabella_fullstack",
+      "assignedTickets" : [ ]
+    } ]
+  }, {
+    "name" : "UI-Experience-Enhancements",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-12-31",
+    "createdAt" : "2025-10-17",
+    "tickets" : [ 2 ],
+    "assignedDevs" : [ "alexandra_main_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : true,
+    "daysUntilDue" : 38,
+    "overdueBy" : 0,
+    "openTickets" : [ 2 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "alexandra_main_fullstack",
+      "assignedTickets" : [ ]
+    } ]
+  } ]
+} ]

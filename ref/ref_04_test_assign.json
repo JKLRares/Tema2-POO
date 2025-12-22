@@ -1,0 +1,83 @@
+[ {
+  "command" : "viewAssignedTickets",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 1,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Two-factor authentication",
+    "businessPriority" : "CRITICAL",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-01",
+    "assignedAt" : "2025-10-21",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 0,
+    "type" : "UI_FEEDBACK",
+    "title" : "Cluttered interface.",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-01",
+    "assignedAt" : "2025-10-21",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 2,
+    "type" : "FEATURE_REQUEST",
+    "title" : "Dark mode",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "2025-10-21",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  }, {
+    "id" : 3,
+    "type" : "UI_FEEDBACK",
+    "title" : "Improve navigation menu",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "2025-10-21",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "viewTickets",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-10-21",
+  "tickets" : [ ]
+}, {
+  "command" : "viewTickets",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-10-21",
+  "tickets" : [ {
+    "id" : 0,
+    "type" : "UI_FEEDBACK",
+    "title" : "Cluttered interface.",
+    "businessPriority" : "MEDIUM",
+    "status" : "OPEN",
+    "createdAt" : "2025-10-01",
+    "assignedAt" : "",
+    "solvedAt" : "",
+    "assignedTo" : "",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+}, {
+  "command" : "viewAssignedTickets",
+  "username" : "alexandra_main_fullstack",
+  "timestamp" : "2025-10-21",
+  "assignedTickets" : [ {
+    "id" : 3,
+    "type" : "UI_FEEDBACK",
+    "title" : "Improve navigation menu",
+    "businessPriority" : "MEDIUM",
+    "status" : "IN_PROGRESS",
+    "createdAt" : "2025-10-02",
+    "assignedAt" : "2025-10-21",
+    "reportedBy" : "lilith_reporter",
+    "comments" : [ ]
+  } ]
+} ]

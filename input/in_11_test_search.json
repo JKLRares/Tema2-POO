@@ -1,0 +1,197 @@
+[
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-01",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Cluttered interface.",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "FRONTEND",
+      "uiElementId": "Main dashboard",
+      "businessValue": "XL",
+      "usabilityScore": 3
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-01",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Two-factor authentication",
+      "businessPriority": "CRITICAL",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DEVOPS",
+      "businessValue": "XL",
+      "customerDemand": "HIGH"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-01",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Dark mode",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "customerDemand": "HIGH"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-02",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Improve navigation menu",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "DESIGN",
+      "uiElementId": "Side navigation",
+      "businessValue": "L",
+      "usabilityScore": 5
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-10-02",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Unclear icons in navigation",
+      "businessPriority": "MEDIUM",
+      "reportedBy": "theodora_reporter",
+      "expertiseArea": "DESIGN",
+      "uiElementId": "#nav-bar",
+      "businessValue": "M",
+      "usabilityScore": 5
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-10-02",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Settings page too cluttered",
+      "businessPriority": "HIGH",
+      "reportedBy": "lilith_reporter",
+      "expertiseArea": "FRONTEND",
+      "uiElementId": "#settings-container",
+      "businessValue": "L",
+      "usabilityScore": 3,
+      "screenshotUrl": "https://www.youtube.com/watch?v=kF7rQmSRlq0",
+      "suggestedFix": "Group options into categories"
+    }
+  },
+  {
+    "command": "search",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-02",
+    "filters": {
+      "searchType": "DEVELOPER",
+      "expertiseArea": "FRONTEND",
+      "seniority": "SENIOR"
+    }
+  },
+  {
+    "command": "search",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-02",
+    "filters": {
+      "searchType": "DEVELOPER",
+      "expertiseArea": "FULLSTACK",
+      "seniority": "SENIOR"
+    }
+  },
+  {
+    "command": "search",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-02",
+    "filters": {
+      "searchType": "TICKET",
+      "keywords": ["menu"],
+      "businessPriority": "MEDIUM",
+      "createdAfter": "2025-10-01"
+    }
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-18",
+    "name": "UI-Overhaul",
+    "dueDate": "2025-10-31",
+    "blockingFor": [],
+    "tickets": [0, 2, 3, 4],
+    "assignedDevs": ["isabella_fullstack", "alexandra_main_fullstack"]
+  },
+  {
+    "command": "createMilestone",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-18",
+    "name": "Release 1.0",
+    "dueDate": "2025-10-31",
+    "blockingFor": [],
+    "tickets": [1, 5],
+    "assignedDevs": ["alexandra_main_fullstack", "andrew_main_frontend"]
+  },
+  {
+    "command": "search",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-10-18",
+    "filters": {
+      "searchType": "TICKET"
+    }
+  },
+  {
+    "command": "search",
+    "username": "andrew_main_frontend",
+    "timestamp": "2025-10-18",
+    "filters": {
+      "searchType": "TICKET",
+      "availableForAssignment": true
+    }
+  },
+  {
+    "command": "assignTicket",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-10-18",
+    "ticketID": 2
+  },
+  {
+    "command": "assignTicket",
+    "username": "alexandra_main_fullstack",
+    "ticketID": 3,
+    "timestamp": "2025-10-18"
+  },
+  {
+    "command": "search",
+    "username": "isabella_fullstack",
+    "timestamp": "2025-10-18",
+    "filters": {
+      "searchType": "TICKET",
+      "businessPriority": "MEDIUM",
+      "createdAfter": "2025-10-01",
+      "availableForAssignment": true
+    }
+  },
+  {
+    "command": "search",
+    "username": "alexandra_main_fullstack",
+    "timestamp": "2025-10-18",
+    "filters": {
+      "searchType": "TICKET",
+      "type": "FEATURE_REQUEST"
+    }
+  },
+  {
+    "command": "lostInvestors",
+    "username": "gabriel_manager",
+    "timestamp": "2025-10-18"
+  }
+]

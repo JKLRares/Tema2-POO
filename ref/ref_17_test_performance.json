@@ -1,0 +1,90 @@
+[ {
+  "command" : "viewMilestones",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-10-20",
+  "milestones" : [ {
+    "name" : "Release v1.0",
+    "blockingFor" : [ ],
+    "dueDate" : "2025-10-27",
+    "createdAt" : "2025-10-20",
+    "tickets" : [ 0, 1, 2, 3, 4, 6, 7, 9, 10, 11, 12, 13, 14 ],
+    "assignedDevs" : [ "mateo_frontend", "quintilian_main_backend", "alexandra_main_fullstack" ],
+    "createdBy" : "gabriel_manager",
+    "status" : "ACTIVE",
+    "isBlocked" : false,
+    "daysUntilDue" : 8,
+    "overdueBy" : 0,
+    "openTickets" : [ 0, 1, 2, 3, 4, 6, 7, 9, 10, 11, 12, 13, 14 ],
+    "closedTickets" : [ ],
+    "completionPercentage" : 0.0,
+    "repartition" : [ {
+      "developer" : "mateo_frontend",
+      "assignedTickets" : [ 3, 10, 11 ]
+    }, {
+      "developer" : "quintilian_main_backend",
+      "assignedTickets" : [ 4, 6, 9 ]
+    }, {
+      "developer" : "alexandra_main_fullstack",
+      "assignedTickets" : [ 0, 1, 2, 7, 12, 13, 14 ]
+    } ]
+  } ]
+}, {
+  "command" : "generatePerformanceReport",
+  "username" : "gabriel_manager",
+  "timestamp" : "2025-11-01",
+  "report" : [ {
+    "username" : "alexandra_main_fullstack",
+    "closedTickets" : 7,
+    "averageResolutionTime" : 2.14,
+    "performanceScore" : 38.43,
+    "seniority" : "SENIOR"
+  }, {
+    "username" : "andrew_main_frontend",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "MID"
+  }, {
+    "username" : "emilia_backend",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "JUNIOR"
+  }, {
+    "username" : "giulio_main_backend",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "SENIOR"
+  }, {
+    "username" : "isabella_fullstack",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "SENIOR"
+  }, {
+    "username" : "marcus_fullstack",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "SENIOR"
+  }, {
+    "username" : "mateo_frontend",
+    "closedTickets" : 3,
+    "averageResolutionTime" : 1.67,
+    "performanceScore" : 5.68,
+    "seniority" : "JUNIOR"
+  }, {
+    "username" : "quintilian_main_backend",
+    "closedTickets" : 3,
+    "averageResolutionTime" : 1.33,
+    "performanceScore" : 17.5,
+    "seniority" : "MID"
+  }, {
+    "username" : "sofia_frontend",
+    "closedTickets" : 0,
+    "averageResolutionTime" : 0.0,
+    "performanceScore" : 0.0,
+    "seniority" : "JUNIOR"
+  } ]
+} ]

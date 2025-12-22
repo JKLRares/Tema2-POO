@@ -1,0 +1,102 @@
+[
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-09-10",
+    "params": {
+      "type": "BUG",
+      "title": "Crash on login",
+      "businessPriority": "HIGH",
+      "frequency": "FREQUENT",
+      "expertiseArea": "BACKEND",
+      "reportedBy": "theodora_reporter",
+      "expectedBehavior": "Login should work without crashing",
+      "actualBehavior": "App crashes immediately",
+      "severity": "SEVERE",
+      "environment": "Windows"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-09-11",
+    "params": {
+      "type": "BUG",
+      "title": "Settings sync issue",
+      "businessPriority": "CRITICAL",
+      "frequency": "ALWAYS",
+      "expertiseArea": "BACKEND",
+      "reportedBy": "lilith_reporter",
+      "expectedBehavior": "Settings should sync automatically",
+      "actualBehavior": "Settings are inconsistent across devices",
+      "severity": "MODERATE",
+      "environment": "Linux"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-09-12",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Dark Mode",
+      "businessPriority": "MEDIUM",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "L",
+      "customerDemand": "HIGH",
+      "reportedBy": "theodora_reporter"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-09-13",
+    "params": {
+      "type": "FEATURE_REQUEST",
+      "title": "Offline Mode",
+      "businessPriority": "HIGH",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "customerDemand": "MEDIUM",
+      "reportedBy": "theodora_reporter"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "lilith_reporter",
+    "timestamp": "2025-09-14",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Cluttered dashboard",
+      "businessPriority": "LOW",
+      "expertiseArea": "DESIGN",
+      "businessValue": "XL",
+      "usabilityScore": 5,
+      "reportedBy": "lilith_reporter"
+    }
+  },
+  {
+    "command": "reportTicket",
+    "username": "theodora_reporter",
+    "timestamp": "2025-09-14",
+    "params": {
+      "type": "UI_FEEDBACK",
+      "title": "Button misaligned",
+      "businessPriority": "MEDIUM",
+      "expertiseArea": "FRONTEND",
+      "businessValue": "M",
+      "usabilityScore": 7,
+      "reportedBy": "theodora_reporter"
+    }
+  },
+  {
+    "command": "appStabilityReport",
+    "username": "gabriel_manager",
+    "timestamp": "2025-09-30"
+  },
+  {
+    "command": "lostInvestors",
+    "username": "gabriel_manager",
+    "timestamp": "2025-12-01"
+  }
+]

@@ -1,0 +1,98 @@
+[ {
+  "command" : "changeStatus",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-10-26",
+  "error" : "Ticket 3 is not assigned to developer isabella_fullstack."
+}, {
+  "command" : "addComment",
+  "username" : "lilith_reporter",
+  "timestamp" : "2025-10-31",
+  "error" : "Reporters cannot comment on CLOSED tickets."
+}, {
+  "command" : "viewTicketHistory",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-11-02",
+  "ticketHistory" : [ {
+    "id" : 2,
+    "title" : "Dark mode",
+    "status" : "RESOLVED",
+    "actions" : [ {
+      "milestone" : "UI-Overhaul",
+      "by" : "gabriel_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-21",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-21",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-25",
+      "action" : "STATUS_CHANGED"
+    } ],
+    "comments" : [ {
+      "author" : "lilith_reporter",
+      "content" : "Multiple users requested dark mode in recent feedback surveys.",
+      "createdAt" : "2025-10-21"
+    } ]
+  } ]
+}, {
+  "command" : "undoChangeStatus",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-11-05",
+  "error" : "Ticket 3 is not assigned to developer isabella_fullstack."
+}, {
+  "command" : "viewTicketHistory",
+  "username" : "isabella_fullstack",
+  "timestamp" : "2025-11-07",
+  "ticketHistory" : [ {
+    "id" : 2,
+    "title" : "Dark mode",
+    "status" : "OPEN",
+    "actions" : [ {
+      "milestone" : "UI-Overhaul",
+      "by" : "gabriel_manager",
+      "timestamp" : "2025-10-20",
+      "action" : "ADDED_TO_MILESTONE"
+    }, {
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-21",
+      "action" : "ASSIGNED"
+    }, {
+      "from" : "OPEN",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-21",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "IN_PROGRESS",
+      "to" : "RESOLVED",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-10-25",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "from" : "RESOLVED",
+      "to" : "IN_PROGRESS",
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-11-05",
+      "action" : "STATUS_CHANGED"
+    }, {
+      "by" : "isabella_fullstack",
+      "timestamp" : "2025-11-06",
+      "action" : "DE-ASSIGNED"
+    } ],
+    "comments" : [ {
+      "author" : "lilith_reporter",
+      "content" : "Multiple users requested dark mode in recent feedback surveys.",
+      "createdAt" : "2025-10-21"
+    } ]
+  } ]
+} ]
