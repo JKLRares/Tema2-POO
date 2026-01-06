@@ -83,6 +83,12 @@ public class App {
                     case "undoAssignTicket":
                         command = new UndoAssignTicketCommand();
                         break;
+                    case "addComment":
+                        command = new AddCommentCommand();
+                        break;
+                    case "undoAddComment":
+                        command = new UndoAddCommentCommand();
+                        break;
                     default:
                         System.out.println("Unknown command: " + inputCommand.command);
                         break;
