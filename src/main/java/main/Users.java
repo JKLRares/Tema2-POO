@@ -46,7 +46,7 @@ enum TicketType {
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 @Getter @Setter
-abstract class User {
+abstract class User implements NotificationObserver{
     @JsonProperty("username")
     protected String username;
 
@@ -56,12 +56,20 @@ abstract class User {
     @JsonProperty("role")
     protected UserRole role;
 
+    @JsonProperty("notifications")
+    protected List<String> notifications = new ArrayList<>();
+
     public User() {}
 
     protected User(UserBuilder<?, ?> builder) {
         this.username = builder.username;
         this.email = builder.email;
         this.role = builder.role;
+    }
+
+    @Override
+    public void update(String message) {
+        this.notifications.add(message);
     }
 
     abstract static class UserBuilder<T extends User, B extends UserBuilder<T, B>> {

@@ -131,6 +131,20 @@ public class AssignTicketCommand implements Command {
         ticket.setAssignedTo(username);
         ticket.setStatus(Status.IN_PROGRESS);
         ticket.setAssignedAt(input.timestamp);
+
+        TicketHistoryEntry assignEntry = new TicketHistoryEntry();
+        assignEntry.setAction(HistoryActionType.ASSIGNED);
+        assignEntry.setTimestamp(input.timestamp);
+        assignEntry.setUser(username);
+        ticket.addHistoryEntry(assignEntry);
+
+        TicketHistoryEntry statusEntry = new TicketHistoryEntry();
+        statusEntry.setAction(HistoryActionType.STATUS_CHANGED);
+        statusEntry.setTimestamp(input.timestamp);
+        statusEntry.setUser(username);
+        statusEntry.setFromStatus(Status.OPEN);
+        statusEntry.setToStatus(Status.IN_PROGRESS);
+        ticket.addHistoryEntry(statusEntry);
     }
 
     private boolean hasExpertise(Expertise devExp, Expertise ticketExp) {

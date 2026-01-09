@@ -90,6 +90,15 @@ public class CreateMilestoneCommand implements Command {
 
         for (Ticket t : ticketsToAdd) {
             milestone.addTicket(t);
+
+            TicketHistoryEntry entry = new TicketHistoryEntry(
+                    HistoryActionType.ADDED_TO_MILESTONE,
+                    input.timestamp,
+                    input.username,
+                    "Added to milestone: " + name
+            );
+            entry.setMilestone(name);
+            t.addHistoryEntry(entry);
         }
 
         List<String> assignedDevs = (List<String>) params.get("assignedDevs");
@@ -113,5 +122,7 @@ public class CreateMilestoneCommand implements Command {
         }
 
         db.addMilestone(milestone);
+
+        NotificationService.getInstance().notifyMilestone(milestone, "MILESTONE_CREATED", input.username);
     }
 }

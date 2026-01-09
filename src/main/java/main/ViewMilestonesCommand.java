@@ -80,24 +80,39 @@ public class ViewMilestonesCommand implements Command {
 
             mNode.put("createdBy", m.getCreator());
 
-            String status = m.isCompleted() ? "COMPLETED" : "ACTIVE";
+            boolean isCompleted = !m.getTickets().isEmpty() && m.areTicketsResolved();
+            LocalDate calculationDate = currentDate;
+
+            if (isCompleted) {
+                LocalDate maxSolvedDate = null;
+
+                for (Ticket t : m.getTickets()) {
+                    if (t.getSolvedAt() != null && !t.getSolvedAt().isEmpty()) {
+                        LocalDate solvedDate = LocalDate.parse(t.getSolvedAt());
+
+                        if (maxSolvedDate == null || solvedDate.isAfter(maxSolvedDate)) {
+                            maxSolvedDate = solvedDate;
+                        }
+                    }
+                }
+
+                if (maxSolvedDate != null) {
+                    calculationDate = maxSolvedDate;
+                }
+            }
+
+            String status = isCompleted ? "COMPLETED" : "ACTIVE";
             mNode.put("status", status);
 
             mNode.put("isBlocked", m.isBlocked());
 
-            long rawDiff = ChronoUnit.DAYS.between(currentDate, m.getDueDate());
-            long daysUntilDue = rawDiff;
-
-            if (rawDiff >= 0) {
-                daysUntilDue = rawDiff + 1;
-            } else {
-                daysUntilDue = 0;
-            }
+            long rawDiff = ChronoUnit.DAYS.between(calculationDate, m.getDueDate());
+            long daysUntilDue = (rawDiff >= 0) ? rawDiff + 1 : 0;
             mNode.put("daysUntilDue", daysUntilDue);
 
             long overdueBy = 0;
-            if (currentDate.isAfter(m.getDueDate())) {
-                overdueBy = ChronoUnit.DAYS.between(m.getDueDate(), currentDate) + 1;
+            if (calculationDate.isAfter(m.getDueDate())) {
+                overdueBy = ChronoUnit.DAYS.between(m.getDueDate(), calculationDate) + 1;
             }
             mNode.put("overdueBy", overdueBy);
 
@@ -117,7 +132,8 @@ public class ViewMilestonesCommand implements Command {
 
             double completionPercentage = 0.0;
             if (!m.getTickets().isEmpty()) {
-                completionPercentage = ((double) resolvedTickets * 100) / m.getTickets().size();
+                double tmp = (double) resolvedTickets / m.getTickets().size();
+                completionPercentage = Math.round(tmp * 100.0) / 100.0;
             }
             mNode.put("completionPercentage", completionPercentage);
 

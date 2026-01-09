@@ -89,6 +89,27 @@ public class App {
                     case "undoAddComment":
                         command = new UndoAddCommentCommand();
                         break;
+                    case "changeStatus":
+                        command = new ChangeStatusCommand();
+                        break;
+                    case "undoChangeStatus":
+                        command = new UndoChangeStatusCommand();
+                        break;
+                    case "viewTicketHistory":
+                        command = new ViewTicketHistoryCommand();
+                        break;
+                    case "viewNotifications":
+                        command = new ViewNotificationsCommand();
+                        break;
+                    case "generateCustomerImpactReport":
+                        command = new GenerateCustomerImpactReportCommand();
+                        break;
+                    case "generateTicketRiskReport":
+                        command = new GenerateTicketRiskReportCommand();
+                        break;
+                    case "generateResolutionEfficiencyReport":
+                        command = new GenerateResolutionEfficiencyReportCommand();
+                        break;
                     default:
                         System.out.println("Unknown command: " + inputCommand.command);
                         break;

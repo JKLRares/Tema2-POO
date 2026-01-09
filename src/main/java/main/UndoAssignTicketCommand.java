@@ -52,6 +52,14 @@ public class UndoAssignTicketCommand implements Command {
             return;
         }
 
+        TicketHistoryEntry entry = new TicketHistoryEntry(
+                HistoryActionType.DE_ASSIGNED,
+                input.timestamp,
+                username,
+                "De-assigned from user: " + username
+        );
+        ticket.addHistoryEntry(entry);
+
         ticket.setAssignedTo("");
         ticket.setStatus(Status.OPEN);
         ticket.setAssignedAt("");

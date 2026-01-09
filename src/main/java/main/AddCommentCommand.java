@@ -76,7 +76,7 @@ public class AddCommentCommand implements Command {
                 error.put("command", input.command);
                 error.put("username", username);
                 error.put("timestamp", input.timestamp);
-                error.put("error", "Cannot add comments to closed tickets.");
+                error.put("error", "Reporters cannot comment on CLOSED tickets.");
                 outputs.add(error);
                 return;
             }
@@ -102,5 +102,7 @@ public class AddCommentCommand implements Command {
 
         Comment comment = new Comment(username, commentContent, input.timestamp);
         ticket.getComments().add(comment);
+
+        NotificationService.getInstance().notify(ticket, "NEW_COMMENT", username);
     }
 }

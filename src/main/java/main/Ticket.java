@@ -17,6 +17,7 @@ enum Frequency { RARE, OCCASIONAL, FREQUENT, ALWAYS }
 enum Severity { MINOR, MODERATE, SEVERE }
 enum BusinessValue { S, M, L, XL }
 enum CustomerDemand { LOW, MEDIUM, HIGH, VERY_HIGH }
+enum HistoryActionType { ASSIGNED, @JsonProperty("DE-ASSIGNED") DE_ASSIGNED, STATUS_CHANGED, ADDED_TO_MILESTONE, REMOVED_FROM_DEV }
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
@@ -36,6 +37,7 @@ abstract class Ticket {
     @JsonProperty("title") protected String title;
     @JsonProperty("businessPriority") protected Priority businessPriority;
     @JsonProperty("status") protected Status status;
+    @JsonIgnore protected List<TicketHistoryEntry> history = new ArrayList<>();
 
     @JsonProperty("createdAt") protected String createdAt = "";
     @JsonProperty("assignedAt") protected String assignedAt = "";
@@ -47,6 +49,10 @@ abstract class Ticket {
 
     @JsonIgnore protected Expertise expertiseArea;
     @JsonIgnore protected String description;
+
+    public abstract double calculateImpact();
+    public abstract double calculateRisk();
+    public abstract double calculateEfficiency(long daysToResolve);
 
     public Ticket() {}
     protected Ticket(TicketBuilder<?, ?> builder) {
@@ -93,8 +99,67 @@ abstract class Ticket {
         public abstract T build();
         protected abstract B self();
     }
+
+    public void addHistoryEntry(TicketHistoryEntry entry) {
+        this.history.add(entry);
+    }
+
+    protected int getPriorityValue(Priority p) {
+        if (p == null) return 0;
+        switch (p) {
+            case LOW: return 1;
+            case MEDIUM: return 2;
+            case HIGH: return 3;
+            case CRITICAL: return 4;
+            default: return 0;
+        }
+    }
+
+    protected int getFrequencyValue(Frequency f) {
+        if (f == null) return 0;
+        switch (f) {
+            case RARE: return 1;
+            case OCCASIONAL: return 2;
+            case FREQUENT: return 3;
+            case ALWAYS: return 4;
+            default: return 0;
+        }
+    }
+
+    protected int getSeverityValue(Severity s) {
+        if (s == null) return 0;
+        switch (s) {
+            case MINOR: return 1;
+            case MODERATE: return 2;
+            case SEVERE: return 3;
+            default: return 0;
+        }
+    }
+
+    protected int getBusinessValue(BusinessValue bv) {
+        if (bv == null) return 0;
+        switch (bv) {
+            case S: return 1;
+            case M: return 3;
+            case L: return 6;
+            case XL: return 10;
+            default: return 0;
+        }
+    }
+
+    protected int getCustomerDemandValue(CustomerDemand cd) {
+        if (cd == null) return 0;
+        switch (cd) {
+            case LOW: return 1;
+            case MEDIUM: return 3;
+            case HIGH: return 6;
+            case VERY_HIGH: return 10;
+            default: return 0;
+        }
+    }
 }
 
+@Getter
 class BugTicket extends Ticket {
     @JsonIgnore private String expectedBehavior;
     @JsonIgnore private String actualBehavior;
@@ -113,6 +178,30 @@ class BugTicket extends Ticket {
         this.environment = builder.env;
         this.errorCode = builder.code;
     }
+
+    @Override
+    public double calculateImpact() {
+        double freq = getFrequencyValue(this.frequency);
+        double prio = getPriorityValue(this.businessPriority);
+        double sev = getSeverityValue(this.severity);
+        return (freq * prio * sev * 100.0) / 48.0;
+    }
+
+    @Override
+    public double calculateRisk() {
+        double freq = getFrequencyValue(this.frequency);
+        double sev = getSeverityValue(this.severity);
+        return (freq * sev / 12.0) * 100.0;
+    }
+
+    @Override
+    public double calculateEfficiency(long days) {
+        double freq = getFrequencyValue(this.frequency);
+        double sev = getSeverityValue(this.severity);
+        double rawScore = (freq + sev) * 10.0 / days;
+        return (rawScore * 100.0) / 70.0;
+    }
+
     public static class Type1Builder extends TicketBuilder<BugTicket, Type1Builder> {
         private String expected;
         private String actual;
@@ -131,6 +220,7 @@ class BugTicket extends Ticket {
     }
 }
 
+@Getter
 class FeatureRequestTicket extends Ticket {
     @JsonIgnore private BusinessValue businessValue;
     @JsonIgnore private CustomerDemand customerDemand;
@@ -141,6 +231,29 @@ class FeatureRequestTicket extends Ticket {
         this.businessValue = builder.bizVal;
         this.customerDemand = builder.demand;
     }
+
+    @Override
+    public double calculateImpact() {
+        double bv = getBusinessValue(this.businessValue);
+        double demand = getCustomerDemandValue(this.customerDemand);
+        return bv * demand;
+    }
+
+    @Override
+    public double calculateRisk() {
+        double bv = getBusinessValue(this.businessValue);
+        double demand = getCustomerDemandValue(this.customerDemand);
+        return ((bv + demand) / 20.0) * 100.0;
+    }
+
+    @Override
+    public double calculateEfficiency(long days) {
+        double bv = getBusinessValue(this.businessValue);
+        double demand = getCustomerDemandValue(this.customerDemand);
+        double rawScore = (bv + demand) / (double) days;
+        return (rawScore * 100.0) / 20.0;
+    }
+
     public static class Type2Builder extends TicketBuilder<FeatureRequestTicket, Type2Builder> {
         private BusinessValue bizVal;
         private CustomerDemand demand;
@@ -151,6 +264,7 @@ class FeatureRequestTicket extends Ticket {
     }
 }
 
+@Getter
 class UiFeedbackTicket extends Ticket {
     @JsonIgnore private String uiElementId;
     @JsonIgnore private BusinessValue businessValue;
@@ -166,6 +280,28 @@ class UiFeedbackTicket extends Ticket {
         this.usabilityScore = builder.score;
         this.screenshotUrl = builder.url;
         this.suggestedFix = builder.fix;
+    }
+
+    @Override
+    public double calculateImpact() {
+        double bv = getBusinessValue(this.businessValue);
+        double usb = this.usabilityScore != null ? this.usabilityScore : 0;
+        return bv * usb;
+    }
+
+    @Override
+    public double calculateRisk() {
+        double bv = getBusinessValue(this.businessValue);
+        double score = this.usabilityScore != null ? this.usabilityScore : 0;
+        return (11.0 - score) * bv;
+    }
+
+    @Override
+    public double calculateEfficiency(long days) {
+        double bv = getBusinessValue(this.businessValue);
+        double usb = this.usabilityScore != null ? this.usabilityScore : 0;
+        double rawScore = (bv + usb) / (double) days;
+        return (rawScore * 100.0) / 20.0;
     }
 
     public static class Type3Builder extends TicketBuilder<UiFeedbackTicket, Type3Builder> {
