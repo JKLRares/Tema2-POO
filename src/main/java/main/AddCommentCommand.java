@@ -102,7 +102,5 @@ public class AddCommentCommand implements Command {
 
         Comment comment = new Comment(username, commentContent, input.timestamp);
         ticket.getComments().add(comment);
-
-        NotificationService.getInstance().notify(ticket, "NEW_COMMENT", username);
     }
 }

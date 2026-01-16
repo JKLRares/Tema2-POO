@@ -36,18 +36,15 @@ public class UndoAddCommentCommand implements Command {
             return;
         }
 
-        List<Object> comments = ticket.getComments();
+        List<Comment> comments = ticket.getComments();
         Object commentToRemove = null;
 
         for (int i = comments.size() - 1; i >= 0; i--) {
-            Object obj = comments.get(i);
-            if (obj instanceof Comment) {
-                Comment c = (Comment) obj;
-                if (c.getAuthor().equals(username)) {
-                    commentToRemove = obj;
-                    break;
+            Comment com = comments.get(i);
+            if (com.getAuthor().equals(username)) {
+                commentToRemove = com;
+                break;
                 }
-            }
         }
 
         if (commentToRemove == null) {

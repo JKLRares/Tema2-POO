@@ -30,19 +30,10 @@ public class App {
      * @param outputPath path to the file where results should be written
      */
     public static void run(final String inputPath, final String outputPath) {
-        // feel free to change this if needed
-        // however keep 'outputs' variable name to be used for writing
         List<ObjectNode> outputs = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
-        /*
-            TODO 1 :
-            Load initial user data and commands. we strongly recommend using jackson library.
-            you can use the reading from hw1 as a reference.
-            however you can use some of the more advanced features of
-            jackson library, available here: https://www.baeldung.com/jackson-annotations
-        */
         Database.reset();
         Database db = Database.getInstance();
 
@@ -54,7 +45,6 @@ public class App {
 
             InputCommand[] commands = mapper.readValue(new File(inputPath), InputCommand[].class);
 
-            // TODO 2: process commands.
             for (InputCommand inputCommand : commands) {
                 Command command = null;
 
@@ -110,6 +100,18 @@ public class App {
                     case "generateResolutionEfficiencyReport":
                         command = new GenerateResolutionEfficiencyReportCommand();
                         break;
+                    case "appStabilityReport":
+                        command = new AppStabilityReportCommand();
+                        break;
+                    case "generatePerformanceReport":
+                        command = new GeneratePerformanceReportCommand();
+                        break;
+                    case "search":
+                        command = new SearchCommand();
+                        break;
+                    case "startTestingPhase":
+                        command = new StartTestingPhaseCommand();
+                        break;
                     default:
                         System.out.println("Unknown command: " + inputCommand.command);
                         break;
@@ -123,9 +125,6 @@ public class App {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // TODO 3: create objectnodes for output, add them to outputs list.
-
-        // DO NOT CHANGE THIS SECTION IN ANY WAY
         try {
             File outputFile = new File(outputPath);
             outputFile.getParentFile().mkdirs();

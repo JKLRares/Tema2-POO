@@ -121,7 +121,7 @@ class ReporterUser extends User {
     }
 }
 
-@Getter
+@Getter @Setter
 class DeveloperUser extends User {
     @JsonProperty("seniority")
     private Seniority seniority;
@@ -132,6 +132,8 @@ class DeveloperUser extends User {
 
     @JsonProperty("expertiseArea")
     private Expertise expertise;
+
+    private double performanceScore = 0.0;
 
     public DeveloperUser() {}
     private DeveloperUser(DeveloperBuilder builder) {
@@ -177,6 +179,7 @@ class DeveloperUser extends User {
     }
 }
 
+@Getter
 class ManagerUser extends User {
     @JsonProperty("hireDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -223,7 +226,7 @@ class SecurityManager {
 
     private SecurityManager() {}
 
-    public static synchronized SecurityManager getInstance() {
+    public static SecurityManager getInstance() {
         if (instance == null) {
             instance = new SecurityManager();
         }

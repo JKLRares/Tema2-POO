@@ -26,6 +26,7 @@ class Milestone {
     private boolean isCompleted;
     private boolean notifiedDueTomorrow = false;
     private boolean wasBlocked = false;
+    private LocalDate priorityEpochDate;
 
     public Milestone(String name, LocalDate startDate, LocalDate dueDate) {
         this.name = name;
@@ -39,6 +40,7 @@ class Milestone {
         this.initialPriorities = new HashMap<>();
         this.notifiedDueTomorrow = false;
         this.wasBlocked = false;
+        this.priorityEpochDate = startDate;
     }
 
     public void addTicket(Ticket ticket) {
@@ -89,12 +91,12 @@ class Milestone {
 
     public void updateStatusAndPriorities(LocalDate currentDate) {
         if (isBlocked()) {
-            System.out.println("[" + name + "] is BLOCKED. Priorities frozen.");
             this.wasBlocked = true;
+            if (currentDate.isAfter(priorityEpochDate)) {
+                priorityEpochDate = currentDate;
+            }
             return;
         }
-
-        System.out.println("[" + name + "] is ACTIVE. Checking rules...");
 
         long daysUntilDeadline = ChronoUnit.DAYS.between(currentDate, dueDate);
         boolean isLate = currentDate.isAfter(dueDate);
@@ -106,23 +108,21 @@ class Milestone {
             this.wasBlocked = false;
         }
 
-        if (daysUntilDeadline == 1 && !this.notifiedDueTomorrow && !this.areTicketsResolved()) {
+        if (daysUntilDeadline <= 1 && !this.notifiedDueTomorrow && !isLate) {
             NotificationService.getInstance().notifyMilestoneEvent(this, "DUE_TOMORROW");
             this.notifiedDueTomorrow = true;
         }
 
         if (isLate || daysUntilDeadline <= 1) {
-            System.out.println("  -> CRISIS MODE (1 day before or late). Setting all to CRITICAL.");
             setAllTicketsToCritical();
         }
         else {
-            long daysPassed = ChronoUnit.DAYS.between(startDate, currentDate);
+            long daysPassed = ChronoUnit.DAYS.between(priorityEpochDate, currentDate);
 
             if (daysPassed < 0) daysPassed = 0;
 
             int stepsToIncrease = (int) (daysPassed / 3);
 
-            System.out.println("  -> NORMAL MODE. Days passed: " + daysPassed + ". Increasing priorities by " + stepsToIncrease + " steps.");
             applyProgressivePriority(stepsToIncrease);
         }
     }

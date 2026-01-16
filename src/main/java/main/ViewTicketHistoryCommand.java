@@ -79,6 +79,16 @@ public class ViewTicketHistoryCommand implements Command {
 
             List<TicketHistoryEntry> processingHistory = new ArrayList<>(t.getHistory());
 
+            if (user.getRole() == UserRole.DEVELOPER && !input.username.equals(t.getAssignedTo())) {
+                for (int i = processingHistory.size() - 1; i >= 0; i--) {
+                    TicketHistoryEntry entry = processingHistory.get(i);
+                    if (entry.getAction() == HistoryActionType.DE_ASSIGNED && entry.getUser().equals(input.username)) {
+                        processingHistory = processingHistory.subList(0, i + 1);
+                        break;
+                    }
+                }
+            }
+
             ArrayNode actionsArray = mapper.createArrayNode();
             for (TicketHistoryEntry entry : processingHistory) {
                 ObjectNode entryNode = mapper.valueToTree(entry);

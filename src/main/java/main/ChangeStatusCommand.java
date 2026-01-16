@@ -3,6 +3,7 @@ package main;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class ChangeStatusCommand implements Command {
@@ -81,6 +82,31 @@ public class ChangeStatusCommand implements Command {
             entry.setToStatus(newStatus);
             ticket.addHistoryEntry(entry);
             NotificationService.getInstance().notify(ticket, "STATUS_CHANGED", username);
+
+            Milestone milestone = db.getMilestoneForTicket(ticket.getId());
+            if (milestone != null) {
+                milestone.updateStatusAndPriorities(LocalDate.parse(input.timestamp));
+
+                if (milestone.areTicketsResolved()) {
+                    for (Milestone m : db.getMilestones()) {
+                        if (m.getDependencies().contains(milestone)) {
+                            if (!m.isBlocked()) {
+                                LocalDate currentDate = LocalDate.parse(input.timestamp);
+                                boolean isLate = currentDate.isAfter(m.getDueDate());
+
+                                if (!isLate) {
+                                    String msg = "Milestone " + m.getName() + " is now unblocked as ticket " + ticket.getId() + " has been CLOSED.";
+                                    if (m.getAssignedDevs() != null) {
+                                        for (String dev : m.getAssignedDevs()) {
+                                            NotificationService.getInstance().sendNotification(dev, msg);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

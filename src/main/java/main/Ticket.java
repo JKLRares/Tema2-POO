@@ -45,7 +45,7 @@ abstract class Ticket {
     @JsonProperty("assignedTo") protected String assignedTo = "";
     @JsonProperty("reportedBy") protected String reportedBy = "";
 
-    @JsonProperty("comments") protected List<Object> comments = new ArrayList<>();
+    @JsonProperty("comments") protected List<Comment> comments = new ArrayList<>();
 
     @JsonIgnore protected Expertise expertiseArea;
     @JsonIgnore protected String description;
@@ -66,7 +66,7 @@ abstract class Ticket {
         this.reportedBy = builder.reporter != null ? builder.reporter : "";
 
         if (!"BUG".equals(builder.type) && (builder.reporter == null || builder.reporter.trim().isEmpty())) {
-            throw new IllegalArgumentException("Doar tichetele de tip BUG pot fi anonime!");
+            throw new IllegalArgumentException("Only BUG tickets can be anonymous");
         }
     }
 
