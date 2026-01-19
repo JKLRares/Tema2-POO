@@ -51,22 +51,10 @@ public abstract class Ticket {
     @JsonProperty("status") private Status status;
     @JsonIgnore private List<TicketHistoryEntry> history = new ArrayList<>();
 
-    /**
-     * -- SETTER --
-     *  Sets the creation timestamp.
-     *
-     * @param createdAt the timestamp string
-     */
     @JsonProperty("createdAt") private String createdAt = "";
     @JsonProperty("assignedAt") private String assignedAt = "";
     @JsonProperty("solvedAt") private String solvedAt = "";
     @JsonProperty("assignedTo") private String assignedTo = "";
-    /**
-     * -- GETTER --
-     *  Gets the reporter username.
-     *
-     * @return reporter username
-     */
     @JsonProperty("reportedBy") private String reportedBy = "";
 
     @JsonProperty("comments") private List<Comment> comments = new ArrayList<>();

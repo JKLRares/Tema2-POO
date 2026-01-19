@@ -15,7 +15,7 @@ public class AddCommentCommand implements Command {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    protected static final int TEN = 10;
+    protected static final int MIN_COMMENT_LEN = 10;
 
     @Override
     public void execute(final InputCommand input, final Database db,
@@ -57,7 +57,7 @@ public class AddCommentCommand implements Command {
             return;
         }
 
-        if (commentContent == null || commentContent.length() < TEN) {
+        if (commentContent == null || commentContent.length() < MIN_COMMENT_LEN) {
             ObjectNode error = mapper.createObjectNode();
             error.put("command", input.getCommand());
             error.put("username", username);

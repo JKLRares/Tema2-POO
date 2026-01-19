@@ -25,7 +25,7 @@ import main.users.User;
 
 public final class ReportTicketCommand implements Command {
 
-    private static final int TWELVE = 12;
+    private static final int MAX_TESTING_TIME = 12;
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
@@ -62,7 +62,7 @@ public final class ReportTicketCommand implements Command {
             long daysPassed = ChronoUnit.DAYS.between(db.getTestingPhaseStartDate(),
                     currentDate) + 1;
 
-            if (daysPassed > TWELVE) {
+            if (daysPassed > MAX_TESTING_TIME) {
                 db.setTestingPhase(false);
                 db.setTestingPhaseStartDate(null);
             }

@@ -16,7 +16,7 @@ import main.tickets.Ticket;
 
 @Getter @Setter
 public final class Milestone {
-    private static final int THREE = 3;
+    private static final int PRIORITY_INCREASE_INTERVAL = 3;
 
     private String name;
     private LocalDate startDate;
@@ -156,7 +156,7 @@ public final class Milestone {
             }
 
             // Gradually increase ticket priority for every 3 days passed since the milstone start
-            int stepsToIncrease = (int) (daysPassed / THREE);
+            int stepsToIncrease = (int) (daysPassed / PRIORITY_INCREASE_INTERVAL);
 
             applyProgressivePriority(stepsToIncrease);
         }
