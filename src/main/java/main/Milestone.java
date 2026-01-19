@@ -6,12 +6,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import main.enums.Priority;
+import main.enums.Status;
 
 import lombok.Getter;
 import lombok.Setter;
+import main.notifications.NotificationService;
+import main.tickets.Ticket;
 
 @Getter @Setter
-class Milestone {
+public final class Milestone {
+    private static final int THREE = 3;
+
     private String name;
     private LocalDate startDate;
     private LocalDate dueDate;
@@ -28,7 +34,7 @@ class Milestone {
     private boolean wasBlocked = false;
     private LocalDate priorityEpochDate;
 
-    public Milestone(String name, LocalDate startDate, LocalDate dueDate) {
+    public Milestone(final String name, final LocalDate startDate, final LocalDate dueDate) {
         this.name = name;
         this.startDate = startDate;
         this.dueDate = dueDate;
@@ -43,21 +49,35 @@ class Milestone {
         this.priorityEpochDate = startDate;
     }
 
-    public void addTicket(Ticket ticket) {
+    /**
+     * Adds a ticket to the milestone.
+     * @param ticket the ticket to add
+     */
+    public void addTicket(final Ticket ticket) {
         tickets.add(ticket);
         initialPriorities.put(ticket, ticket.getPriority());
     }
 
-    public void addDependency(Milestone milestone) {
+    /**
+     * Adds a dependency milestone.
+     * @param milestone the dependency
+     */
+    public void addDependency(final Milestone milestone) {
         dependencies.add(milestone);
     }
 
-    public void addDeveloper(String username) {
+    /**
+     * Adds a developer to the milestone.
+     * @param username the developer's username
+     */
+    public void addDeveloper(final String username) {
         assignedDevs.add(username);
     }
 
-    private Priority calculateIncreasedPriority(Priority startPriority, int steps) {
-        if (steps <= 0) return startPriority;
+    private Priority calculateIncreasedPriority(final Priority startPriority, final int steps) {
+        if (steps <= 0) {
+            return startPriority;
+        }
 
         int currentOrdinal = startPriority.ordinal();
         int maxOrdinal = Priority.CRITICAL.ordinal();
@@ -71,6 +91,10 @@ class Milestone {
         return Priority.values()[newOrdinal];
     }
 
+    /**
+     * Checks if the milestone is blocked by dependencies.
+     * @return true if blocked
+     */
     public boolean isBlocked() {
         for (Milestone dep : dependencies) {
             if (!dep.areTicketsResolved()) {
@@ -80,16 +104,24 @@ class Milestone {
         return false;
     }
 
+    /**
+     * Checks if all tickets in the milestone are resolved.
+     * @return true if all tickets are closed
+     */
     public boolean areTicketsResolved() {
         for (Ticket t : tickets) {
-            if (t.status != Status.CLOSED) {
+            if (t.getStatus() != Status.CLOSED) {
                 return false;
             }
         }
         return true;
     }
 
-    public void updateStatusAndPriorities(LocalDate currentDate) {
+    /**
+     * Updates the status and priorities of tickets in the milestone based on the current date.
+     * @param currentDate the current date
+     */
+    public void updateStatusAndPriorities(final LocalDate currentDate) {
         if (isBlocked()) {
             this.wasBlocked = true;
             if (currentDate.isAfter(priorityEpochDate)) {
@@ -113,15 +145,18 @@ class Milestone {
             this.notifiedDueTomorrow = true;
         }
 
+        // If the milestone has passed its due date all active tickets become CRITICAL
         if (isLate || daysUntilDeadline <= 1) {
             setAllTicketsToCritical();
-        }
-        else {
+        } else {
             long daysPassed = ChronoUnit.DAYS.between(priorityEpochDate, currentDate);
 
-            if (daysPassed < 0) daysPassed = 0;
+            if (daysPassed < 0) {
+                daysPassed = 0;
+            }
 
-            int stepsToIncrease = (int) (daysPassed / 3);
+            // Gradually increase ticket priority for every 3 days passed since the milstone start
+            int stepsToIncrease = (int) (daysPassed / THREE);
 
             applyProgressivePriority(stepsToIncrease);
         }
@@ -129,21 +164,23 @@ class Milestone {
 
     private void setAllTicketsToCritical() {
         for (Ticket t : tickets) {
-            if (t.status != Status.CLOSED) {
-                t.businessPriority = Priority.CRITICAL;
+            if (t.getStatus() != Status.CLOSED) {
+                t.setBusinessPriority(Priority.CRITICAL);
             }
         }
     }
 
-    private void applyProgressivePriority(int steps) {
+    private void applyProgressivePriority(final int steps) {
         for (Ticket t : tickets) {
-            if (t.status != Status.CLOSED) {
+            if (t.getStatus() != Status.CLOSED) {
                 Priority initial = initialPriorities.get(t);
-                if (initial == null) initial = t.getPriority();
+                if (initial == null) {
+                    initial = t.getPriority();
+                }
 
                 Priority newPriority = calculateIncreasedPriority(initial, steps);
 
-                t.businessPriority = newPriority;
+                t.setBusinessPriority(newPriority);
             }
         }
     }

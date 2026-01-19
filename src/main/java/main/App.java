@@ -7,13 +7,19 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import main.commands.*;
+import main.users.User;
+
 /**
  * main.App represents the main application logic that processes input commands,
  * generates outputs, and writes them to a file
  */
-public class App {
+final public class App {
     private App() {
     }
 
@@ -21,6 +27,34 @@ public class App {
 
     private static final ObjectWriter WRITER =
             new ObjectMapper().writer().withDefaultPrettyPrinter();
+
+    private static final Map<String, Command> CommandRegistry = new HashMap<>();
+
+    static {
+        CommandRegistry.put("reportTicket", new ReportTicketCommand());
+        CommandRegistry.put("viewTickets", new ViewTicketsCommand());
+        CommandRegistry.put("lostInvestors", new LostInvestorsCommand());
+        CommandRegistry.put("createMilestone", new CreateMilestoneCommand());
+        CommandRegistry.put("viewMilestones", new ViewMilestonesCommand());
+        CommandRegistry.put("assignTicket", new AssignTicketCommand());
+        CommandRegistry.put("viewAssignedTickets", new ViewAssignedTicketsCommand());
+        CommandRegistry.put("undoAssignTicket", new UndoAssignTicketCommand());
+        CommandRegistry.put("addComment", new AddCommentCommand());
+        CommandRegistry.put("undoAddComment", new UndoAddCommentCommand());
+        CommandRegistry.put("changeStatus", new ChangeStatusCommand());
+        CommandRegistry.put("undoChangeStatus", new UndoChangeStatusCommand());
+        CommandRegistry.put("viewTicketHistory", new ViewTicketHistoryCommand());
+        CommandRegistry.put("viewNotifications", new ViewNotificationsCommand());
+        CommandRegistry.put("generateCustomerImpactReport",
+                new GenerateCustomerImpactReportCommand());
+        CommandRegistry.put("generateTicketRiskReport", new GenerateTicketRiskReportCommand());
+        CommandRegistry.put("generateResolutionEfficiencyReport",
+                new GenerateResolutionEfficiencyReportCommand());
+        CommandRegistry.put("appStabilityReport", new AppStabilityReportCommand());
+        CommandRegistry.put("generatePerformanceReport", new GeneratePerformanceReportCommand());
+        CommandRegistry.put("search", new SearchCommand());
+        CommandRegistry.put("startTestingPhase", new StartTestingPhaseCommand());
+    }
 
     /**
      * Runs the application: reads commands from an input file,
@@ -31,6 +65,7 @@ public class App {
      */
     public static void run(final String inputPath, final String outputPath) {
         List<ObjectNode> outputs = new ArrayList<>();
+
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
@@ -46,85 +81,18 @@ public class App {
             InputCommand[] commands = mapper.readValue(new File(inputPath), InputCommand[].class);
 
             for (InputCommand inputCommand : commands) {
-                Command command = null;
-
-                switch (inputCommand.command) {
-                    case "reportTicket":
-                        command = new ReportTicketCommand();
-                        break;
-                    case "viewTickets":
-                        command = new ViewTicketsCommand();
-                        break;
-                    case "lostInvestors":
-                        command = new LostInvestorsCommand();
-                        break;
-                    case "createMilestone":
-                        command = new CreateMilestoneCommand();
-                        break;
-                    case "viewMilestones":
-                        command = new ViewMilestonesCommand();
-                        break;
-                    case "assignTicket":
-                        command = new AssignTicketCommand();
-                        break;
-                    case "viewAssignedTickets":
-                        command = new ViewAssignedTicketsCommand();
-                        break;
-                    case "undoAssignTicket":
-                        command = new UndoAssignTicketCommand();
-                        break;
-                    case "addComment":
-                        command = new AddCommentCommand();
-                        break;
-                    case "undoAddComment":
-                        command = new UndoAddCommentCommand();
-                        break;
-                    case "changeStatus":
-                        command = new ChangeStatusCommand();
-                        break;
-                    case "undoChangeStatus":
-                        command = new UndoChangeStatusCommand();
-                        break;
-                    case "viewTicketHistory":
-                        command = new ViewTicketHistoryCommand();
-                        break;
-                    case "viewNotifications":
-                        command = new ViewNotificationsCommand();
-                        break;
-                    case "generateCustomerImpactReport":
-                        command = new GenerateCustomerImpactReportCommand();
-                        break;
-                    case "generateTicketRiskReport":
-                        command = new GenerateTicketRiskReportCommand();
-                        break;
-                    case "generateResolutionEfficiencyReport":
-                        command = new GenerateResolutionEfficiencyReportCommand();
-                        break;
-                    case "appStabilityReport":
-                        command = new AppStabilityReportCommand();
-                        break;
-                    case "generatePerformanceReport":
-                        command = new GeneratePerformanceReportCommand();
-                        break;
-                    case "search":
-                        command = new SearchCommand();
-                        break;
-                    case "startTestingPhase":
-                        command = new StartTestingPhaseCommand();
-                        break;
-                    default:
-                        System.out.println("Unknown command: " + inputCommand.command);
-                        break;
-                }
+                Command command = CommandRegistry.get(inputCommand.getCommand());
 
                 if (command != null) {
                     command.execute(inputCommand, db, outputs);
+                } else {
+                    System.out.println("Unknown command: " + inputCommand.getCommand());
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         try {
             File outputFile = new File(outputPath);
             outputFile.getParentFile().mkdirs();

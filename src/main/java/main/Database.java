@@ -2,13 +2,15 @@ package main;
 
 import lombok.Getter;
 import lombok.Setter;
+import main.tickets.Ticket;
+import main.users.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter
-public class Database {
+public final class Database {
     private static Database instance;
 
     private List<User> users;
@@ -28,7 +30,13 @@ public class Database {
         this.testingPhaseStartDate = null;
     }
 
-    public Milestone getMilestoneForTicket(Integer ticketId) {
+    /**
+     * Gets milestone for ticket.
+     *
+     * @param ticketId the ticket id
+     * @return the milestone for ticket
+     */
+    public Milestone getMilestoneForTicket(final Integer ticketId) {
         for (Milestone m : milestones) {
             for (Ticket t : m.getTickets()) {
                 if (t.getId().equals(ticketId)) {
@@ -39,31 +47,57 @@ public class Database {
         return null;
     }
 
-    public void addMilestone(Milestone m) {
+    /**
+     * Adds a milestone.
+     * @param m the milestone
+     */
+    public void addMilestone(final Milestone m) {
         this.milestones.add(m);
     }
 
-    public static synchronized Database getInstance() {
+    /**
+     * Gets the instance.
+     * @return the instance
+     */
+    public static Database getInstance() {
         if (instance == null) {
             instance = new Database();
         }
         return instance;
     }
 
+    /**
+     * Resets the database.
+     */
     public static void reset() {
         instance = new Database();
     }
 
-    public void addUser(User user) {
+    /**
+     * Adds a user.
+     * @param user the user
+     */
+    public void addUser(final User user) {
         this.users.add(user);
     }
 
-    public void addTicket(Ticket ticket) {
+    /**
+     * Adds a ticket.
+     * @param ticket the ticket
+     */
+    public void addTicket(final Ticket ticket) {
         this.tickets.add(ticket);
     }
 
-    public User getUser(String username) {
-        if (username == null) return null;
+    /**
+     * Gets user.
+     * @param username the username
+     * @return the user
+     */
+    public User getUser(final String username) {
+        if (username == null) {
+            return null;
+        }
         for (User u : users) {
             if (u.getUsername().equals(username)) {
                 return u;
