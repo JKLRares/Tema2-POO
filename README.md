@@ -1,103 +1,116 @@
-# 323CA CONSTANTINESCU RARES
+# Bug Tracker
 
-# Design patterns used in the project
-Singleton
-I utilized the Singleton pattern for the Database and NotificationService classes. This approach
-ensures that there is exactly one instance of these components throughout the application's
-life, which is essential for maintaining consistent data and centralized communication.
-By implementing this pattern, I can access the database or notification system from any command
-class without needing to pass these dependencies as parameters through every method call.
+# Rares Constantinescu
 
-Command Pattern
-The Command pattern serves as the backbone of the application's control flow. Since the input
-is provided as a list of commands in a JSON file, I needed a structured way to process them.
-I defined a Command interface, which allows every specific action such as AssignTicket or
-AddComment to be encapsulated in its own class. This decoupling means the main application
-logic remains clean and focuses only on calling the correct command from a registry. It
-also allows for new commands to be added in the future without modifying the core execution loop.
+A Java ticket tracker for coordinating bug fixes, feature requests and UI feedback across development milestones. It processes JSON command batches and produces JSON results, with role permissions, reversible ticket workflows and capacity-aware assignment planning.
 
-Builder Pattern
-To handle the complexity of creating ticket objects, I implemented the Builder pattern. The
-system handles different types of tickets, each requiringa specific set of data in
-addition to the standard fields like title and priority. Using a standard constructor
-with a long list of parameters would be difficult to read and most likely lead to errors.
-The Builder pattern resolves this by allowing me to construct a ticket step-by-step,
-setting only the necessary fields in a clear and readable manner.
+## Overview
 
-Observer Pattern
-I implemented the Observer pattern to manage the notification system. The goal was to make sure
-that users are automatically notified when relevant events occur, such as when a ticket status
-changes. In this design, the NotificationService acts as the subject that distributes updates,
-while the User class acts as the observer that receives them. This separates the logic for
-sending notifications from the user implementation, allowing the system to easily broadcast messages.
+Reporters submit tickets, managers organize milestones and developers take ownership of eligible work. Milestone dependencies block assignment until prerequisite tickets are closed. Priorities increase as deadlines approach, and assignments that no longer meet the seniority rules are released with an audit entry.
 
-# The structure of the project
-# main
-This is the root package where the application starts.
-App.java: The entry point of the program. It reads the input JSON file, matches the command strings
-to the right classes, and runs them.
-Database.java: This acts as the memory of the application. It holds lists of all users, tickets, and
-milestones. Since it’s a Singleton, the data stays consistent while the program runs.
-Milestone.java: Represents a project milestone. It tracks deadlines, assigned tickets, and
-which developers are working on it.
+The project began as the second Object-Oriented Programming assignment at POLITEHNICA Bucharest, Faculty of Automatic Control and Computers. The original starter code, checker and reference scenarios are retained; see [coursework materials](docs/coursework-assets.md) for provenance and publication considerations.
 
-# main.commands
-This is where the actual logic happens. I used the Command pattern here, so every action
-you can take in the app has its own class.
-Command Interface: Defines the execute method that all commands must implement.
-Concrete Commands: Classes like ReportTicketCommand, AssignTicketCommand, and AppStabilityReportCommand.
-Each one handles a specific task, validation, and updates the database.
+## Features
 
-# main.users
-This package defines the different types of people who use the system.
-User.java: The abstract base class for everyone. It holds common info like username and email.
-DeveloperUser, ManagerUser, ReporterUser: These extend the User class. Developers have specific
-fields for expertise and seniority, while Managers have a list of subordinates.
-SecurityManager.java: A helper class I made to check perissions. It verifies if a developer has the
-right seniority and skills to take on a specific ticket.
+- Three ticket types with polymorphic impact, risk and resolution-efficiency calculations.
+- Reporter, developer and manager workflows, with expertise and seniority checks.
+- Dependent milestones, deadline escalation and notifications that are drained when viewed.
+- Assignment undo, reversible status transitions, comments and ticket history.
+- Ticket and developer search, stability reports and monthly performance reports.
+- Read-only assignment plans that maximize eligible assignments under developer capacities.
+- Isolated sessions, validated commands and protected output-file publication.
 
-# main.tickets
-This package contains the data models for the work items.
-Ticket.java: The abstract parent class containing shared fields like ID, title, status, and priority.
-BugTicket, FeatureRequestTicket, UiFeedbackTicket: Specific implementations of a ticket. For example,
-BugTicket has fields for "reproduction steps," while FeatureRequestTicket tracks "business value."
+## Technologies
 
-# main.notifications
-This package handles the communication part of the system.
-NotificationService.java: A Singleton that sends messages to users. It’s used whenever a status changes
-or a milestone is due, ensuring users stay updated.
-NotificationObserver: An interface that allows the User class to receive updates from the service.
+Java 25, Maven, Jackson 2.20 and Lombok for model boilerplate. Tests use JUnit Jupiter 5.11, AssertJ and JSON Unit. The preserved coursework checker also uses Checkstyle and JGit. Dependency and build-plugin versions are pinned in [pom.xml](pom.xml).
 
-# main.enums
-This package just holds the constants used throughout the app.
-It includes enums like Priority, Status, Seniority, and Expertise. I used these to avoid typing raw
-strings everywhere.
+Java 25 is the repository's existing target; modernization does not require a Java upgrade.
 
-# Implementation Logic
+## Architecture
 
-# Milestones and Priority Updates
-In the Milestone class, I implemented a method called updateStatusAndPriorities that runs whenever we check the
-system. This method checks the current date against the milestone deadlines. It automatically increases the
-priority of active tickets every 3 days and handles the critical phase where tickets become CRITICAL
-if the deadline is tomorrow or has passed. I also added logic here to check for dependencies, that makes sure
-that a blocked milestone doesn't start or update its tickets until the blocking milestone is finished.
+| Component | Responsibility |
+| --- | --- |
+| `App` | CLI arguments, batch-file parsing and output publication |
+| `TrackerSession` | One isolated session, command validation and dispatch |
+| `commands` | Permissions, domain operations and compatible JSON responses |
+| `Database` | In-memory indexes for users, tickets and milestone membership |
+| `Ticket` and its subtypes | Lifecycle invariants, immutable history entries and type-specific metrics |
+| `Milestone` | Dependencies and effective ticket priorities |
+| `AssignmentPlanner` | Capacity-constrained matching without domain mutations |
+| `SecurityManager` | Shared, stateless expertise and seniority policy |
 
-# Access Control
-To apply the rules regarding who can work on what, I centralized the permission logic in the
-SecurityManager class. Instead of using if statements throughout the commands, I put all the validation
-in one place. The hasAccess method checks a developer's seniority against the ticket priority and validates
-if their expertise matches the ticket type. This way, the AssignTicketCommand stays clean and I can
-reuse this logic easily if I need to check permissions elsewhere.
+No process-wide database or notification singleton is used. Sessions can be interleaved without sharing tickets, identifiers or notification queues. Each session is intended for sequential use.
 
-# Reports and Metrics
-A significant part of the application involves generating reports. I implemented the specific mathematical
-formulas for these in their respective command classes. I used ChronoUnit to calculate the exact resolution
-time in days. For the Stability and Risk reports, I simply applied the formulas to classify the application
-state as Stable, Unstable, or Partially Stable based on the active bugs.
+See [technical decisions](docs/architecture.md) and the [command reference](docs/commands.md).
 
-# Data Persistence and JSON
-I used the Jackson library for all the input and output operations. The App class uses an ObjectMapper to
-load the users and commands from the JSON files. One important detail is how I handled the different ticket
-types. Since Ticket is an abstract class, I used Jackson annotations like @JsonTypeInfo and @JsonSubTypes
-in the Ticket class. This allows the parser to automatically create the correct object type like a BugTicket
-or FeatureRequestTicket based on the "type" field in the input file.
+## Build
+
+Install JDK 25 and Maven 3.6.3 or newer, then run from the repository root:
+
+```bash
+mvn -B --no-transfer-progress clean verify
+```
+
+This runs the regression suite and all 19 original JSON reference scenarios, then creates `target/bug-tracker.jar` with its runtime dependencies. IntelliJ configuration and prebuilt classes are not required.
+
+## Run
+
+```bash
+java -jar target/bug-tracker.jar \
+  --users examples/users.json \
+  --input examples/commands.json \
+  --output target/example-output.json
+```
+
+Use `--overwrite` on subsequent runs to replace an existing result. Input files are protected even when that flag is supplied. `--help` prints the CLI syntax.
+
+A malformed JSON file or file-system failure returns exit code 1 without publishing replacement results; invalid CLI syntax returns 2. A processed batch returns 0, including batches with individual command errors. Those errors appear in the result array, and following commands continue executing.
+
+## Example: planning a release
+
+The included example reports three tickets, creates a milestone and requests a plan:
+
+```json
+{
+  "command": "planAssignments",
+  "username": "manager",
+  "timestamp": "2025-10-20",
+  "params": {
+    "milestone": "Checkout release",
+    "capacityPerDeveloper": 1
+  }
+}
+```
+
+The plan assigns the critical backend bug to `fullstack_senior` and the UI ticket to `frontend_mid`. The backend feature request is marked `CAPACITY`: the junior backend developer cannot take feature requests, and the eligible senior has no remaining slot.
+
+Planning preserves tickets, histories and notifications. The example then executes explicit `assignTicket` commands and advances the backend bug through `IN_PROGRESS`, `RESOLVED` and `CLOSED`.
+
+## Testing
+
+```bash
+mvn test                                    # Regression tests and original reference scenarios
+mvn -Pportfolio-only clean verify           # Tests independent of university JSON fixtures
+mvn -Dtest=AssignmentPlannerTest test        # Matching examples and exhaustive differential checks
+mvn -Dtest=TestRunner test                   # Preserved university checker; requires Git history
+```
+
+Verification includes malformed-input and file-publication tests, isolated-session tests, lifecycle state-machine comparisons over 3,000 generated operations, and 300 generated assignment problems checked against an independent exhaustive solver. Original expected outputs are compared without rewriting them.
+
+GitHub Actions builds on JDK 25, runs the complete default suite and exercises the packaged example.
+
+## Technical decisions
+
+- **Validate before mutation:** malformed parameter types and invalid references are rejected before a handler publishes a new milestone or ticket. Unknown commands produce visible errors.
+- **Keep resolution and closure distinct:** `solvedAt` records resolution; a separate internal closure date drives milestone completion statistics. Undo restores both lifecycle state and timestamps.
+- **Use matching for planning:** augmenting paths can move earlier proposals to other eligible developers. The result has maximum cardinality, with preference for higher-priority tickets when capacity is scarce.
+- **Protect existing files:** replacement results are written to a temporary file beside the destination and moved atomically. Filesystems without atomic replacement support return an error.
+
+## Limitations
+
+- State is in memory for one batch/session; result JSON is a report, not a restorable database snapshot.
+- Usernames and the user catalog are trusted local input. Role checks are not authentication.
+- Deadline updates occur at command observation points, without a background scheduler. Backdated commands do not undo already increased priorities.
+- Developer search exposes the score from the most recently generated performance report, preserving the coursework behavior.
+- Planning counts `IN_PROGRESS` and `RESOLVED` tickets across milestones against capacity. Capacity is a planning constraint; manual assignments retain the original permission rules. Plans do not predict completion times or apply themselves.
+- Coursework metrics and thresholds are simulation rules, not calibrated business forecasts.

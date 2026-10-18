@@ -10,7 +10,7 @@ import main.users.User;
 import java.time.LocalDate;
 import java.util.List;
 
-public class StartTestingPhaseCommand implements Command {
+public final class StartTestingPhaseCommand implements Command {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
@@ -44,7 +44,7 @@ public class StartTestingPhaseCommand implements Command {
             error.put("command", input.getCommand());
             error.put("username", input.getUsername());
             error.put("timestamp", input.getTimestamp());
-            error.put("error", "Cannot start testing phase with active milestones.");
+            error.put("error", "Cannot start a new testing phase.");
             outputs.add(error);
             return;
         }

@@ -11,7 +11,7 @@ import main.users.User;
 
 import java.util.List;
 
-public class AddCommentCommand implements Command {
+public final class AddCommentCommand implements Command {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -34,14 +34,7 @@ public class AddCommentCommand implements Command {
             outputs.add(error);
             return;
         }
-
-        Ticket ticket = null;
-        for (Ticket t : db.getTickets()) {
-            if (t.getId().equals(ticketId)) {
-                ticket = t;
-                break;
-            }
-        }
+        Ticket ticket = db.getTicket(ticketId);
 
         if (ticket == null) {
             return;
@@ -114,6 +107,6 @@ public class AddCommentCommand implements Command {
         }
 
         Comment comment = new Comment(username, commentContent, input.getTimestamp());
-        ticket.getComments().add(comment);
+        ticket.addComment(comment);
     }
 }

@@ -10,17 +10,15 @@ import main.enums.Priority;
 import main.enums.Status;
 
 import lombok.Getter;
-import lombok.Setter;
 import main.notifications.NotificationService;
 import main.tickets.Ticket;
 
-@Getter @Setter
+@Getter
 public final class Milestone {
     private static final int PRIORITY_INCREASE_INTERVAL = 3;
-
-    private String name;
-    private LocalDate startDate;
-    private LocalDate dueDate;
+    private final String name;
+    private final LocalDate startDate;
+    private final LocalDate dueDate;
     private List<Ticket> tickets;
 
     private List<Milestone> dependencies;
@@ -28,11 +26,10 @@ public final class Milestone {
     private List<String> assignedDevs;
     private String creator;
     private Map<Ticket, Priority> initialPriorities;
-
-    private boolean isCompleted;
     private boolean notifiedDueTomorrow = false;
     private boolean wasBlocked = false;
     private LocalDate priorityEpochDate;
+    private boolean membershipSealed;
 
     public Milestone(final String name, final LocalDate startDate, final LocalDate dueDate) {
         this.name = name;
@@ -42,7 +39,6 @@ public final class Milestone {
         this.dependencies = new ArrayList<>();
         this.assignedDevs = new ArrayList<>();
         this.blockingFor = new ArrayList<>();
-        this.isCompleted = false;
         this.initialPriorities = new HashMap<>();
         this.notifiedDueTomorrow = false;
         this.wasBlocked = false;
@@ -54,6 +50,9 @@ public final class Milestone {
      * @param ticket the ticket to add
      */
     public void addTicket(final Ticket ticket) {
+        if (membershipSealed || tickets.contains(ticket)) {
+            throw new IllegalStateException("Milestone membership is already fixed or duplicated");
+        }
         tickets.add(ticket);
         initialPriorities.put(ticket, ticket.getPriority());
     }
@@ -64,6 +63,7 @@ public final class Milestone {
      */
     public void addDependency(final Milestone milestone) {
         dependencies.add(milestone);
+        wasBlocked = isBlocked();
     }
 
     /**
@@ -71,24 +71,65 @@ public final class Milestone {
      * @param username the developer's username
      */
     public void addDeveloper(final String username) {
+        if (membershipSealed || assignedDevs.contains(username)) {
+            throw new IllegalStateException("Milestone developers are already fixed or duplicated");
+        }
         assignedDevs.add(username);
     }
 
-    private Priority calculateIncreasedPriority(final Priority startPriority, final int steps) {
+    void sealMembership() {
+        membershipSealed = true;
+    }
+
+    public List<Ticket> getTickets() {
+        return List.copyOf(tickets);
+    }
+
+    public List<Milestone> getDependencies() {
+        return List.copyOf(dependencies);
+    }
+
+    public List<String> getAssignedDevs() {
+        return List.copyOf(assignedDevs);
+    }
+
+    public List<String> getBlockingFor() {
+        return List.copyOf(blockingFor);
+    }
+
+    public Map<Ticket, Priority> getInitialPriorities() {
+        return Map.copyOf(initialPriorities);
+    }
+
+    /** Copies dependency names before membership is sealed. */
+    public void setBlockingFor(final List<String> names) {
+        if (membershipSealed) {
+            throw new IllegalStateException("Milestone membership is fixed");
+        }
+        blockingFor = new ArrayList<>(names);
+    }
+
+    /** Sets ownership during creation; registered ownership cannot change. */
+    public void setCreator(final String username) {
+        if (membershipSealed) {
+            throw new IllegalStateException("Milestone ownership is fixed");
+        }
+        creator = username;
+    }
+
+    private Priority calculateIncreasedPriority(final Priority startPriority, final long steps) {
         if (steps <= 0) {
             return startPriority;
         }
 
         int currentOrdinal = startPriority.ordinal();
         int maxOrdinal = Priority.CRITICAL.ordinal();
-
-        int newOrdinal = currentOrdinal + steps;
+        long newOrdinal = currentOrdinal + steps;
 
         if (newOrdinal >= maxOrdinal) {
             return Priority.CRITICAL;
         }
-
-        return Priority.values()[newOrdinal];
+        return Priority.values()[(int) newOrdinal];
     }
 
     /**
@@ -121,7 +162,11 @@ public final class Milestone {
      * Updates the status and priorities of tickets in the milestone based on the current date.
      * @param currentDate the current date
      */
-    public void updateStatusAndPriorities(final LocalDate currentDate) {
+    public void updateStatusAndPriorities(final LocalDate currentDate,
+                                          final NotificationService notifications) {
+        if (!tickets.isEmpty() && areTicketsResolved()) {
+            return;
+        }
         if (isBlocked()) {
             this.wasBlocked = true;
             if (currentDate.isAfter(priorityEpochDate)) {
@@ -134,14 +179,14 @@ public final class Milestone {
         boolean isLate = currentDate.isAfter(dueDate);
 
         if (this.wasBlocked && isLate) {
-            NotificationService.getInstance().notifyMilestoneEvent(this, "UNBLOCKED_LATE");
+            notifications.notifyMilestoneEvent(this, "UNBLOCKED_LATE");
             this.wasBlocked = false;
         } else {
             this.wasBlocked = false;
         }
 
         if (daysUntilDeadline <= 1 && !this.notifiedDueTomorrow && !isLate) {
-            NotificationService.getInstance().notifyMilestoneEvent(this, "DUE_TOMORROW");
+            notifications.notifyMilestoneEvent(this, "DUE_TOMORROW");
             this.notifiedDueTomorrow = true;
         }
 
@@ -156,21 +201,39 @@ public final class Milestone {
             }
 
             // Gradually increase ticket priority for every 3 days passed since the milstone start
-            int stepsToIncrease = (int) (daysPassed / PRIORITY_INCREASE_INTERVAL);
+            long stepsToIncrease = daysPassed / PRIORITY_INCREASE_INTERVAL;
 
             applyProgressivePriority(stepsToIncrease);
         }
     }
 
+    /**
+     * Projects an open ticket's effective priority without changing state or sending
+     * notifications.
+     */
+    public Priority priorityAt(final Ticket ticket, final LocalDate date) {
+        if (ticket.getStatus() == Status.CLOSED || isBlocked()) {
+            return ticket.getPriority();
+        }
+        if (ChronoUnit.DAYS.between(date, dueDate) <= 1) {
+            return Priority.CRITICAL;
+        }
+        long days = Math.max(0, ChronoUnit.DAYS.between(priorityEpochDate, date));
+        Priority initial = initialPriorities.getOrDefault(ticket, ticket.getPriority());
+        Priority increased = calculateIncreasedPriority(initial, days / PRIORITY_INCREASE_INTERVAL);
+        return increased.ordinal() > ticket.getPriority().ordinal()
+                ? increased : ticket.getPriority();
+    }
+
     private void setAllTicketsToCritical() {
         for (Ticket t : tickets) {
             if (t.getStatus() != Status.CLOSED) {
-                t.setBusinessPriority(Priority.CRITICAL);
+                t.increasePriority(Priority.CRITICAL);
             }
         }
     }
 
-    private void applyProgressivePriority(final int steps) {
+    private void applyProgressivePriority(final long steps) {
         for (Ticket t : tickets) {
             if (t.getStatus() != Status.CLOSED) {
                 Priority initial = initialPriorities.get(t);
@@ -179,8 +242,9 @@ public final class Milestone {
                 }
 
                 Priority newPriority = calculateIncreasedPriority(initial, steps);
-
-                t.setBusinessPriority(newPriority);
+                if (newPriority.ordinal() > t.getPriority().ordinal()) {
+                    t.increasePriority(newPriority);
+                }
             }
         }
     }

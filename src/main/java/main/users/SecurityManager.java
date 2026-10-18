@@ -1,102 +1,68 @@
 package main.users;
 
-import main.tickets.Ticket;
+import java.util.Arrays;
+import java.util.List;
 import main.enums.Expertise;
 import main.enums.Priority;
+import main.enums.Seniority;
 import main.enums.TicketType;
+import main.tickets.Ticket;
+
+/** Shared, stateless assignment policy used by commands, search and planning. */
 
 public final class SecurityManager {
-    private static SecurityManager instance;
-
-    private SecurityManager() { }
-
-    /**
-     * Gets the singleton instance.
-     * @return instance
-     */
-    public static SecurityManager getInstance() {
-        if (instance == null) {
-            instance = new SecurityManager();
-        }
-        return instance;
+    private SecurityManager() {
     }
 
-    /**
-     * Checks if the user has access to the ticket.
-     * @param user the user
-     * @param ticket the ticket
-     * @return true if access allowed
-     */
-    public boolean hasAccess(final User user, final Ticket ticket) {
-        DeveloperUser dev = user.asDeveloper();
-        if (dev == null) {
-            System.out.println("Access Denied: Only Developers can access this workflow.");
+    /** Checks both expertise and seniority; an absent user is never eligible. */
+    public static boolean hasAccess(final User user, final Ticket ticket) {
+        return hasAccess(user, ticket, ticket.getPriority());
+    }
+
+    /** Checks both expertise and seniority; an absent user is never eligible. */
+    public static boolean hasAccess(final User user, final Ticket ticket, final Priority priority) {
+        DeveloperUser dev = user == null ? null : user.asDeveloper();
+        return dev != null && hasExpertise(dev.getExpertise(), ticket.getCategory())
+                && hasSeniority(dev.getSeniority(), ticket.getType(), priority);
+    }
+
+    /** Tests the supported cross-specialization rules; missing expertise is ineligible. */
+    public static boolean hasExpertise(final Expertise developer, final Expertise category) {
+        if (developer == null || category == null) {
             return false;
         }
+        return developer == Expertise.FULLSTACK || developer == category
+                || developer == Expertise.FRONTEND && category == Expertise.DESIGN
+                || developer == Expertise.DESIGN && category == Expertise.FRONTEND
+                || developer == Expertise.BACKEND && category == Expertise.DB;
+    }
 
-        TicketType type = ticket.getType();
-        Priority priority = ticket.getPriority();
-        Expertise ticketCategory = ticket.getCategory();
+    /** Tests the priority and ticket-type restrictions for this seniority. */
+    public static boolean hasSeniority(final Seniority seniority, final Ticket ticket) {
+        return hasSeniority(seniority, ticket.getType(), ticket.getPriority());
+    }
 
-        boolean seniorityCheckPassed = false;
-
-        switch (dev.getSeniority()) {
-            case JUNIOR:
-                boolean isPriorityOkJr = (priority == Priority.LOW || priority == Priority.MEDIUM);
-                boolean isTypeOkJr = (type == TicketType.BUG || type == TicketType.UI_FEEDBACK);
-
-                if (isPriorityOkJr && isTypeOkJr) {
-                    seniorityCheckPassed = true;
-                }
-                break;
-
-            case MID:
-                boolean isPriorityOkMid = (priority != Priority.CRITICAL);
-                boolean isTypeOkMid = (type == TicketType.BUG || type == TicketType.UI_FEEDBACK
-                        || type == TicketType.FEATURE_REQUEST);
-
-                if (isPriorityOkMid && isTypeOkMid) {
-                    seniorityCheckPassed = true;
-                }
-                break;
-
-            case SENIOR:
-                seniorityCheckPassed = true;
-                break;
-            default:
-                break;
-        }
-
-        if (!seniorityCheckPassed) {
+    private static boolean hasSeniority(final Seniority seniority, final TicketType type,
+                                        final Priority priority) {
+        if (seniority == null || priority == null) {
             return false;
         }
-        Expertise devExpertise = dev.getExpertise();
+        return seniority == Seniority.SENIOR
+                || seniority == Seniority.MID && priority != Priority.CRITICAL
+                || seniority == Seniority.JUNIOR
+                && (priority == Priority.LOW || priority == Priority.MEDIUM)
+                && type != TicketType.FEATURE_REQUEST;
+    }
 
-        switch (devExpertise) {
-            case FULLSTACK:
-                return (ticketCategory == Expertise.FRONTEND
-                        || ticketCategory == Expertise.BACKEND
-                        || ticketCategory == Expertise.DEVOPS
-                        || ticketCategory == Expertise.DESIGN
-                        || ticketCategory == Expertise.DB);
+    /** Lists eligible expertise names in deterministic order for error responses. */
+    public static List<String> requiredExpertise(final Expertise category) {
+        return Arrays.stream(Expertise.values()).filter(e -> hasExpertise(e, category))
+                .map(Enum::name).sorted().toList();
+    }
 
-            case FRONTEND:
-                return (ticketCategory == Expertise.FRONTEND || ticketCategory == Expertise.DESIGN);
-
-            case BACKEND:
-                return (ticketCategory == Expertise.BACKEND || ticketCategory == Expertise.DB);
-
-            case DEVOPS:
-                return (ticketCategory == Expertise.DEVOPS);
-
-            case DESIGN:
-                return (ticketCategory == Expertise.DESIGN || ticketCategory == Expertise.FRONTEND);
-
-            case DB:
-                return (ticketCategory == Expertise.DB);
-
-            default:
-                return false;
-        }
+    /** Lists eligible seniority names in deterministic order for error responses. */
+    public static List<String> requiredSeniority(final Ticket ticket) {
+        return Arrays.stream(Seniority.values()).filter(s -> hasSeniority(s, ticket))
+                .map(Enum::name).sorted().toList();
     }
 }

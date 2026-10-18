@@ -6,7 +6,11 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.Database;
 import main.tickets.Ticket;
 import main.tickets.TicketHistoryEntry;
-import main.enums.*;
+import main.enums.HistoryActionType;
+import main.enums.Priority;
+import main.enums.Seniority;
+import main.enums.Status;
+import main.enums.TicketType;
 import main.users.DeveloperUser;
 import main.users.ManagerUser;
 import main.users.User;
@@ -18,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class GeneratePerformanceReportCommand implements Command {
+public final class GeneratePerformanceReportCommand implements Command {
 
     private static final double TICKET_TYPE_COUNT = 3.0;
     private static final double JUNIOR_BONUS = 5.0;
@@ -76,8 +80,7 @@ public class GeneratePerformanceReportCommand implements Command {
         if (manager.getSubordinates() != null) {
             for (String subUsername : manager.getSubordinates()) {
                 User subUser = db.getUser(subUsername);
-
-                DeveloperUser dev = subUser.asDeveloper();
+                DeveloperUser dev = subUser == null ? null : subUser.asDeveloper();
                 if (dev != null) {
                     ObjectNode devNode = calculateDeveloperPerformance(dev,
                             db, startOfPrevMonth, endOfPrevMonth);
@@ -189,7 +192,8 @@ public class GeneratePerformanceReportCommand implements Command {
         ObjectNode node = mapper.createObjectNode();
         node.put("username", dev.getUsername());
         node.put("closedTickets", closedTicketsCount);
-        node.put("averageResolutionTime", Math.round(averageResolutionTime * ROUNDING_MULT) / ROUNDING_MULT);
+        node.put("averageResolutionTime", Math.round(averageResolutionTime * ROUNDING_MULT) /
+                ROUNDING_MULT);
         node.put("performanceScore", Math.round(performanceScore * ROUNDING_MULT) / ROUNDING_MULT);
         node.put("seniority", dev.getSeniority().toString());
 
@@ -197,13 +201,13 @@ public class GeneratePerformanceReportCommand implements Command {
     }
 
     private String getLastResolvedDate(final Ticket t) {
-        if (t.getHistory() != null) {
-            for (int i = t.getHistory().size() - 1; i >= 0; i--) {
-                TicketHistoryEntry entry = t.getHistory().get(i);
-                if (entry.getAction() == HistoryActionType.STATUS_CHANGED
-                        && entry.getToStatus() == Status.RESOLVED) {
-                    return entry.getTimestamp();
-                }
+        List<TicketHistoryEntry> history = t.getHistory();
+        for (int index = history.size() - 1; index >= 0; index--) {
+            TicketHistoryEntry entry = history.get(index);
+            if (entry.getAction() == HistoryActionType.STATUS_CHANGED
+                    && entry.getFromStatus() == Status.IN_PROGRESS
+                    && entry.getToStatus() == Status.RESOLVED) {
+                return entry.getTimestamp();
             }
         }
         return t.getSolvedAt();

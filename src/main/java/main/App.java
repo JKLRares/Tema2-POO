@@ -1,104 +1,126 @@
 package main;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.file.AtomicMoveNotSupportedException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import main.commands.*;
-import main.users.User;
+/** Batch adapter and command-line entry point for the ticket tracker. */
+public final class App {
+    private static final List<String> PATH_FLAGS = List.of("--users", "--input", "--output");
+    private static final Path COURSEWORK_USERS = Path.of("input/database/users.json");
+    private static final String USAGE = "Usage: java -jar bug-tracker.jar --users USERS.json "
+            + "--input COMMANDS.json --output RESULTS.json [--overwrite]";
 
-/**
- * main.App represents the main application logic that processes input commands,
- * generates outputs, and writes them to a file
- */
-final public class App {
     private App() {
     }
 
-    private static final String INPUT_USERS_FIELD = "input/database/users.json";
-
-    private static final ObjectWriter WRITER =
-            new ObjectMapper().writer().withDefaultPrettyPrinter();
-
-    private static final Map<String, Command> CommandRegistry = new HashMap<>();
-
-    static {
-        CommandRegistry.put("reportTicket", new ReportTicketCommand());
-        CommandRegistry.put("viewTickets", new ViewTicketsCommand());
-        CommandRegistry.put("lostInvestors", new LostInvestorsCommand());
-        CommandRegistry.put("createMilestone", new CreateMilestoneCommand());
-        CommandRegistry.put("viewMilestones", new ViewMilestonesCommand());
-        CommandRegistry.put("assignTicket", new AssignTicketCommand());
-        CommandRegistry.put("viewAssignedTickets", new ViewAssignedTicketsCommand());
-        CommandRegistry.put("undoAssignTicket", new UndoAssignTicketCommand());
-        CommandRegistry.put("addComment", new AddCommentCommand());
-        CommandRegistry.put("undoAddComment", new UndoAddCommentCommand());
-        CommandRegistry.put("changeStatus", new ChangeStatusCommand());
-        CommandRegistry.put("undoChangeStatus", new UndoChangeStatusCommand());
-        CommandRegistry.put("viewTicketHistory", new ViewTicketHistoryCommand());
-        CommandRegistry.put("viewNotifications", new ViewNotificationsCommand());
-        CommandRegistry.put("generateCustomerImpactReport",
-                new GenerateCustomerImpactReportCommand());
-        CommandRegistry.put("generateTicketRiskReport", new GenerateTicketRiskReportCommand());
-        CommandRegistry.put("generateResolutionEfficiencyReport",
-                new GenerateResolutionEfficiencyReportCommand());
-        CommandRegistry.put("appStabilityReport", new AppStabilityReportCommand());
-        CommandRegistry.put("generatePerformanceReport", new GeneratePerformanceReportCommand());
-        CommandRegistry.put("search", new SearchCommand());
-        CommandRegistry.put("startTestingPhase", new StartTestingPhaseCommand());
+    /** Compatibility entry point used by the original university checker. */
+    public static void run(final String inputPath, final String outputPath) throws IOException {
+        run(COURSEWORK_USERS, Path.of(inputPath), Path.of(outputPath), true);
     }
 
-    /**
-     * Runs the application: reads commands from an input file,
-     * processes them, generates results, and writes them to an output file
-     *
-     * @param inputPath path to the input file containing commands
-     * @param outputPath path to the file where results should be written
-     */
-    public static void run(final String inputPath, final String outputPath) {
+    /** Parses the whole input before publishing output; failures preserve any existing file. */
+    public static void run(final Path users, final Path input, final Path output,
+                           final boolean overwrite) throws IOException {
+        Path destination = output.toAbsolutePath().normalize();
+        if (Files.exists(destination)) {
+            if (Files.isSameFile(destination, users) || Files.isSameFile(destination, input)) {
+                throw new IOException("Output must differ from the users and command files.");
+            }
+            if (!overwrite) {
+                throw new IOException("Output already exists; use --overwrite to replace it.");
+            }
+        }
+        ObjectMapper mapper = JsonSupport.mapper();
+        JsonNode commands = mapper.readTree(input.toFile());
+        if (commands == null || !commands.isArray()) {
+            throw new IOException("Commands file must contain an array.");
+        }
+        TrackerSession session = new TrackerSession(mapper.readTree(users.toFile()));
         List<ObjectNode> outputs = new ArrayList<>();
+        for (JsonNode command : commands) {
+            outputs.addAll(session.execute(command));
+        }
+        writeOutput(mapper, destination, outputs, overwrite);
+    }
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-
-        Database.reset();
-        Database db = Database.getInstance();
+    private static void writeOutput(final ObjectMapper mapper, final Path destination,
+                                    final List<ObjectNode> outputs, final boolean overwrite)
+            throws IOException {
+        Files.createDirectories(destination.getParent());
+        Path temporary = Files.createTempFile(destination.getParent(), ".bug-tracker-", ".tmp");
 
         try {
-            User[] users = mapper.readValue(new File(INPUT_USERS_FIELD), User[].class);
-            for (User user : users) {
-                db.addUser(user);
-            }
-
-            InputCommand[] commands = mapper.readValue(new File(inputPath), InputCommand[].class);
-
-            for (InputCommand inputCommand : commands) {
-                Command command = CommandRegistry.get(inputCommand.getCommand());
-
-                if (command != null) {
-                    command.execute(inputCommand, db, outputs);
-                } else {
-                    System.out.println("Unknown command: " + inputCommand.getCommand());
+            mapper.writerWithDefaultPrettyPrinter().writeValue(temporary.toFile(), outputs);
+            if (overwrite) {
+                try {
+                    Files.move(temporary, destination, StandardCopyOption.ATOMIC_MOVE,
+                            StandardCopyOption.REPLACE_EXISTING);
+                } catch (AtomicMoveNotSupportedException exception) {
+                    throw new IOException(
+                            "Filesystem does not support atomic output replacement.", exception);
                 }
+            } else {
+                // A non-replacing move protects files created after the initial existence check.
+                Files.move(temporary, destination);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } finally {
+            Files.deleteIfExists(temporary);
+        }
+    }
+
+    /** Runs the CLI and exits with a nonzero status only on adapter failure. */
+    public static void main(final String[] args) {
+        int status = runCli(args, System.out, System.err);
+        if (status != 0) {
+            System.exit(status);
+        }
+    }
+
+    /** Returns an exit code, allowing CLI behavior to be tested without terminating the JVM. */
+    public static int runCli(final String[] args, final PrintStream output,
+                             final PrintStream error) {
+        if (args.length == 1 && "--help".equals(args[0])) {
+            output.println(USAGE);
+            return 0;
+        }
+        Map<String, String> paths = new HashMap<>();
+        boolean overwrite = false;
+        for (int index = 0; index < args.length; index++) {
+            String flag = args[index];
+            if ("--overwrite".equals(flag) && !overwrite) {
+                overwrite = true;
+            } else if (PATH_FLAGS.contains(flag)
+                    && index + 1 < args.length && !paths.containsKey(flag)
+                    && !args[index + 1].startsWith("--")) {
+                paths.put(flag, args[++index]);
+            } else {
+                error.println(USAGE);
+                return 2;
+            }
+        }
+        if (paths.size() != PATH_FLAGS.size()) {
+            error.println(USAGE);
+            return 2;
         }
 
         try {
-            File outputFile = new File(outputPath);
-            outputFile.getParentFile().mkdirs();
-            WRITER.withDefaultPrettyPrinter().writeValue(outputFile, outputs);
-        } catch (IOException e) {
-            System.out.println("error writing to output file: " + e.getMessage());
+            run(Path.of(paths.get("--users")), Path.of(paths.get("--input")),
+                    Path.of(paths.get("--output")), overwrite);
+            return 0;
+        } catch (IOException | IllegalArgumentException exception) {
+            error.println("Cannot process batch: " + exception.getMessage());
+            return 1;
         }
     }
 }

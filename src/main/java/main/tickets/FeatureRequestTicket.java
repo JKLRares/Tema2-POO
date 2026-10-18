@@ -17,8 +17,10 @@ public final class FeatureRequestTicket extends Ticket {
 
     FeatureRequestTicket() {
     }
+
     private FeatureRequestTicket(final FeatureReqBuilder builder) {
         super(builder);
+        requireType(main.enums.TicketType.FEATURE_REQUEST);
         this.businessValue = builder.bizVal;
         this.customerDemand = builder.demand;
     }
@@ -39,13 +41,16 @@ public final class FeatureRequestTicket extends Ticket {
 
     @Override
     public double calculateEfficiency(final long days) {
+        if (days <= 0) {
+            throw new IllegalArgumentException("Resolution duration must be positive");
+        }
         double bv = getBusinessValue(this.businessValue);
         double demand = getCustomerDemandValue(this.customerDemand);
         double rawScore = (bv + demand) / (double) days;
         return (rawScore * ROUND) / FEATURE_EFFICIENCY_DIV;
     }
 
-    public final static class FeatureReqBuilder
+    public static final class FeatureReqBuilder
             extends TicketBuilder<FeatureRequestTicket, FeatureReqBuilder> {
         private BusinessValue bizVal;
         private CustomerDemand demand;

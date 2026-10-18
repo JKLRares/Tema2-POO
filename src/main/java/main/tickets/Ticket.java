@@ -14,6 +14,7 @@ import main.enums.BusinessValue;
 import main.enums.CustomerDemand;
 import main.enums.Expertise;
 import main.enums.Frequency;
+import main.enums.HistoryActionType;
 import main.enums.Priority;
 import main.enums.Severity;
 import main.enums.Status;
@@ -30,7 +31,7 @@ import main.enums.TicketType;
         @JsonSubTypes.Type(value = FeatureRequestTicket.class, name = "FEATURE_REQUEST"),
         @JsonSubTypes.Type(value = UiFeedbackTicket.class, name = "UI_FEEDBACK")
 })
-@JsonIgnoreProperties(ignoreUnknown = true) @Getter @Setter
+@JsonIgnoreProperties(ignoreUnknown = true) @Getter
 public abstract class Ticket {
     private static final int PRIORITY_HIGH_VAL = 3;
     private static final int PRIORITY_CRITICAL_VAL = 4;
@@ -50,16 +51,16 @@ public abstract class Ticket {
     @JsonProperty("businessPriority") private Priority businessPriority;
     @JsonProperty("status") private Status status;
     @JsonIgnore private List<TicketHistoryEntry> history = new ArrayList<>();
-
-    @JsonProperty("createdAt") private String createdAt = "";
+    @Setter @JsonProperty("createdAt") private String createdAt = "";
     @JsonProperty("assignedAt") private String assignedAt = "";
     @JsonProperty("solvedAt") private String solvedAt = "";
     @JsonProperty("assignedTo") private String assignedTo = "";
+    @JsonIgnore private String resolutionDate = "";
+    @JsonIgnore private String closedAt = "";
     @JsonProperty("reportedBy") private String reportedBy = "";
 
     @JsonProperty("comments") private List<Comment> comments = new ArrayList<>();
-
-    @JsonIgnore private Expertise expertiseArea;
+    @Setter @JsonIgnore private Expertise expertiseArea;
     @JsonIgnore private String description;
 
     /**
@@ -85,6 +86,13 @@ public abstract class Ticket {
     }
 
     protected Ticket(final TicketBuilder<?, ?> builder) {
+        if (builder.type == null || builder.id == null || builder.id < 0 || builder.title == null
+                || builder.title.isBlank()
+                || builder.priority == null || builder.status != Status.OPEN) {
+            throw new IllegalArgumentException(
+                    "New tickets require an ID, title, priority and OPEN status");
+        }
+        TicketType.valueOf(builder.type);
         this.id = builder.id;
         this.type = builder.type;
         this.title = builder.title;
@@ -97,6 +105,19 @@ public abstract class Ticket {
         if (!"BUG".equals(builder.type)
                 && (builder.reporter == null || builder.reporter.trim().isEmpty())) {
             throw new IllegalArgumentException("Only BUG tickets can be anonymous");
+        }
+    }
+
+    protected final void requireType(final TicketType expected) {
+        if (getType() != expected) {
+            throw new IllegalArgumentException("Builder type does not match ticket subtype");
+        }
+    }
+
+    /** Raises priority without allowing later observations to lower it. */
+    public final void increasePriority(final Priority priority) {
+        if (priority.ordinal() > businessPriority.ordinal()) {
+            businessPriority = priority;
         }
     }
 
@@ -138,30 +159,37 @@ public abstract class Ticket {
             this.id = v;
             return self();
         }
+
         public B withType(final String v) {
             this.type = v;
             return self();
         }
+
         public B withTitle(final String v) {
             this.title = v;
             return self();
         }
+
         public B withPriority(final Priority v) {
             this.priority = v;
             return self();
         }
+
         public B withStatus(final Status v) {
             this.status = v;
             return self();
         }
+
         public B withExpertise(final Expertise v) {
             this.expertise = v;
             return self();
         }
+
         public B withDescription(final String v) {
             this.desc = v;
             return self();
         }
+
         public B withReporter(final String v) {
             this.reporter = v;
             return self();
@@ -175,8 +203,95 @@ public abstract class Ticket {
      * Adds a history entry to the ticket.
      * @param entry the history entry
      */
-    public void addHistoryEntry(final TicketHistoryEntry entry) {
+    public final void addHistoryEntry(final TicketHistoryEntry entry) {
         this.history.add(entry);
+    }
+
+    public final List<TicketHistoryEntry> getHistory() {
+        return List.copyOf(history);
+    }
+
+    public final List<Comment> getComments() {
+        return List.copyOf(comments);
+    }
+
+    /** Appends an immutable comment after command-level permission checks. */
+    public final void addComment(final Comment comment) {
+        comments.add(comment);
+    }
+
+    /** Removes only the most recent comment by this author. */
+    public final void undoComment(final String username) {
+        for (int index = comments.size() - 1; index >= 0; index--) {
+            if (comments.get(index).getAuthor().equals(username)) {
+                comments.remove(index);
+                return;
+            }
+        }
+    }
+
+    /** Assignment and its initial status transition form one domain operation. */
+    public final void assignTo(final String username, final String timestamp) {
+        if (status != Status.OPEN || username == null || username.isBlank()) {
+            throw new IllegalStateException("Only OPEN tickets can be assigned to a developer");
+        }
+        assignedTo = username;
+        assignedAt = timestamp;
+        solvedAt = "";
+        resolutionDate = "";
+        history.add(new TicketHistoryEntry(HistoryActionType.ASSIGNED, timestamp, username, null));
+        transitionTo(Status.IN_PROGRESS, username, timestamp);
+    }
+
+    /** Releases ownership and all timestamps belonging to the previous assignment. */
+    public final void releaseAssignment(final String timestamp, final HistoryActionType action) {
+        String formerAssignee = assignedTo;
+        if (status == Status.CLOSED || formerAssignee.isEmpty()) {
+            throw new IllegalStateException("Ticket has no active assignment");
+        }
+        TicketHistoryEntry entry = new TicketHistoryEntry(null, null, null,
+                action == HistoryActionType.REMOVED_FROM_DEV ? "system" : formerAssignee,
+                timestamp, action, null,
+                action == HistoryActionType.REMOVED_FROM_DEV ? formerAssignee : null);
+        history.add(entry);
+        assignedTo = "";
+        assignedAt = "";
+        closedAt = "";
+        solvedAt = "";
+        resolutionDate = "";
+        status = Status.OPEN;
+    }
+
+    /** Advances an active assignment once; CLOSED tickets are unchanged. */
+    public final void advanceStatus(final String username, final String timestamp) {
+        if (status == Status.IN_PROGRESS) {
+            resolutionDate = timestamp;
+            solvedAt = timestamp;
+            transitionTo(Status.RESOLVED, username, timestamp);
+        } else if (status == Status.RESOLVED) {
+            closedAt = timestamp;
+            transitionTo(Status.CLOSED, username, timestamp);
+        }
+    }
+
+    /** Undo restores resolution metadata as well as the status. History remains append-only. */
+    public final void undoStatus(final String username, final String timestamp) {
+        if (status == Status.CLOSED) {
+            closedAt = "";
+            solvedAt = resolutionDate;
+            transitionTo(Status.RESOLVED, username, timestamp);
+        } else if (status == Status.RESOLVED) {
+            solvedAt = "";
+            resolutionDate = "";
+            transitionTo(Status.IN_PROGRESS, username, timestamp);
+        }
+    }
+
+    private void transitionTo(final Status next, final String username, final String timestamp) {
+        TicketHistoryEntry entry = new TicketHistoryEntry(null, status, next, username,
+                timestamp, HistoryActionType.STATUS_CHANGED, null, null);
+        history.add(entry);
+        status = next;
     }
 
     /**

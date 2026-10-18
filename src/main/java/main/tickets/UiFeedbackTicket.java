@@ -19,8 +19,10 @@ public final class UiFeedbackTicket extends Ticket {
 
     UiFeedbackTicket() {
     }
+
     private UiFeedbackTicket(final UiFeedBuilder builder) {
         super(builder);
+        requireType(main.enums.TicketType.UI_FEEDBACK);
         this.uiElementId = builder.uiId;
         this.businessValue = builder.bizVal;
         this.usabilityScore = builder.score;
@@ -44,13 +46,16 @@ public final class UiFeedbackTicket extends Ticket {
 
     @Override
     public double calculateEfficiency(final long days) {
+        if (days <= 0) {
+            throw new IllegalArgumentException("Resolution duration must be positive");
+        }
         double bv = getBusinessValue(this.businessValue);
         double usb = this.usabilityScore != null ? this.usabilityScore : 0;
         double rawScore = (bv + usb) / (double) days;
         return (rawScore * ROUND) / UI_EFFICIENCY_DIV;
     }
 
-    public final static class UiFeedBuilder extends TicketBuilder<UiFeedbackTicket, UiFeedBuilder> {
+    public static final class UiFeedBuilder extends TicketBuilder<UiFeedbackTicket, UiFeedBuilder> {
         private String uiId;
         private BusinessValue bizVal;
         private Integer score;

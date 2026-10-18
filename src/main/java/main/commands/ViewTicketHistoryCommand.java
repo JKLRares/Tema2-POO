@@ -16,7 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ViewTicketHistoryCommand implements Command {
+public final class ViewTicketHistoryCommand implements Command {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -39,9 +39,8 @@ public class ViewTicketHistoryCommand implements Command {
             error.put("command", input.getCommand());
             error.put("username", input.getUsername());
             error.put("timestamp", input.getTimestamp());
-            error.put("error", "The user " + input.getUsername()
-                    + " does not have permission to execute this command: required"
-                    + "role DEVELOPER or MANAGER; user role REPORTER.");
+            error.put("error", "The user does not have permission to execute this command: "
+                    + "required role DEVELOPER, MANAGER; user role REPORTER.");
             outputs.add(error);
             return;
         }
@@ -53,7 +52,8 @@ public class ViewTicketHistoryCommand implements Command {
                 boolean isCurrentlyAssigned = t.getAssignedTo() != null
                         && t.getAssignedTo().equals(input.getUsername());
                 boolean hasHistoryInteraction = t.getHistory().stream()
-                        .anyMatch(entry -> entry.getUser().equals(input.getUsername()));
+                        .anyMatch(entry -> (input.getUsername().equals(entry.getUser())
+                        || input.getUsername().equals(entry.getRemovedFrom())));
 
                 if (isCurrentlyAssigned || hasHistoryInteraction) {
                     filteredTickets.add(t);
@@ -94,8 +94,10 @@ public class ViewTicketHistoryCommand implements Command {
                     && !input.getUsername().equals(t.getAssignedTo())) {
                 for (int i = processingHistory.size() - 1; i >= 0; i--) {
                     TicketHistoryEntry entry = processingHistory.get(i);
-                    if (entry.getAction() == HistoryActionType.DE_ASSIGNED
-                            && entry.getUser().equals(input.getUsername())) {
+                    if ((entry.getAction() == HistoryActionType.DE_ASSIGNED
+                            || entry.getAction() == HistoryActionType.REMOVED_FROM_DEV)
+                            && (input.getUsername().equals(entry.getUser())
+                        || input.getUsername().equals(entry.getRemovedFrom()))) {
                         processingHistory = processingHistory.subList(0, i + 1);
                         break;
                     }
@@ -111,8 +113,7 @@ public class ViewTicketHistoryCommand implements Command {
                 if (entry.getMilestone() == null) {
                     entryNode.remove("milestone");
                 }
-
-                if (entry.getFromStatus() == null) {
+                if (entry.getFrom() == null) {
                     entryNode.remove("from");
                 }
                 if (entry.getToStatus() == null) {

@@ -3,11 +3,8 @@ package main.commands;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.Database;
-import main.enums.HistoryActionType;
 import main.enums.Status;
-import main.notifications.NotificationService;
 import main.tickets.Ticket;
-import main.tickets.TicketHistoryEntry;
 import main.users.User;
 import main.Milestone;
 
@@ -34,14 +31,7 @@ public final class ChangeStatusCommand implements Command {
             outputs.add(error);
             return;
         }
-
-        Ticket ticket = null;
-        for (Ticket t : db.getTickets()) {
-            if (t.getId().equals(ticketId)) {
-                ticket = t;
-                break;
-            }
-        }
+        Ticket ticket = db.getTicket(ticketId);
 
         if (ticket == null) {
             ObjectNode error = mapper.createObjectNode();
@@ -51,6 +41,12 @@ public final class ChangeStatusCommand implements Command {
             error.put("error", "Ticket " + ticketId + " does not exist.");
             outputs.add(error);
             return;
+        }
+        Milestone milestone = db.getMilestoneForTicket(ticket.getId());
+        if (input.getUsername().equals(ticket.getAssignedTo()) && ticket.getStatus() !=
+                Status.CLOSED
+                && milestone != null) {
+            db.refreshMilestone(milestone, LocalDate.parse(input.getTimestamp()));
         }
 
         String assignedTo = ticket.getAssignedTo();
@@ -70,32 +66,9 @@ public final class ChangeStatusCommand implements Command {
         if (currentStatus == Status.CLOSED) {
             return;
         }
-
-        Status newStatus = null;
-
-        if (currentStatus == Status.IN_PROGRESS) {
-            ticket.setStatus(Status.RESOLVED);
-            ticket.setSolvedAt(input.getTimestamp());
-            newStatus = Status.RESOLVED;
-        } else if (currentStatus == Status.RESOLVED) {
-            ticket.setStatus(Status.CLOSED);
-            ticket.setSolvedAt(input.getTimestamp());
-            newStatus = Status.CLOSED;
-        }
-
-        if (newStatus != null) {
-            TicketHistoryEntry entry = new TicketHistoryEntry();
-            entry.setAction(HistoryActionType.STATUS_CHANGED);
-            entry.setTimestamp(input.getTimestamp());
-            entry.setUser(username);
-            entry.setFromStatus(currentStatus);
-            entry.setToStatus(newStatus);
-            ticket.addHistoryEntry(entry);
-            NotificationService.getInstance().notify(ticket, "STATUS_CHANGED", username);
-
-            Milestone milestone = db.getMilestoneForTicket(ticket.getId());
+        ticket.advanceStatus(username, input.getTimestamp());
+        if (ticket.getStatus() != currentStatus) {
             if (milestone != null) {
-                milestone.updateStatusAndPriorities(LocalDate.parse(input.getTimestamp()));
 
                 // After closing a ticket, check if this action unblocks any dependent milestones
                 if (milestone.areTicketsResolved()) {
@@ -114,8 +87,7 @@ public final class ChangeStatusCommand implements Command {
                                             /* Notify developers in the dependent milestone
                                             that they can now start working
                                              */
-                                            NotificationService.getInstance()
-                                                    .sendNotification(dev, msg);
+                                            db.getNotifications().sendNotification(dev, msg);
                                         }
                                     }
                                 }

@@ -4,39 +4,36 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import main.enums.*;
+import main.enums.HistoryActionType;
+import main.enums.Status;
 
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
-public class TicketHistoryEntry {
+@Getter @AllArgsConstructor
+public final class TicketHistoryEntry {
     @JsonProperty("milestone")
-    private String milestone;
-
-    @JsonProperty("from")
-    private Status fromStatus;
-
-    @JsonProperty("to")
-    private Status toStatus;
-
-    @JsonProperty("by")
-    private String user;
-
-    @JsonProperty("timestamp")
-    private String timestamp;
-
-    @JsonProperty("action")
-    private HistoryActionType action;
-
+    private final String milestone;
     @JsonIgnore
-    private String details;
+    private final Status fromStatus;
+    @JsonProperty("to")
+    private final Status toStatus;
+    @JsonProperty("by")
+    private final String user;
+    @JsonProperty("timestamp")
+    private final String timestamp;
+    @JsonProperty("action")
+    private final HistoryActionType action;
+    @JsonIgnore
+    private final String details;
+    @JsonIgnore
+    private final String removedFrom;
+
+    /** The wire format uses the same field for a status or a former assignee. */
+    @JsonProperty("from")
+    public Object getFrom() {
+        return removedFrom != null ? removedFrom : fromStatus;
+    }
 
     public TicketHistoryEntry(final HistoryActionType action, final String timestamp,
                               final String user, final String details) {
-        this.action = action;
-        this.timestamp = timestamp;
-        this.user = user;
-        this.details = details;
+        this(null, null, null, user, timestamp, action, details, null);
     }
 }

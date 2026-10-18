@@ -5,7 +5,8 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.Database;
 import main.tickets.Ticket;
-import main.enums.*;
+import main.enums.Status;
+import main.enums.UserRole;
 import main.users.DeveloperUser;
 import main.users.ManagerUser;
 import main.users.User;
@@ -17,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Locale;
+import java.util.LinkedHashSet;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public final class SearchCommand implements Command {
@@ -49,6 +53,7 @@ public final class SearchCommand implements Command {
             return;
         }
 
+        @SuppressWarnings("unchecked")
         Map<String, Object> filters = (Map<String, Object>) input.getParams().get("filters");
         if (filters == null) {
             filters = Map.of();
@@ -107,28 +112,25 @@ public final class SearchCommand implements Command {
                 }
 
                 if (user.getRole() == UserRole.DEVELOPER) {
-                    if (!SecurityManager.getInstance().hasAccess(user, t)) {
+                    if (!SecurityManager.hasAccess(user, t)) {
                         continue;
                     }
                 }
 
                 List<String> foundWords = new ArrayList<>();
                 if (!searchKeywords.isEmpty()) {
-                    boolean match = false;
-                    String title = t.getTitle() != null ? t.getTitle().toLowerCase() : "";
-                    String desc = t.getDescription() != null
-                            ? t.getDescription().toLowerCase() : "";
-
-                    /* Check if the title or description contains any of the
-                    search keywords (case-insensitive)
-                    */
+                    LinkedHashSet<String> matched = new LinkedHashSet<>();
+                    String text = (t.getTitle() + " "
+                            + (t.getDescription() == null ? "" : t.getDescription()))
+                            .toLowerCase(Locale.ROOT);
+                    List<String> words = Pattern.compile("[\\p{L}\\p{N}]+")
+                            .matcher(text).results().map(result -> result.group()).toList();
                     for (String keyword : searchKeywords) {
-                        String kLower = keyword.toLowerCase();
-                        if (title.contains(kLower) || desc.contains(kLower)) {
-                            match = true;
-                            foundWords.add(keyword);
-                        }
+                        String needle = keyword.toLowerCase(Locale.ROOT);
+                        words.stream().filter(word -> word.contains(needle)).forEach(matched::add);
                     }
+                    foundWords.addAll(matched);
+                    boolean match = !matched.isEmpty();
                     if (!match) {
                         continue;
                     }
@@ -270,7 +272,7 @@ public final class SearchCommand implements Command {
         if (manager.getSubordinates() != null) {
             for (String subName : manager.getSubordinates()) {
                 User u = db.getUser(subName);
-                DeveloperUser dev = u.asDeveloper();
+                DeveloperUser dev = u == null ? null : u.asDeveloper();
                 if (dev != null) {
                     devs.add(dev);
                 }
@@ -308,11 +310,15 @@ public final class SearchCommand implements Command {
             }
 
             if (filters.containsKey("keywords")) {
-                String keyword = ((String) filters.get("keywords")).toLowerCase();
-                String username = dev.getUsername().toLowerCase();
-                String email = dev.getEmail() != null ? dev.getEmail().toLowerCase() : "";
-                if (!username.contains(keyword)
-                        && !email.contains(keyword)) {
+                Object value = filters.get("keywords");
+                List<?> keywords = value instanceof List<?> list ? list : List.of(value);
+                String username = dev.getUsername().toLowerCase(Locale.ROOT);
+                String email = dev.getEmail() != null ? dev.getEmail().toLowerCase(Locale.ROOT) :
+                        "";
+                boolean found = keywords.stream().map(Object::toString)
+                        .map(word -> word.toLowerCase(Locale.ROOT))
+                        .anyMatch(word -> username.contains(word) || email.contains(word));
+                if (!found) {
                     matches = false;
                 }
             }

@@ -11,7 +11,7 @@ import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter @Setter
-public class InputCommand {
+public final class InputCommand {
     @JsonProperty("command")
     private String command;
 
@@ -25,6 +25,8 @@ public class InputCommand {
     private Map<String, Object> params = new HashMap<>();
 
     @JsonAnySetter
+
+    /** Accepts legacy flat command parameters during Jackson deserialization. */
     public void setOtherField(final String key, final Object value) {
         this.params.put(key, value);
     }

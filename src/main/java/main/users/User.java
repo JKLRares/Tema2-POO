@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
+import lombok.AccessLevel;
 import lombok.Setter;
 import main.notifications.NotificationObserver;
 import main.enums.UserRole;
@@ -36,6 +37,7 @@ public abstract class User implements NotificationObserver {
     private UserRole role;
 
     @JsonProperty("notifications")
+    @Setter(AccessLevel.NONE)
     private List<String> notifications = new ArrayList<>();
 
     User() { }
@@ -47,6 +49,17 @@ public abstract class User implements NotificationObserver {
     @Override
     public void update(final String message) {
         this.notifications.add(message);
+    }
+
+    public final List<String> getNotifications() {
+        return List.copyOf(notifications);
+    }
+
+    /** Returns pending notifications as a snapshot and empties the queue. */
+    public final List<String> drainNotifications() {
+        List<String> pending = List.copyOf(notifications);
+        notifications.clear();
+        return pending;
     }
 
     /**

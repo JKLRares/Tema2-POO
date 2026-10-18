@@ -28,6 +28,16 @@ public final class ViewAssignedTicketsCommand implements Command {
             outputs.add(error);
             return;
         }
+        if (user.asDeveloper() == null) {
+            ObjectNode error = mapper.createObjectNode();
+            error.put("command", input.getCommand());
+            error.put("username", input.getUsername());
+            error.put("timestamp", input.getTimestamp());
+            error.put("error", "The user does not have permission to execute this command: "
+                    + "required role DEVELOPER; user role " + user.getRole() + ".");
+            outputs.add(error);
+            return;
+        }
 
         List<Ticket> filteredTickets = db.getTickets().stream()
                 .filter(ticket -> ticket.getAssignedTo().equals(input.getUsername()))

@@ -51,6 +51,33 @@ public final class ReportTicketCommand implements Command {
             outputs.add(error);
             return;
         }
+        Map<String, Object> p = input.getParams();
+        String typeStr = (String) p.get("type");
+        String reportedBy = (String) p.get("reportedBy");
+        if (reportedBy == null) {
+            reportedBy = "";
+        }
+        boolean isAnonymous = reportedBy.trim().isEmpty();
+        // Anonymous reporting is allowed exclusively for BUG tickets, not for feature requests
+        if (isAnonymous && !"BUG".equals(typeStr)) {
+            ObjectNode error = mapper.createObjectNode();
+            error.put("command", input.getCommand());
+            error.put("username", input.getUsername());
+            error.put("timestamp", input.getTimestamp());
+            error.put("error", "Anonymous reports are only allowed for tickets of type BUG.");
+            outputs.add(error);
+            return;
+        }
+        if (!isAnonymous && (db.getUser(reportedBy) == null
+                || db.getUser(reportedBy).getRole() != UserRole.REPORTER)) {
+            CommandErrors.add(input, outputs, "reportedBy must identify an existing reporter.");
+            return;
+        }
+
+        if (!db.hasAvailableTicketId()) {
+            CommandErrors.add(input, outputs, "Ticket ID space is exhausted.");
+            return;
+        }
 
         LocalDate currentDate = LocalDate.parse(input.getTimestamp());
 
@@ -81,28 +108,8 @@ public final class ReportTicketCommand implements Command {
             return;
         }
 
-        Map<String, Object> p = input.getParams();
-        String typeStr = (String) p.get("type");
-        String reportedBy = (String) p.get("reportedBy");
-
-        if (reportedBy == null) {
-            reportedBy = "";
-        }
-
-        boolean isAnonymous = reportedBy.trim().isEmpty();
-        // Anonymous reporting is allowed exclusively for BUG tickets, not for feature requests
-        if (isAnonymous && !"BUG".equals(typeStr)) {
-            ObjectNode error = mapper.createObjectNode();
-            error.put("command", input.getCommand());
-            error.put("username", input.getUsername());
-            error.put("timestamp", input.getTimestamp());
-            error.put("error", "Anonymous reports are only allowed for tickets of type BUG.");
-            outputs.add(error);
-            return;
-        }
-
         Ticket ticket;
-        Integer id = db.getNextIdAndIncrement();
+        Integer id = db.getNextTicketId();
         String title = (String) p.get("title");
         String description = (String) p.get("description");
 

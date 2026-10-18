@@ -4,13 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.Database;
 import main.tickets.Ticket;
-import main.tickets.TicketHistoryEntry;
 import main.enums.HistoryActionType;
 import main.enums.Status;
 
 import java.util.List;
 
-public class UndoAssignTicketCommand implements Command {
+public final class UndoAssignTicketCommand implements Command {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -19,14 +18,7 @@ public class UndoAssignTicketCommand implements Command {
                         final List<ObjectNode> outputs) {
         Integer ticketId = (Integer) input.getParams().get("ticketID");
         String username = input.getUsername();
-
-        Ticket ticket = null;
-        for (Ticket t : db.getTickets()) {
-            if (t.getId().equals(ticketId)) {
-                ticket = t;
-                break;
-            }
-        }
+        Ticket ticket = db.getTicket(ticketId);
 
         if (ticket == null) {
             ObjectNode error = mapper.createObjectNode();
@@ -43,7 +35,7 @@ public class UndoAssignTicketCommand implements Command {
             error.put("command", input.getCommand());
             error.put("username", username);
             error.put("timestamp", input.getTimestamp());
-            error.put("error", "The ticket " + ticketId + " is not in progress.");
+            error.put("error", "Only IN_PROGRESS tickets can be unassigned.");
             outputs.add(error);
             return;
         }
@@ -59,17 +51,6 @@ public class UndoAssignTicketCommand implements Command {
             outputs.add(error);
             return;
         }
-
-        TicketHistoryEntry entry = new TicketHistoryEntry(
-                HistoryActionType.DE_ASSIGNED,
-                input.getTimestamp(),
-                username,
-                "De-assigned from user: " + username
-        );
-        ticket.addHistoryEntry(entry);
-
-        ticket.setAssignedTo("");
-        ticket.setStatus(Status.OPEN);
-        ticket.setAssignedAt("");
+        ticket.releaseAssignment(input.getTimestamp(), HistoryActionType.DE_ASSIGNED);
     }
 }

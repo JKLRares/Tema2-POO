@@ -3,7 +3,6 @@ package main.commands;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.Database;
-import main.Milestone;
 import main.tickets.Ticket;
 import main.enums.Status;
 import main.enums.UserRole;
@@ -14,12 +13,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ViewTicketsCommand implements Command {
+public final class ViewTicketsCommand implements Command {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public void execute(final InputCommand input, final Database db, final List<ObjectNode> outputs) {
+    public void execute(final InputCommand input, final Database db, final List<ObjectNode>
+            outputs) {
         User user = db.getUser(input.getUsername());
         if (user == null) {
             ObjectNode error = mapper.createObjectNode();
@@ -31,9 +31,7 @@ public class ViewTicketsCommand implements Command {
         }
 
         LocalDate currentDate = LocalDate.parse(input.getTimestamp());
-        for (Milestone m : db.getMilestones()) {
-            m.updateStatusAndPriorities(currentDate);
-        }
+        db.refreshMilestones(currentDate);
 
         List<Ticket> allTickets = db.getTickets();
         List<Ticket> filteredTickets;

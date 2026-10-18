@@ -1,0 +1,36 @@
+name: Java CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+      - name: Build and test
+        run: mvn -B --no-transfer-progress clean verify
+      - name: Exercise packaged application
+        run: |
+          java -jar target/bug-tracker.jar --users examples/users.json --input examples/commands.json --output target/example-output.json
+          python3 - <<'PY'
+          import json
+          with open('target/example-output.json') as stream:
+              responses = json.load(stream)
+          assert all('error' not in response for response in responses), responses
+          plan = next(response['plan'] for response in responses if response['command'] == 'planAssignments')
+          assert len(plan['assignments']) == 2, plan
+          assert len(plan['unplanned']) == 1, plan
+          PY

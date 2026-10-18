@@ -38,9 +38,7 @@ public final class ViewMilestonesCommand implements Command {
         }
 
         LocalDate currentDate = LocalDate.parse(input.getTimestamp());
-        for (Milestone m : db.getMilestones()) {
-            m.updateStatusAndPriorities(currentDate);
-        }
+        db.refreshMilestones(currentDate);
 
         List<Milestone> filteredMilestones = new ArrayList<>();
 
@@ -96,8 +94,8 @@ public final class ViewMilestonesCommand implements Command {
                 LocalDate maxSolvedDate = null;
 
                 for (Ticket t : m.getTickets()) {
-                    if (t.getSolvedAt() != null && !t.getSolvedAt().isEmpty()) {
-                        LocalDate solvedDate = LocalDate.parse(t.getSolvedAt());
+                    if (t.getClosedAt() != null && !t.getClosedAt().isEmpty()) {
+                        LocalDate solvedDate = LocalDate.parse(t.getClosedAt());
 
                         if (maxSolvedDate == null || solvedDate.isAfter(maxSolvedDate)) {
                             maxSolvedDate = solvedDate;
@@ -162,6 +160,13 @@ public final class ViewMilestonesCommand implements Command {
                     repartitionNode.add(devRepNode);
                 }
             }
+            List<com.fasterxml.jackson.databind.JsonNode> repartition = new ArrayList<>();
+            repartitionNode.forEach(repartition::add);
+            repartition.sort(Comparator.comparingInt(
+                    (com.fasterxml.jackson.databind.JsonNode n) -> n.get("assignedTickets").size())
+                    .thenComparing(n -> n.get("developer").asText()));
+            repartitionNode.removeAll();
+            repartition.forEach(repartitionNode::add);
             mNode.set("repartition", repartitionNode);
 
             milestonesArray.add(mNode);

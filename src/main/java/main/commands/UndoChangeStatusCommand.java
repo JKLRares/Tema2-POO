@@ -4,14 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.Database;
 import main.tickets.Ticket;
-import main.tickets.TicketHistoryEntry;
-import main.enums.HistoryActionType;
-import main.enums.Status;
 import main.users.User;
 
 import java.util.List;
 
-public class UndoChangeStatusCommand implements Command {
+public final class UndoChangeStatusCommand implements Command {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -31,14 +28,7 @@ public class UndoChangeStatusCommand implements Command {
             outputs.add(error);
             return;
         }
-
-        Ticket ticket = null;
-        for (Ticket t : db.getTickets()) {
-            if (t.getId().equals(ticketId)) {
-                ticket = t;
-                break;
-            }
-        }
+        Ticket ticket = db.getTicket(ticketId);
 
         if (ticket == null) {
             ObjectNode error = mapper.createObjectNode();
@@ -61,33 +51,6 @@ public class UndoChangeStatusCommand implements Command {
             outputs.add(error);
             return;
         }
-
-        Status currentStatus = ticket.getStatus();
-
-        if (currentStatus == Status.IN_PROGRESS) {
-            return;
-        }
-
-        Status newStatus = null;
-
-        if (currentStatus == Status.CLOSED) {
-            ticket.setStatus(Status.RESOLVED);
-            newStatus = Status.RESOLVED;
-        } else if (currentStatus == Status.RESOLVED) {
-            ticket.setStatus(Status.IN_PROGRESS);
-            newStatus = Status.IN_PROGRESS;
-        }
-
-        if (newStatus != null) {
-            TicketHistoryEntry entry = new TicketHistoryEntry(
-                    HistoryActionType.STATUS_CHANGED,
-                    input.getTimestamp(),
-                    username,
-                    "Status reverted from " + currentStatus + " to " + newStatus
-            );
-            entry.setFromStatus(currentStatus);
-            entry.setToStatus(newStatus);
-            ticket.addHistoryEntry(entry);
-        }
+        ticket.undoStatus(username, input.getTimestamp());
     }
 }

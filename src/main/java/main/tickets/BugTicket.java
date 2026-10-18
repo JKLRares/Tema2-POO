@@ -23,8 +23,10 @@ public final class BugTicket extends Ticket {
 
     BugTicket() {
     }
+
     private BugTicket(final BugBuilder builder) {
         super(builder);
+        requireType(main.enums.TicketType.BUG);
         this.expectedBehavior = builder.expected;
         this.actualBehavior = builder.actual;
         this.frequency = builder.freq;
@@ -50,6 +52,9 @@ public final class BugTicket extends Ticket {
 
     @Override
     public double calculateEfficiency(final long days) {
+        if (days <= 0) {
+            throw new IllegalArgumentException("Resolution duration must be positive");
+        }
         double freq = getFrequencyValue(this.frequency);
         double sev = getSeverityValue(this.severity);
         double rawScore = (freq + sev) * BUG_EFFICIENCY_MUL / days;
