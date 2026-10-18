@@ -1,0 +1,11 @@
+[
+  {"username":"reporter","role":"REPORTER","email":"reporter@example.com"},
+  {"username":"frontend_mid","role":"DEVELOPER","email":"frontend@example.com",
+   "seniority":"MID","expertiseArea":"FRONTEND","hireDate":"2023-01-10"},
+  {"username":"fullstack_senior","role":"DEVELOPER","email":"fullstack@example.com",
+   "seniority":"SENIOR","expertiseArea":"FULLSTACK","hireDate":"2021-06-01"},
+  {"username":"backend_junior","role":"DEVELOPER","email":"backend@example.com",
+   "seniority":"JUNIOR","expertiseArea":"BACKEND","hireDate":"2024-03-15"},
+  {"username":"manager","role":"MANAGER","email":"manager@example.com",
+   "hireDate":"2020-09-01","subordinates":["frontend_mid","fullstack_senior","backend_junior"]}
+]
